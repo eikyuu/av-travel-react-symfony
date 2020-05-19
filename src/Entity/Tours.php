@@ -54,9 +54,15 @@ class Tours
      */
     private $destinations;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=User::class, mappedBy="tours")
+     */
+    private $users;
+
     public function __construct()
     {
         $this->destinations = new ArrayCollection();
+        $this->users = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -159,6 +165,34 @@ class Tours
         if ($this->destinations->contains($destination)) {
             $this->destinations->removeElement($destination);
             $destination->removeTour($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|User[]
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user): self
+    {
+        if (!$this->users->contains($user)) {
+            $this->users[] = $user;
+            $user->addTour($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): self
+    {
+        if ($this->users->contains($user)) {
+            $this->users->removeElement($user);
+            $user->removeTour($this);
         }
 
         return $this;
