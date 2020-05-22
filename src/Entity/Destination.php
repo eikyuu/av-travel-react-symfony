@@ -45,7 +45,7 @@ class Destination
     private $image;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Tours::class, inversedBy="destinations")
+     * @ORM\ManyToMany(targetEntity=Tours::class, mappedBy="destinations", cascade={"persist"})
      */
     private $tours;
 
