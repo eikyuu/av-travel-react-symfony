@@ -2,15 +2,39 @@
 
 namespace App\Entity;
 
+use App\Entity\User;
+use App\Entity\Destination;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\ToursRepository;
+use ApiPlatform\Core\Annotation\ApiFilter;
 use Doctrine\Common\Collections\Collection;
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiSubresource;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Serializer\Annotation\Groups;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 
 /**
  * @ORM\Entity(repositoryClass=ToursRepository::class)
- * @ApiResource
+ * @ApiResource(
+ *  collectionOperations={"GET", "POST"},
+ *  itemOperations={"GET", "PUT", "DELETE", "PATCH"},
+ *  subresourceOperations={
+ * *      "api_users_tours_get_subresource"={
+ *          "normalization_context"={"groups"={"tours_subresource"}}
+ * },
+ *      "destinations_get_subresource"={"path"="/tours/{id}/destinations"},
+ *      "api_destinations_tours_get_subresource"={
+ *          "normalization_context"={"groups"={"tours_subresource"}}
+ *  }
+ * },
+ *  normalizationContext={
+ *      "groups"={"tours_read"}
+ *  }
+ * )
+ * @ApiFilter(SearchFilter::class, properties={"title":"partial", "price":"partial"})
+ * @ApiFilter(OrderFilter::class, properties={"price"})
  */
 class Tours
 {
@@ -18,47 +42,57 @@ class Tours
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Groups({"tours_read", "destination_read", "tours_subresource"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"tours_read", "destination_read", "tours_subresource"})
      */
     private $title;
 
     /**
      * @ORM\Column(type="text")
+     * @Groups({"tours_read", "destination_read", "tours_subresource"})
      */
     private $description;
 
     /**
      * @ORM\Column(type="integer")
+     * @Groups({"tours_read", "destination_read", "tours_subresource"})
      */
     private $days;
 
     /**
      * @ORM\Column(type="integer")
+     * @Groups({"tours_read", "destination_read", "tours_subresource"})
      */
     private $price;
 
     /**
      * @ORM\Column(type="text")
+     * @Groups({"tours_read", "destination_read", "tours_subresource"})
      */
     private $image;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"tours_read", "destination_read", "tours_subresource"})
      */
     private $nameImage;
 
     /**
      * @ORM\ManyToMany(targetEntity=Destination::class, inversedBy="destinations", cascade={"persist"})
      * @ORM\JoinTable(name="destination_tours")
+     * @Groups({"tours_read"})
+     * @ApiSubresource(maxDepth=1)
      */
     private $destinations;
 
     /**
      * @ORM\ManyToMany(targetEntity=User::class, mappedBy="tours")
+     * @Groups({"tours_read", "destination_read"})
      */
     private $users;
 

@@ -5,13 +5,33 @@ namespace App\Entity;
 use App\Entity\Tours;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\DestinationRepository;
+use ApiPlatform\Core\Annotation\ApiFilter;
 use Doctrine\Common\Collections\Collection;
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiSubresource;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Serializer\Annotation\Groups;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=DestinationRepository::class)
- * @ApiResource
+ * @ApiResource(
+ * subresourceOperations={
+ *      "tours_get_subresource"={"path"="/destinations/{id}/tours"},
+ *      "api_tours_destinations_get_subresource"={
+ *          "normalization_context"={"groups"={"destinations_subresource"}}
+ *  }
+ * },
+ * collectionOperations={"GET", "POST"},
+ * itemOperations={"GET", "PUT", "DELETE", "PATCH"},
+ * normalizationContext={
+ *      "groups"={"destination_read"}
+ * }
+ * )
+ * @ApiFilter(SearchFilter::class, properties={"title":"partial", "pays":"partial", "city":"partial"})
+ * @ApiFilter(OrderFilter::class)
  */
 class Destination
 {
@@ -19,37 +39,54 @@ class Destination
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Groups({"destination_read", "tours_read", "destinations_subresource"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"destination_read", "tours_read", "destinations_subresource"})
+     * @Assert\NotBlank(message="le titre de la destination est obligatoire")
+     * @Assert\Type(type="string", message="le titre dois etre au format texte !")
      */
     private $title;
 
     /**
      * @ORM\Column(type="text")
+     * @Groups({"destination_read", "tours_read", "destinations_subresource"})
+     * @Assert\NotBlank(message="la description de la destination est obligatoire")
+     * @Assert\Type(type="string", message="la description dois etre au format texte !")
      */
     private $description;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"destination_read", "tours_read", "destinations_subresource"})
+     * @Assert\NotBlank(message="le pays de la destination est obligatoire")
+     * @Assert\Type(type="string", message="le pays dois etre au format texte !")
      */
     private $pays;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"destination_read", "tours_read", "destinations_subresource"})
+     * @Assert\NotBlank(message="la ville de la destination est obligatoire")
+     * @Assert\Type(type="string", message="la ville dois etre au format texte !")
      */
     private $city;
 
     /**
      * @ORM\Column(type="text")
+     * @Groups({"destination_read", "tours_read", "destinations_subresource"})
+     * @Assert\NotBlank(message="l'image de la destination est obligatoire")
      */
     private $image;
 
     /**
      * @ORM\ManyToMany(targetEntity=Tours::class, mappedBy="destinations", cascade={"persist"})
-     */
+     * @Groups({"destination_read"})
+     * @ApiSubresource(maxDepth=1)
+      */
     private $tours;
 
     public function __construct()
@@ -134,6 +171,7 @@ class Destination
     {
         if (!$this->tours->contains($tour)) {
             $this->tours[] = $tour;
+            $tour->addDestination($this);
         }
 
         return $this;
@@ -143,6 +181,7 @@ class Destination
     {
         if ($this->tours->contains($tour)) {
             $this->tours->removeElement($tour);
+            $tour->removeDestination($this);
         }
 
         return $this;
