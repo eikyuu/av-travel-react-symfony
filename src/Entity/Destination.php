@@ -28,7 +28,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  * itemOperations={"GET", "PUT", "DELETE", "PATCH"},
  * normalizationContext={
  *      "groups"={"destination_read"}
- * }
+ * },
+ * denormalizationContext={"disable_type_enforcement"=true}
  * )
  * @ApiFilter(SearchFilter::class, properties={"title":"partial", "pays":"partial", "city":"partial"})
  * @ApiFilter(OrderFilter::class)
@@ -104,7 +105,7 @@ class Destination
         return $this->title;
     }
 
-    public function setTitle(string $title): self
+    public function setTitle($title): self
     {
         $this->title = $title;
 

@@ -14,6 +14,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Serializer\Annotation\Groups;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * @ORM\Entity(repositoryClass=ToursRepository::class)
@@ -31,7 +33,8 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
  * },
  *  normalizationContext={
  *      "groups"={"tours_read"}
- *  }
+ *  },
+ * denormalizationContext={"disable_type_enforcement"=true}
  * )
  * @ApiFilter(SearchFilter::class, properties={"title":"partial", "price":"partial"})
  * @ApiFilter(OrderFilter::class, properties={"price"})
@@ -49,36 +52,46 @@ class Tours
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"tours_read", "destination_read", "tours_subresource"})
+     * @Assert\NotBlank(message="le titre du tours est obligatoire")
+     * @Assert\Type(type="string", message="le titre dois etre au format texte !")
      */
     private $title;
 
     /**
      * @ORM\Column(type="text")
      * @Groups({"tours_read", "destination_read", "tours_subresource"})
+     * @Assert\NotBlank(message="la description du tours est obligatoire")
+     * @Assert\Type(type="string", message="la description dois etre au format texte !")
      */
     private $description;
 
     /**
      * @ORM\Column(type="integer")
      * @Groups({"tours_read", "destination_read", "tours_subresource"})
+     * @Assert\NotBlank(message="le nombre de jours du tours est obligatoire")
+     * @Assert\Type(type="integer", message="le nombre de jours dois etre au format numeric !")
      */
     private $days;
 
     /**
      * @ORM\Column(type="integer")
      * @Groups({"tours_read", "destination_read", "tours_subresource"})
+     * @Assert\NotBlank(message="le prix du tours est obligatoire")
+     * @Assert\Type(type="integer", message="le prix dois etre au format numeric !")
      */
     private $price;
 
     /**
      * @ORM\Column(type="text")
      * @Groups({"tours_read", "destination_read", "tours_subresource"})
+     * @Assert\NotBlank(message="l'image du tours est obligatoire")
      */
     private $image;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"tours_read", "destination_read", "tours_subresource"})
+     * @Assert\NotBlank(message="le nom de l'image du tours est obligatoire")
      */
     private $nameImage;
 
