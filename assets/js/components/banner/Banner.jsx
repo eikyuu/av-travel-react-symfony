@@ -1,6 +1,6 @@
 import React from "react";
 import "./Banner.css";
-const Banner = props => {
+const Banner = (props) => {
   return (
     <div className="container-fluid banner_home">
       <div className="row banner_home_div">

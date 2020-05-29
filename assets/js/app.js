@@ -2,8 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom";
 import Navbar from "./components/Navbar";
 import { HashRouter, Route, Switch, withRouter } from "react-router-dom";
-import Banner from "./components/Banner";
-import SearchBar from "./components/SearchBar";
 import HomePage from "./pages/HomePage";
 
 const App = () => {

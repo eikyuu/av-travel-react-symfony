@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import toursApi from "../services/toursApi";
+import toursApi from "../../services/toursApi";
 import "./Tours.css";
-const Tours = props => {
+const Tours = (props) => {
   const [tours, setTours] = useState([]);
 
   const fetchDestinations = async () => {
@@ -20,7 +20,7 @@ const Tours = props => {
     <div className="container mt-5">
       <div className="row mt-5">
         <h1 className="col-12">Tours populaire</h1>
-        {tours.slice(0, 6).map(tours => (
+        {tours.slice(0, 6).map((tours) => (
           <div key={tours.id} className="mt-3 col-sm-6 col-md-4 mx-auto">
             <a href="http://google.com">
               <div className="card">

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./Destinations.css";
-import destinationsApi from "../services/destinationsApi";
+import destinationsApi from "../../services/destinationsApi";
 
-const Destinations = props => {
+const Destinations = (props) => {
   const [destinations, setDestinations] = useState([]);
 
   const fetchDestinations = async () => {
@@ -24,7 +24,7 @@ const Destinations = props => {
         <h1 className="col-12 mt-5 mb-3 destinations_h1">
           Toutes les destinations
         </h1>
-        {destinations.slice(0, 4).map(destination => (
+        {destinations.slice(0, 4).map((destination) => (
           <div
             key={destination.id}
             className="col-sm-6 col-md-6 my-1 displayDestinations"

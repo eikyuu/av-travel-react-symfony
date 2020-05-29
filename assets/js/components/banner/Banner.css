@@ -1,5 +1,5 @@
 .banner_home {
-  background: url("../../../public/img/santorini.jpg") no-repeat;
+  background: url("../../../../public/img/santorini.jpg") no-repeat;
   background-size: cover;
   height: 100vh;
   display: flex;
