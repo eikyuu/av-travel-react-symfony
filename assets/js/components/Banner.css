@@ -1,0 +1,35 @@
+.banner_home {
+  background: url("../../../public/img/santorini.jpg") no-repeat;
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.banner_home_h1 {
+  font-size: 3.5em;
+  font-weight: 900;
+}
+
+.banner_home_h2 {
+  font-size: 3em;
+}
+
+.banner_home_div {
+  text-shadow: 0px 0px 2px #000000;
+  text-align: center;
+}
+
+@media (min-width: 740px) {
+  .banner_home {
+    height: 30rem;
+  }
+
+  .banner_home_h2 {
+    font-size: 2em;
+  }
+}
+
+@media (min-width: 1200px) {
+}

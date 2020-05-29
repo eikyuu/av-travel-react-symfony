@@ -1,14 +1,26 @@
-/*
- * Welcome to your app's main JavaScript file!
- *
- * We recommend including the built version of this JavaScript file
- * (and its CSS file) in your base layout (base.html.twig).
- */
+import React from "react";
+import ReactDOM from "react-dom";
+import Navbar from "./components/Navbar";
+import { HashRouter, Route, Switch, withRouter } from "react-router-dom";
+import Banner from "./components/Banner";
+import SearchBar from "./components/SearchBar";
+import HomePage from "./pages/HomePage";
 
-// any CSS you import will output into a single css file (app.css in this case)
-import '../css/app.css';
+const App = () => {
+  const NavbarWithRouter = withRouter(Navbar);
 
-// Need jQuery? Install it with "yarn add jquery", then uncomment to import it.
-// import $ from 'jquery';
+  return (
+    <HashRouter>
+      <NavbarWithRouter />
 
-console.log('Hello Webpack Encore! Edit me in assets/js/app.js');
+      <main className="app">
+        <Switch>
+          <Route path="/" component={HomePage} />
+        </Switch>
+      </main>
+    </HashRouter>
+  );
+};
+
+const rootElement = document.querySelector("#app");
+ReactDOM.render(<App />, rootElement);
