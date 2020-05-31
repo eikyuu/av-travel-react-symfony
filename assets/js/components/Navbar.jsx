@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-const Navbar = props => {
+const Navbar = (props) => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <NavLink className="navbar-brand" to="/">
@@ -27,7 +27,7 @@ const Navbar = props => {
             </NavLink>
           </li>
           <li className="nav-item active mr-5">
-            <NavLink className="nav-link" to="/destination">
+            <NavLink className="nav-link" to="/destinations">
               DESTINATIONS<span className="sr-only">(current)</span>
             </NavLink>
           </li>
