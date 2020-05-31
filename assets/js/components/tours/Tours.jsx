@@ -1,21 +1,9 @@
 import React, { useState, useEffect } from "react";
-import toursApi from "../../services/toursApi";
 import "./Tours.css";
+import useTours from "../../customHooks/useTours";
+
 const Tours = (props) => {
-  const [tours, setTours] = useState([]);
-
-  const fetchDestinations = async () => {
-    try {
-      const data = await toursApi.findAll();
-      setTours(data);
-    } catch (error) {
-      console.log("Impossible de charger les tours");
-    }
-  };
-
-  useEffect(() => {
-    fetchDestinations();
-  }, []);
+  const tours = useTours();
   return (
     <div className="container mt-5">
       <div className="row mt-5">

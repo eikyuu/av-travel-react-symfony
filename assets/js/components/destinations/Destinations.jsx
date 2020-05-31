@@ -1,22 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "./Destinations.css";
-import destinationsApi from "../../services/destinationsApi";
+import useDestinations from "../../customHooks/useDestinations";
 
 const Destinations = (props) => {
-  const [destinations, setDestinations] = useState([]);
-
-  const fetchDestinations = async () => {
-    try {
-      const data = await destinationsApi.findAll();
-      setDestinations(data);
-    } catch (error) {
-      console.log("Impossible de charger les destinations");
-    }
-  };
-
-  useEffect(() => {
-    fetchDestinations();
-  }, []);
+  const destinations = useDestinations();
 
   return (
     <div className="container">
@@ -38,15 +25,16 @@ const Destinations = (props) => {
                   alt=""
                   src={destination.image}
                 />
-                {/* <div>
-              <button type="button" className="btn btn-primary">
-                tours
-              </button>
-            </div> */}
                 <div className="destinations_city">
                   <p>
                     {destination.pays} {destination.city}
                   </p>
+                  <button
+                    type="button"
+                    className="btn btn-primary destinations_button"
+                  >
+                    3 tours
+                  </button>
                 </div>
               </a>
             </div>

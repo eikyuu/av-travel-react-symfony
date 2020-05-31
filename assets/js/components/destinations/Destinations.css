@@ -11,6 +11,7 @@
 .destinations_button {
   position: relative;
   float: right;
+  height: 2rem;
 }
 
 .destinations_city {
@@ -19,6 +20,8 @@
   color: white;
   text-shadow: 0px 0px 2px #000000;
   font-size: 1.4em;
+  display: flex;
+  justify-content: space-between;
 }
 
 a {
