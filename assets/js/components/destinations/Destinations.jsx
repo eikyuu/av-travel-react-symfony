@@ -33,7 +33,7 @@ const Destinations = (props) => {
                     type="button"
                     className="btn btn-primary destinations_button"
                   >
-                    3 tours
+                    {destination.tours.length} tours
                   </button>
                 </div>
               </a>
