@@ -31,7 +31,7 @@ const Destinations = (props) => {
                   </p>
                   <button
                     type="button"
-                    className="btn btn-primary destinations_button"
+                    className="btn btn-primary mr-1 destinations_button"
                   >
                     {destination.tours.length} tours
                   </button>
