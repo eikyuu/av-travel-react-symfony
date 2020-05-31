@@ -6,6 +6,7 @@ import HomePage from "./pages/HomePage";
 import AdminDestinationsPage from "./pages/AdminDestinationsPage";
 import AdminToursPage from "./pages/AdminToursPage";
 import DestinationsPage from "./pages/DestinationsPage";
+import ToursPage from "./pages/ToursPage";
 
 const App = () => {
   const NavbarWithRouter = withRouter(Navbar);
@@ -16,6 +17,7 @@ const App = () => {
 
       <main className="app">
         <Switch>
+          <Route path="/tours" component={ToursPage} />
           <Route path="/destinations" component={DestinationsPage} />
           <Route path="/admin/tours" component={AdminToursPage} />
           <Route path="/admin/destinations" component={AdminDestinationsPage} />
