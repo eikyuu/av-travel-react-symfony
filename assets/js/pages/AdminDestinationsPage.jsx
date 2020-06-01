@@ -34,8 +34,11 @@ const AdminDestinationsPage = () => {
   // Gestion du changement de page
   const handlePageChange = (page) => setCurrentPage(page);
   const itemsPerPage = 5;
-  const start = currentPage * itemsPerPage - itemsPerPage;
-  const paginatedDestinations = destinations.slice(start, start + itemsPerPage);
+  const paginatedDestinations = Pagination.getData(
+    destinations,
+    currentPage,
+    itemsPerPage
+  );
   return (
     <>
       <div className="container mt-3">

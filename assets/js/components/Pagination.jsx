@@ -46,4 +46,9 @@ const Pagination = ({ currentPage, itemsPerPage, length, onPageChanged }) => {
   );
 };
 
+Pagination.getData = (items, currentPage, itemsPerPage) => {
+  const start = currentPage * itemsPerPage - itemsPerPage;
+  return items.slice(start, start + itemsPerPage);
+};
+
 export default Pagination;
