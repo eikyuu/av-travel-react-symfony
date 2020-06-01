@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./Tours.css";
 import useTours from "../../customHooks/useTours";
 
@@ -30,9 +31,9 @@ const Tours = (props) => {
           ))}
       </div>
       <div className="row mt-4 mb-5">
-        <button type="submit" className="btn btn-warning mx-auto">
+        <Link to="/tours" className="btn btn-warning mx-auto">
           Voir tous les tours
-        </button>
+        </Link>
       </div>
     </div>
   );

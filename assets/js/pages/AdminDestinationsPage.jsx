@@ -1,8 +1,33 @@
-import React from "react";
-import useDestinations from "../customHooks/useDestinations";
+import React, { useEffect, useState } from "react";
+import destinationsApi from "../services/destinationsApi";
 
-const AdminDestinationsPage = (props) => {
-  const destinations = useDestinations();
+const AdminDestinationsPage = () => {
+  const [destinations, setDestinations] = useState([]);
+
+  const fetchDestinations = async () => {
+    try {
+      const data = await destinationsApi.findAll();
+      setDestinations(data);
+    } catch (error) {
+      console.log("Impossible de charger les destinations");
+    }
+  };
+
+  useEffect(() => {
+    fetchDestinations();
+  }, []);
+
+  const handleDelete = async (id) => {
+    const originalDestinations = [...destinations];
+    setDestinations(
+      destinations.filter((destination) => destination.id !== id)
+    );
+    try {
+      await destinationsApi.delete(id);
+    } catch (error) {
+      setDestinations(originalDestinations);
+    }
+  };
   return (
     <>
       <div className="container mt-3">
@@ -31,7 +56,12 @@ const AdminDestinationsPage = (props) => {
               <td>{destination.city}</td>
               <td>{destination.image}</td>
               <td>
-                <button className="btn btn-sm btn-danger">Supprimer</button>
+                <button
+                  onClick={() => handleDelete(destination.id)}
+                  className="btn btn-sm btn-danger"
+                >
+                  Supprimer
+                </button>
               </td>
             </tr>
           ))}

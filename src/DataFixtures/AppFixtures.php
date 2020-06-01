@@ -16,31 +16,31 @@ class AppFixtures extends Fixture implements OrderedFixtureInterface
     public function __construct(UserPasswordEncoderInterface $passwordEncoder)
     {
         $this->passwordEncoder = $passwordEncoder;
-    } 
+    }
 
     public function load(ObjectManager $manager)
     {
         $faker = Faker\Factory::create('fr_FR');
-        $i=0;
+        $i = 0;
 
-        for($u = 0; $u < 10; $u++) {
+        for ($u = 0; $u < 50; $u++) {
             $user = new User();
             $user->setFirstName($faker->firstName())
-                 ->setLastName($faker->lastName)
-                 ->setEmail($faker->email)
-                 ->setPassword($this->passwordEncoder->encodePassword(
+                ->setLastName($faker->lastName)
+                ->setEmail($faker->email)
+                ->setPassword($this->passwordEncoder->encodePassword(
                     $user,
                     'password'
                 ));
-                $user->addTour($this->getReference('tour-'. $i));
-                $i++;
+            $user->addTour($this->getReference('tour-' . $i));
+            $i++;
             $manager->persist($user);
-       }
+        }
 
         $manager->flush();
     }
 
-        /**
+    /**
      * Get the order of this fixture
      *
      * @return integer
@@ -49,5 +49,4 @@ class AppFixtures extends Fixture implements OrderedFixtureInterface
     {
         return 3;
     }
-
 }

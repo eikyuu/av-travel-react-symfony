@@ -15,13 +15,13 @@ class DestinationFixtures extends Fixture implements OrderedFixtureInterface
     {
         $faker = Faker\Factory::create('fr_FR');
         $u = 0;
-        for ($i = 0; $i < 20; $i++) {
+        for ($i = 0; $i < 100; $i++) {
             $destination = new Destination();
             $destination->setTitle($faker->sentence($nbWords = 3, $variableNbWords = true))
                 ->setDescription($faker->text($maxNbChars = 155))
                 ->setPays($faker->country)
                 ->setCity($faker->city)
-                ->setImage($faker->imageUrl($width = 640, $height = 480));
+                ->setImage("https://www.luxury-design.com/wp-content/uploads/2014/10/Voyage-New-York-Top-of-the-Rock-Rockfeller-Center-Thomas-Van-Geete.jpg");
 
             $manager->persist($destination);
             $this->addReference('destination-' . $u, $destination);

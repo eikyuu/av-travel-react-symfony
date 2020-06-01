@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./Destinations.css";
 import useDestinations from "../../customHooks/useDestinations";
 
@@ -39,10 +40,9 @@ const Destinations = (props) => {
               </a>
             </div>
           ))}
-
-        <button type="submit" className="btn btn-warning mx-auto">
+        <Link to="/destinations" className="btn btn-warning mx-auto">
           Voir toutes les destinations
-        </button>
+        </Link>
       </div>
     </div>
   );

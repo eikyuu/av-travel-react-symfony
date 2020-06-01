@@ -14,26 +14,26 @@ class ToursFixtures extends Fixture implements OrderedFixtureInterface
     public function load(ObjectManager $manager)
     {
         $faker = Faker\Factory::create('fr_FR');
-        $i=0;
-        $o=0;
-       
-        for($u = 0; $u < 20; $u++) {
+        $i = 0;
+        $o = 0;
+
+        for ($u = 0; $u < 100; $u++) {
             $tours = new Tours();
             $tours->setTitle($faker->sentence($nbWords = 6, $variableNbWords = true))
-                   ->setDescription($faker->text($maxNbChars = 200) )
-                   ->setDays($faker->randomDigit)
-                   ->setPrice($faker->numberBetween($min = 400, $max = 2000))
-                   ->setImage($faker->imageUrl($width = 640, $height = 480))
-                   ->setNameImage($faker->sentence($nbWords = 6, $variableNbWords = true) );
-                           
-                   $tours->addDestination($this->getReference('destination-'. $i));
-                   $i++;
-                   
-                   $manager->persist($tours); 
+                ->setDescription($faker->text($maxNbChars = 200))
+                ->setDays($faker->randomDigit)
+                ->setPrice($faker->numberBetween($min = 400, $max = 2000))
+                ->setImage("https://www.luxury-design.com/wp-content/uploads/2014/10/Voyage-New-York-Top-of-the-Rock-Rockfeller-Center-Thomas-Van-Geete.jpg")
+                ->setNameImage($faker->sentence($nbWords = 6, $variableNbWords = true));
 
-                   $this->addReference('tour-' . $u, $tours);
-                   $o++;
-       }
+            $tours->addDestination($this->getReference('destination-' . $i));
+            $i++;
+
+            $manager->persist($tours);
+
+            $this->addReference('tour-' . $u, $tours);
+            $o++;
+        }
 
 
         $manager->flush();
