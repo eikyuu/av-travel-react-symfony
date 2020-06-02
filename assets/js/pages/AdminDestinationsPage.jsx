@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import destinationsApi from "../services/destinationsApi";
 import Pagination from "../components/Pagination";
 
 const AdminDestinationsPage = () => {
   const [destinations, setDestinations] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [search, setSearch] = useState("");
 
   const fetchDestinations = async () => {
     try {
@@ -30,19 +32,41 @@ const AdminDestinationsPage = () => {
       setDestinations(originalDestinations);
     }
   };
-
+  const filteredDestinations = destinations.filter(
+    (c) =>
+      c.title.toLowerCase().includes(search.toLowerCase()) ||
+      c.pays.toLowerCase().includes(search.toLowerCase()) ||
+      c.description.toLowerCase().includes(search.toLowerCase()) ||
+      c.city.toLowerCase().includes(search.toLowerCase())
+  );
   // Gestion du changement de page
   const handlePageChange = (page) => setCurrentPage(page);
   const itemsPerPage = 5;
   const paginatedDestinations = Pagination.getData(
-    destinations,
+    filteredDestinations,
     currentPage,
     itemsPerPage
   );
+  // Gestion de la recherche
+  const handleSearch = ({ currentTarget }) => {
+    setSearch(currentTarget.value);
+    setCurrentPage(1);
+  };
+
   return (
     <>
       <div className="container mt-3">
         <h1>Liste des destinations</h1>
+
+        <div className="form-group">
+          <input
+            type="text"
+            onChange={handleSearch}
+            value={search}
+            className="form-control"
+            placeholder="Rechercher ..."
+          />
+        </div>
 
         <table className="table table-hover">
           <thead>
@@ -67,6 +91,12 @@ const AdminDestinationsPage = () => {
                 <td>{destination.city}</td>
                 <td>{destination.image}</td>
                 <td>
+                  <Link
+                    to={"/admin/destinations/" + destination.id}
+                    className="btn btn-sm btn-primary mr-1"
+                  >
+                    Editer
+                  </Link>
                   <button
                     onClick={() => handleDelete(destination.id)}
                     className="btn btn-sm btn-danger"
@@ -79,12 +109,14 @@ const AdminDestinationsPage = () => {
           </tbody>
         </table>
 
-        <Pagination
-          currentPage={currentPage}
-          itemsPerPage={itemsPerPage}
-          length={destinations.length}
-          onPageChanged={handlePageChange}
-        />
+        {itemsPerPage < filteredDestinations.length && (
+          <Pagination
+            currentPage={currentPage}
+            itemsPerPage={itemsPerPage}
+            length={filteredDestinations.length}
+            onPageChanged={handlePageChange}
+          />
+        )}
       </div>
     </>
   );
