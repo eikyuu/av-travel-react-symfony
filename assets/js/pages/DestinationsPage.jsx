@@ -1,9 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import "./../components/destinations/Destinations.css";
 import useDestinations from "../customHooks/useDestinations";
+import Pagination from "../components/Pagination";
 
 const DestinationsPage = (props) => {
   const destinations = useDestinations();
+  const [currentPage, setCurrentPage] = useState(1);
+
+  // Gestion du changement de page
+  const handlePageChange = (page) => setCurrentPage(page);
+  const itemsPerPage = 6;
+  const paginatedDestinations = Pagination.getData(
+    destinations,
+    currentPage,
+    itemsPerPage
+  );
 
   return (
     <div className="container">
@@ -11,7 +22,7 @@ const DestinationsPage = (props) => {
         <h1 className="col-12 mt-5 mb-3 destinations_h1">
           Toutes les destinations
         </h1>
-        {destinations.reverse().map((destination) => (
+        {paginatedDestinations.reverse().map((destination) => (
           <div
             key={destination.id}
             className="col-sm-6 col-md-6 my-1 displayDestinations"
@@ -37,6 +48,12 @@ const DestinationsPage = (props) => {
           </div>
         ))}
       </div>
+      <Pagination
+        currentPage={currentPage}
+        itemsPerPage={itemsPerPage}
+        length={destinations.length}
+        onPageChanged={handlePageChange}
+      />
     </div>
   );
 };

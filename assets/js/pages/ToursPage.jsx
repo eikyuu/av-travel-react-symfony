@@ -1,14 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import "../components/tours/Tours.css";
 import useTours from "../customHooks/useTours";
+import Pagination from "../components/Pagination";
 
 const ToursPage = (props) => {
   const tours = useTours();
+  const [currentPage, setCurrentPage] = useState(1);
+
+  // Gestion du changement de page
+  const handlePageChange = (page) => setCurrentPage(page);
+  const itemsPerPage = 6;
+  const paginatedTours = Pagination.getData(tours, currentPage, itemsPerPage);
+
   return (
     <div className="container mt-5">
-      <div className="row mt-5">
+      <div className="row mt-5 mb-3">
         <h1 className="col-12">Tous les tours</h1>
-        {tours.reverse().map((tours) => (
+        {paginatedTours.reverse().map((tours) => (
           <div key={tours.id} className="mt-3 col-sm-6 col-md-4 mx-auto">
             <a href="http://google.com">
               <div className="card">
@@ -26,6 +34,12 @@ const ToursPage = (props) => {
           </div>
         ))}
       </div>
+      <Pagination
+        currentPage={currentPage}
+        itemsPerPage={itemsPerPage}
+        length={tours.length}
+        onPageChanged={handlePageChange}
+      />
     </div>
   );
 };
