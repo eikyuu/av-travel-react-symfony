@@ -1,7 +1,7 @@
 import React from "react";
 import "./SearchBar.css";
 
-const SearchBar = props => {
+const SearchBar = (props) => {
   return (
     <form className="container searchbar">
       <div className="row searchbar_row">

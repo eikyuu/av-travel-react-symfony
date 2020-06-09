@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import destinationsApi from "../services/destinationsApi";
 import Pagination from "../components/Pagination";
+import { toast } from "react-toastify";
+import "./AdminDestinationsPage.css";
 
 const AdminDestinationsPage = () => {
   const [destinations, setDestinations] = useState([]);
@@ -28,8 +30,10 @@ const AdminDestinationsPage = () => {
     );
     try {
       await destinationsApi.delete(id);
+      toast.success("La destination a bien été supprimer");
     } catch (error) {
       setDestinations(originalDestinations);
+      toast.error("Erreur dans la supression de la destinations");
     }
   };
   const filteredDestinations = destinations.filter(
@@ -39,15 +43,15 @@ const AdminDestinationsPage = () => {
       c.description.toLowerCase().includes(search.toLowerCase()) ||
       c.city.toLowerCase().includes(search.toLowerCase())
   );
-  // Gestion du changement de page
+
   const handlePageChange = (page) => setCurrentPage(page);
-  const itemsPerPage = 5;
+  const itemsPerPage = 10;
   const paginatedDestinations = Pagination.getData(
     filteredDestinations,
     currentPage,
     itemsPerPage
   );
-  // Gestion de la recherche
+
   const handleSearch = ({ currentTarget }) => {
     setSearch(currentTarget.value);
     setCurrentPage(1);
@@ -55,10 +59,17 @@ const AdminDestinationsPage = () => {
 
   return (
     <>
-      <div className="container mt-3">
-        <h1>Liste des destinations</h1>
-
-        <div className="form-group">
+      <div className="container destinations mt-3">
+        <div className="mb-3 d-flex justify-content-between align-items-center destination_block">
+          <h1 className="destination_h1">Liste des destinations</h1>
+          <Link
+            to="/admin/destinations/new"
+            className="btn btn-primary destination_button"
+          >
+            Créer une destination
+          </Link>
+        </div>
+        <div className="form-group destination_search">
           <input
             type="text"
             onChange={handleSearch}
@@ -68,7 +79,7 @@ const AdminDestinationsPage = () => {
           />
         </div>
 
-        <table className="table table-hover">
+        <table className="table table-hover destination_table">
           <thead>
             <tr>
               <th>Id.</th>
@@ -84,16 +95,15 @@ const AdminDestinationsPage = () => {
           <tbody>
             {paginatedDestinations.map((destination) => (
               <tr key={destination.id}>
-                <td>{destination.id}</td>
-                <td>{destination.title}</td>
-                <td>{destination.description}</td>
-                <td>{destination.pays}</td>
-                <td>{destination.city}</td>
-                <td>{destination.image}</td>
+                <td data-label="id">{destination.id}</td>
+                <td data-label="Titre">{destination.title}</td>
+                <td data-label="Description">{destination.description}</td>
+                <td data-label="Pays">{destination.pays}</td>
+                <td data-label="Ville">{destination.city}</td>
                 <td>
                   <Link
                     to={"/admin/destinations/" + destination.id}
-                    className="btn btn-sm btn-primary mr-1"
+                    className="btn btn-sm btn-primary"
                   >
                     Editer
                   </Link>

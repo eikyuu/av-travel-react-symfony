@@ -8,6 +8,8 @@ import AdminToursPage from "./pages/AdminToursPage";
 import DestinationsPage from "./pages/DestinationsPage";
 import ToursPage from "./pages/ToursPage";
 import AdminDestinationPage from "./pages/AdminDestinationPage";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {
   const NavbarWithRouter = withRouter(Navbar);
@@ -28,6 +30,8 @@ const App = () => {
           <Route path="/admin/destinations" component={AdminDestinationsPage} />
           <Route path="/" component={HomePage} />
         </Switch>
+
+        <ToastContainer position={toast.POSITION.BOTTOM_LEFT} />
       </main>
     </HashRouter>
   );

@@ -1,0 +1,29 @@
+.destination_h1 {
+  font-size: 1.3em;
+}
+
+.destination_button {
+  width: 7rem;
+}
+.table thead {
+  display: none;
+}
+.table tr {
+  display: block;
+  margin-bottom: 40px;
+}
+
+.table td {
+  display: block;
+  text-align: right;
+}
+
+.table td:before {
+  content: attr(data-label);
+  float: left;
+  font-weight: bold;
+}
+
+.pagination {
+  justify-content: center;
+}
