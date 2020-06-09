@@ -10,6 +10,7 @@ import ToursPage from "./pages/ToursPage";
 import AdminDestinationPage from "./pages/AdminDestinationPage";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import AdminTourPage from "./pages/AdminTourPage";
 
 const App = () => {
   const NavbarWithRouter = withRouter(Navbar);
@@ -22,6 +23,7 @@ const App = () => {
         <Switch>
           <Route path="/tours" component={ToursPage} />
           <Route path="/destinations" component={DestinationsPage} />
+          <Route path="/admin/tours/:id" component={AdminTourPage} />
           <Route path="/admin/tours" component={AdminToursPage} />
           <Route
             path="/admin/destinations/:id"

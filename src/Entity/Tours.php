@@ -89,13 +89,6 @@ class Tours
     private $image;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     * @Groups({"tours_read", "destination_read", "tours_subresource"})
-     * @Assert\NotBlank(message="le nom de l'image du tours est obligatoire")
-     */
-    private $nameImage;
-
-    /**
      * @ORM\ManyToMany(targetEntity=Destination::class, inversedBy="destinations", cascade={"persist"})
      * @ORM\JoinTable(name="destination_tours")
      * @Groups({"tours_read"})
@@ -176,18 +169,6 @@ class Tours
     public function setImage(string $image): self
     {
         $this->image = $image;
-
-        return $this;
-    }
-
-    public function getNameImage(): ?string
-    {
-        return $this->nameImage;
-    }
-
-    public function setNameImage(string $nameImage): self
-    {
-        $this->nameImage = $nameImage;
 
         return $this;
     }

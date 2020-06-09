@@ -23,6 +23,7 @@ const AdminDestinationsPage = () => {
     fetchDestinations();
   }, []);
 
+  // gestion de la supression
   const handleDelete = async (id) => {
     const originalDestinations = [...destinations];
     setDestinations(
@@ -36,6 +37,7 @@ const AdminDestinationsPage = () => {
       toast.error("Erreur dans la supression de la destinations");
     }
   };
+
   const filteredDestinations = destinations.filter(
     (c) =>
       c.title.toLowerCase().includes(search.toLowerCase()) ||
@@ -44,6 +46,7 @@ const AdminDestinationsPage = () => {
       c.city.toLowerCase().includes(search.toLowerCase())
   );
 
+  // Gestion du changement de page
   const handlePageChange = (page) => setCurrentPage(page);
   const itemsPerPage = 10;
   const paginatedDestinations = Pagination.getData(

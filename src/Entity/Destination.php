@@ -87,7 +87,7 @@ class Destination
      * @ORM\ManyToMany(targetEntity=Tours::class, mappedBy="destinations", cascade={"persist"})
      * @Groups({"destination_read"})
      * @ApiSubresource(maxDepth=1)
-      */
+     */
     private $tours;
 
     public function __construct()
