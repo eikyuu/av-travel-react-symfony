@@ -50,18 +50,20 @@ class Tours
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=55)
      * @Groups({"tours_read", "destination_read", "tours_subresource"})
      * @Assert\NotBlank(message="le titre du tours est obligatoire")
      * @Assert\Type(type="string", message="le titre dois etre au format texte !")
+     * @Assert\Length(min=3 , minMessage="le titre doit faire entre 3 et 55 caracteres", max=55, maxMessage="le titre doit faire entre 3 et 55 caracteres")
      */
     private $title;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="string", length=200)
      * @Groups({"tours_read", "destination_read", "tours_subresource"})
      * @Assert\NotBlank(message="la description du tours est obligatoire")
      * @Assert\Type(type="string", message="la description dois etre au format texte !")
+     * @Assert\Length(min=3 , minMessage="la description doit faire entre 3 et 200 caracteres", max=200, maxMessage="la description doit faire entre 3 et 200 caracteres")
      */
     private $description;
 

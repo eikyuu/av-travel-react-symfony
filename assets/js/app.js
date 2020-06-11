@@ -3,7 +3,6 @@ import ReactDOM from "react-dom";
 import Navbar from "./components/Navbar";
 import { HashRouter, Route, Switch, withRouter } from "react-router-dom";
 import HomePage from "./pages/HomePage";
-import AdminDestinationsPage from "./pages/AdminDestinationsPage";
 import AdminToursPage from "./pages/AdminToursPage";
 import DestinationsPage from "./pages/DestinationsPage";
 import ToursPage from "./pages/ToursPage";
@@ -11,6 +10,7 @@ import AdminDestinationPage from "./pages/AdminDestinationPage";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import AdminTourPage from "./pages/AdminTourPage";
+import AdminDestinationsPage from "./pages/adminDestinationsPage/AdminDestinationsPage";
 
 const App = () => {
   const NavbarWithRouter = withRouter(Navbar);

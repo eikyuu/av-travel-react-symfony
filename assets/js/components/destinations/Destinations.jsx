@@ -4,6 +4,7 @@ import "./Destinations.css";
 import useDestinations from "../../customHooks/useDestinations";
 
 const Destinations = (props) => {
+  // custom hooks
   const destinations = useDestinations();
 
   return (

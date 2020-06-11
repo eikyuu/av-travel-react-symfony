@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import destinationsApi from "../services/destinationsApi";
-import Pagination from "../components/Pagination";
+import destinationsApi from "../../services/destinationsApi";
+import Pagination from "../../components/Pagination";
 import { toast } from "react-toastify";
 import "./AdminDestinationsPage.css";
 
@@ -23,7 +23,7 @@ const AdminDestinationsPage = () => {
     fetchDestinations();
   }, []);
 
-  // gestion de la supression
+  // deletion management
   const handleDelete = async (id) => {
     const originalDestinations = [...destinations];
     setDestinations(
@@ -37,7 +37,7 @@ const AdminDestinationsPage = () => {
       toast.error("Erreur dans la supression de la destinations");
     }
   };
-
+  // filter management
   const filteredDestinations = destinations.filter(
     (c) =>
       c.title.toLowerCase().includes(search.toLowerCase()) ||
