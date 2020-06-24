@@ -23,7 +23,7 @@ const AdminDestinationsPage = () => {
     fetchDestinations();
   }, []);
 
-  // deletion management
+  // delete management
   const handleDelete = async (id) => {
     const originalDestinations = [...destinations];
     setDestinations(
@@ -37,16 +37,17 @@ const AdminDestinationsPage = () => {
       toast.error("Erreur dans la supression de la destinations");
     }
   };
+
   // filter management
   const filteredDestinations = destinations.filter(
-    (c) =>
-      c.title.toLowerCase().includes(search.toLowerCase()) ||
-      c.pays.toLowerCase().includes(search.toLowerCase()) ||
-      c.description.toLowerCase().includes(search.toLowerCase()) ||
-      c.city.toLowerCase().includes(search.toLowerCase())
+    (destination) =>
+      destination.title.toLowerCase().includes(search.toLowerCase()) ||
+      destination.pays.toLowerCase().includes(search.toLowerCase()) ||
+      destination.description.toLowerCase().includes(search.toLowerCase()) ||
+      destination.city.toLowerCase().includes(search.toLowerCase())
   );
 
-  // Gestion du changement de page
+  // Page change management
   const handlePageChange = (page) => setCurrentPage(page);
   const itemsPerPage = 10;
   const paginatedDestinations = Pagination.getData(

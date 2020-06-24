@@ -18,10 +18,8 @@ const DestinationsPage = (props) => {
 
   return (
     <div className="container">
+      <h1 className="mt-5 destinations_h1">Toutes les destinations</h1>
       <div className="row mt-5">
-        <h1 className="col-12 mt-5 mb-3 destinations_h1">
-          Toutes les destinations
-        </h1>
         {paginatedDestinations.reverse().map((destination) => (
           <div
             key={destination.id}

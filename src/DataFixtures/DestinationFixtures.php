@@ -18,7 +18,7 @@ class DestinationFixtures extends Fixture implements OrderedFixtureInterface
         for ($i = 0; $i < 100; $i++) {
             $destination = new Destination();
             $destination->setTitle($faker->sentence($nbWords = 3, $variableNbWords = true))
-                ->setDescription($faker->text($maxNbChars = 155))
+                ->setDescription($faker->text($maxNbChars = 500))
                 ->setPays($faker->country)
                 ->setCity($faker->city)
                 ->setImage("https://www.luxury-design.com/wp-content/uploads/2014/10/Voyage-New-York-Top-of-the-Rock-Rockfeller-Center-Thomas-Van-Geete.jpg");

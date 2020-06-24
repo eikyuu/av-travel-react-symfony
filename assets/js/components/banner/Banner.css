@@ -22,14 +22,17 @@
 }
 
 @media (min-width: 740px) {
-  .banner_home {
-    height: 30rem;
-  }
-
   .banner_home_h2 {
     font-size: 2em;
   }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 740px) {
+  .banner_home_h1 {
+    font-size: 5em;
+  }
+
+  .banner_home_h2 {
+    font-size: 4em;
+  }
 }

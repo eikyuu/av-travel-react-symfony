@@ -2,46 +2,49 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./Destinations.css";
 import useDestinations from "../../customHooks/useDestinations";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const Destinations = (props) => {
+  AOS.init({
+    duration: 3000,
+  });
   // custom hooks
   const destinations = useDestinations();
 
   return (
-    <div className="container">
+    <div data-aos="fade-up" className="container">
+      <h1 className=" mt-5 destinations_h1">Les dernieres destinations</h1>
       <div className="row mt-5">
-        <h1 className="col-12 mt-5 mb-3 destinations_h1">
-          Les dernieres destinations
-        </h1>
         {destinations
           .reverse()
           .slice(0, 4)
           .map((destination) => (
             <div
               key={destination.id}
-              className="col-sm-6 col-md-6 my-1 displayDestinations"
+              className="col-sm-6 col-md-6 displayDestinations"
             >
-              <a href="http://google.com">
+              <Link
+                style={{ textDecoration: "none", color: "white" }}
+                to={"/destinations/" + destination.id}
+              >
                 <img
                   className="destinations_img"
                   alt=""
                   src={destination.image}
                 />
                 <div className="destinations_city">
-                  <p>
+                  <p className="destinations_city_p">
                     {destination.pays} {destination.city}
                   </p>
-                  <button
-                    type="button"
-                    className="btn btn-primary mr-1 destinations_button"
-                  >
+                  <div className="mr-1 destinations_button">
                     {destination.tours.length} tours
-                  </button>
+                  </div>
                 </div>
-              </a>
+              </Link>
             </div>
           ))}
-        <Link to="/destinations" className="btn btn-warning mx-auto">
+        <Link to="/destinations" className="mt-3 btn btn-warning mx-auto">
           Voir toutes les destinations
         </Link>
       </div>

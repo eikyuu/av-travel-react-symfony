@@ -14,8 +14,8 @@ const ToursPage = (props) => {
 
   return (
     <div className="container mt-5">
+      <h1 className="mt-5 tours_h1">Tous les tours</h1>
       <div className="row mt-5 mb-3">
-        <h1 className="col-12">Tous les tours</h1>
         {paginatedTours.reverse().map((tours) => (
           <div key={tours.id} className="mt-3 col-sm-6 col-md-4 mx-auto">
             <a href="http://google.com">
