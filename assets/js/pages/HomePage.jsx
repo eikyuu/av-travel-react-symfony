@@ -3,6 +3,7 @@ import Banner from "../components/banner/Banner";
 import Destinations from "../components/destinations/Destinations";
 import Tours from "../components/tours/Tours";
 import Player from "../components/player/Player";
+import Opinion from "../components/opinion/Opinion";
 
 const HomePage = (props) => {
   return (
@@ -11,6 +12,7 @@ const HomePage = (props) => {
       <Destinations />
       <Tours />
       <Player />
+      <Opinion />
     </>
   );
 };
