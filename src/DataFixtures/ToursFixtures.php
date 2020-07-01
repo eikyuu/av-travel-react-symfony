@@ -19,7 +19,7 @@ class ToursFixtures extends Fixture implements OrderedFixtureInterface
 
         for ($u = 0; $u < 100; $u++) {
             $tours = new Tours();
-            $tours->setTitle($faker->text($maxNbChars = 55))
+            $tours->setTitle($faker->text($maxNbChars = 25))
                 ->setDescription($faker->text($maxNbChars = 200))
                 ->setDays($faker->randomDigit)
                 ->setPrice($faker->numberBetween($min = 400, $max = 2000))

@@ -4,6 +4,7 @@ import Destinations from "../components/destinations/Destinations";
 import Tours from "../components/tours/Tours";
 import Player from "../components/player/Player";
 import Opinion from "../components/opinion/Opinion";
+import Contact from "../components/contact/contact";
 
 const HomePage = (props) => {
   return (
@@ -13,6 +14,7 @@ const HomePage = (props) => {
       <Tours />
       <Player />
       <Opinion />
+      <Contact />
     </>
   );
 };

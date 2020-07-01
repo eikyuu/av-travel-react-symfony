@@ -24,7 +24,7 @@ const Tours = (props) => {
                 className="card"
               >
                 <img src={tours.image} className="card-img-top" alt="..." />
-                <div className="ml-1 mt-3">
+                <div className="m-3">
                   <h5 className="tours_title">{tours.title}</h5>
                   <p className="card-text">{tours.description}</p>
                   <div className="div_price_days">

@@ -13,6 +13,9 @@
   height: 30rem;
 }
 
+.card-text {
+  height: 145px;
+}
 .tours_h1:before {
   content: "";
   left: 0;
@@ -27,6 +30,7 @@
   display: inline-block;
   position: relative;
   font-size: 1.8em;
+  font-weight: 600;
 }
 @media (min-width: 740px) {
   .card {

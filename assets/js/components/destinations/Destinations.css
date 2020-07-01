@@ -51,6 +51,7 @@
   display: inline-block;
   position: relative;
   font-size: 1.8em;
+  font-weight: 600;
 }
 
 @media (min-width: 760px) {
