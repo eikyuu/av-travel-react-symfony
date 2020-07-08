@@ -26,9 +26,9 @@ const DestinationsPage = (props) => {
           <DestinationCards
             id={destination.id}
             image={destination.image}
-            id={destination.id}
             city={destination.city}
             tours={destination.tours}
+            pays={destination.pays}
           />
         ))}
       </div>

@@ -24,9 +24,9 @@ const Destinations = () => {
             <DestinationCards
               id={destination.id}
               image={destination.image}
-              id={destination.id}
               city={destination.city}
               tours={destination.tours}
+              pays={destination.pays}
             />
           ))}
         <Link to="/destinations" className="mt-3 btn btn-warning mx-auto">
