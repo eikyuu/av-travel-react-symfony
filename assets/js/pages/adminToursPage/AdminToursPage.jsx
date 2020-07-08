@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import toursApi from "../services/toursApi";
-import Pagination from "../components/Pagination";
+import toursApi from "../../services/toursApi";
+import Pagination from "../../components/Pagination";
 import { toast } from "react-toastify";
+import "./AdminToursPage.css";
 
 const AdminToursPage = (props) => {
   const [tours, setTours] = useState([]);
@@ -57,7 +58,7 @@ const AdminToursPage = (props) => {
 
   return (
     <>
-      <div className="container mt-3">
+      <div className="container tours">
         <div className="mb-3 d-flex justify-content-between align-items-center tours_block">
           <h1 className="tours_h1">Liste des tours</h1>
           <Link to="/admin/tours/new" className="btn btn-primary tours_button">

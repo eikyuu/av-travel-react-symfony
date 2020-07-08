@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import Navbar from "./components/navbar/Navbar";
 import { HashRouter, Route, Switch, withRouter } from "react-router-dom";
 import HomePage from "./pages/HomePage";
-import AdminToursPage from "./pages/AdminToursPage";
+import AdminToursPage from "./pages/adminToursPage/AdminToursPage";
 import DestinationsPage from "./pages/DestinationsPage";
 import ToursPage from "./pages/ToursPage";
 import AdminDestinationPage from "./pages/AdminDestinationPage";
@@ -16,6 +16,7 @@ import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import authApi from "./services/authApi";
 import AuthContext from "./contexts/authContext";
+import PrivateRoute from "./components/PrivateRoute";
 
 authApi.setup();
 
@@ -43,13 +44,13 @@ const App = () => {
             <Route path="/tours" component={ToursPage} />
             <Route path="/destinations/:id" component={DetailDestination} />
             <Route path="/destinations" component={DestinationsPage} />
-            <Route path="/admin/tours/:id" component={AdminTourPage} />
-            <Route path="/admin/tours" component={AdminToursPage} />
-            <Route
+            <PrivateRoute path="/admin/tours/:id" component={AdminTourPage} />
+            <PrivateRoute path="/admin/tours" component={AdminToursPage} />
+            <PrivateRoute
               path="/admin/destinations/:id"
               component={AdminDestinationPage}
             />
-            <Route
+            <PrivateRoute
               path="/admin/destinations"
               component={AdminDestinationsPage}
             />

@@ -63,9 +63,9 @@ const AdminDestinationsPage = () => {
 
   return (
     <>
-      <div className="container destinations mt-3">
+      <div className="container destinations">
         <div className="mb-3 d-flex justify-content-between align-items-center destination_block">
-          <h1 className="destination_h1">Liste des destinations</h1>
+          <h1 className="destinations_h1">Liste des destinations</h1>
           <Link
             to="/admin/destinations/new"
             className="btn btn-primary destination_button"

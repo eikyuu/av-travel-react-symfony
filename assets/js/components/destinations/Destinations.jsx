@@ -4,8 +4,9 @@ import "./Destinations.css";
 import useDestinations from "../../customHooks/useDestinations";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import DestinationCards from "../DestinationCards";
 
-const Destinations = (props) => {
+const Destinations = () => {
   AOS.init({
     duration: 3000,
   });
@@ -20,29 +21,13 @@ const Destinations = (props) => {
           .reverse()
           .slice(0, 4)
           .map((destination) => (
-            <div
-              key={destination.id}
-              className="col-sm-6 col-md-6 displayDestinations"
-            >
-              <Link
-                style={{ textDecoration: "none", color: "white" }}
-                to={"/destinations/" + destination.id}
-              >
-                <img
-                  className="destinations_img"
-                  alt=""
-                  src={destination.image}
-                />
-                <div className="destinations_city">
-                  <p className="destinations_city_p">
-                    {destination.pays} {destination.city}
-                  </p>
-                  <div className="mr-1 destinations_button">
-                    {destination.tours.length} tours
-                  </div>
-                </div>
-              </Link>
-            </div>
+            <DestinationCards
+              id={destination.id}
+              image={destination.image}
+              id={destination.id}
+              city={destination.city}
+              tours={destination.tours}
+            />
           ))}
         <Link to="/destinations" className="mt-3 btn btn-warning mx-auto">
           Voir toutes les destinations

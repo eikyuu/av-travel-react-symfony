@@ -97,7 +97,7 @@ export default class extends React.Component {
               />
             </div>
 
-            <button type="submit" className="btn btn-secondary">
+            <button type="submit" className="btn btn-warning">
               Envoyer
             </button>
           </div>

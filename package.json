@@ -38,6 +38,7 @@
     "jwt-decode": "^2.2.0",
     "moment": "^2.25.3",
     "react": "^16.13.1",
+    "react-anchor-link-smooth-scroll": "^1.0.12",
     "react-content-loader": "^5.0.4",
     "react-dom": "^16.13.1",
     "react-images-upload": "^1.2.8",

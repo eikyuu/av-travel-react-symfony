@@ -50,11 +50,6 @@ const Navbar = ({ history }) => {
             </NavLink>
           </li>
           <li className="nav-item active mr-5">
-            <NavLink className="nav-link" to="/contact">
-              CONTACT
-            </NavLink>
-          </li>
-          <li className="nav-item active mr-5">
             <NavLink className="nav-link" to="/us">
               A PROPOS
             </NavLink>
