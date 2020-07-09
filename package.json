@@ -39,7 +39,7 @@
     "moment": "^2.25.3",
     "react": "^16.13.1",
     "react-anchor-link-smooth-scroll": "^1.0.12",
-    "react-content-loader": "^5.0.4",
+    "react-content-loader": "^5.1.0",
     "react-dom": "^16.13.1",
     "react-images-upload": "^1.2.8",
     "react-router-dom": "^5.0.0",

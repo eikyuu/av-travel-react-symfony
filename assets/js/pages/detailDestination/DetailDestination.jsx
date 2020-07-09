@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
-import destinationsApi from "../services/destinationsApi";
+import destinationsApi from "../../services/destinationsApi";
+import "./DetailDestination.css";
+import { Link } from "react-router-dom";
 
 const DetailDestination = ({ match }) => {
   const { id } = match.params;
@@ -32,17 +34,16 @@ const DetailDestination = ({ match }) => {
   }, [id]);
 
   return (
-    <div className="container">
+    <div className="container detailDestination">
       <h1>
         {destinations.city} {destinations.pays}
       </h1>
       <img className="col-6" src={destinations.image} alt="" />
       <p>{destinations.title}</p>
       <p>{destinations.description}</p>
-      <button type="button" className="btn btn-primary">
-        {destinations.tours.length} tours
-      </button>
-      <button className="btn btn-warning"> voir les tours</button>
+      <Link to={"/destinations/" + id + "/tours"} className="btn btn-warning">
+        voir les tours
+      </Link>
     </div>
   );
 };

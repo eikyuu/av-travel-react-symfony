@@ -41,7 +41,7 @@ const LoginPage = ({ history }) => {
     <>
       <h1>Connexion à l'application</h1>
 
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="container mt-5">
         <Field
           label="Adresse email"
           name="username"

@@ -1,22 +1,23 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
-import Navbar from "./components/navbar/Navbar";
 import { HashRouter, Route, Switch, withRouter } from "react-router-dom";
-import HomePage from "./pages/HomePage";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Navbar from "./components/navbar/Navbar";
+import PrivateRoute from "./components/PrivateRoute";
+import AuthContext from "./contexts/authContext";
+import AdminDestinationPage from "./pages/AdminDestinationPage";
+import AdminDestinationsPage from "./pages/adminDestinationsPage/AdminDestinationsPage";
+import AdminTourPage from "./pages/AdminTourPage";
 import AdminToursPage from "./pages/adminToursPage/AdminToursPage";
 import DestinationsPage from "./pages/DestinationsPage";
-import ToursPage from "./pages/ToursPage";
-import AdminDestinationPage from "./pages/AdminDestinationPage";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import AdminTourPage from "./pages/AdminTourPage";
-import AdminDestinationsPage from "./pages/adminDestinationsPage/AdminDestinationsPage";
-import DetailDestination from "./pages/DetailDestination";
+import DestinationTours from "./pages/DestinationTours";
+import DetailDestination from "./pages/detailDestination/DetailDestination";
+import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
+import ToursPage from "./pages/ToursPage";
 import authApi from "./services/authApi";
-import AuthContext from "./contexts/authContext";
-import PrivateRoute from "./components/PrivateRoute";
 
 authApi.setup();
 
@@ -42,6 +43,10 @@ const App = () => {
             <Route path="/login" component={LoginPage} />
             <Route path="/register" component={RegisterPage} />
             <Route path="/tours" component={ToursPage} />
+            <Route
+              path="/destinations/:id/tours"
+              component={DestinationTours}
+            />
             <Route path="/destinations/:id" component={DetailDestination} />
             <Route path="/destinations" component={DestinationsPage} />
             <PrivateRoute path="/admin/tours/:id" component={AdminTourPage} />

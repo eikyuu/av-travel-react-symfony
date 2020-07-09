@@ -6,16 +6,40 @@ import Pagination from "../components/Pagination";
 const ToursPage = (props) => {
   const tours = useTours();
   const [currentPage, setCurrentPage] = useState(1);
+  const [search, setSearch] = useState("");
 
-  // Gestion du changement de page
+  // filter management
+  const filteredTours = tours.filter((tour) =>
+    tour.title.toLowerCase().includes(search.toLowerCase())
+  );
+
+  // Page change management
   const handlePageChange = (page) => setCurrentPage(page);
-  const itemsPerPage = 6;
-  const paginatedTours = Pagination.getData(tours, currentPage, itemsPerPage);
+  const itemsPerPage = 9;
+  const paginatedTours = Pagination.getData(
+    filteredTours,
+    currentPage,
+    itemsPerPage
+  );
+
+  const handleSearch = ({ currentTarget }) => {
+    setSearch(currentTarget.value);
+    setCurrentPage(1);
+  };
 
   return (
     <div className="container mt-5">
       <h1 className="mt-5 tours_h1">Tous les tours</h1>
-      <div className="row mt-5 mb-3">
+      <div className="form-group destination_search mt-5">
+        <input
+          type="text"
+          onChange={handleSearch}
+          value={search}
+          className="form-control"
+          placeholder="Rechercher ..."
+        />
+      </div>
+      <div className="row mt-5 mb-4">
         {paginatedTours.reverse().map((tours) => (
           <div key={tours.id} className="mt-3 col-sm-6 col-md-4 mx-auto">
             <a href="http://google.com">
@@ -34,12 +58,14 @@ const ToursPage = (props) => {
           </div>
         ))}
       </div>
-      <Pagination
-        currentPage={currentPage}
-        itemsPerPage={itemsPerPage}
-        length={tours.length}
-        onPageChanged={handlePageChange}
-      />
+      {itemsPerPage < filteredTours.length && (
+        <Pagination
+          currentPage={currentPage}
+          itemsPerPage={itemsPerPage}
+          length={filteredTours.length}
+          onPageChanged={handlePageChange}
+        />
+      )}
     </div>
   );
 };
