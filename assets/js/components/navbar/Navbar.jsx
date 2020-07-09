@@ -1,19 +1,32 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import "./Navbar.css";
 import AuthApi from "../../services/authApi";
 import AuthContext from "../../contexts/authContext";
 import { toast } from "react-toastify";
+import JwtDecode from "jwt-decode";
 
 const Navbar = ({ history }) => {
   const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
-
+  const [state, setstate] = useState(0);
   const handleLogout = () => {
     AuthApi.logout();
     setIsAuthenticated(false);
     toast.info("vous êtes maintenant déconnecté");
     history.push("/login");
   };
+
+  const findApiUser = () => {
+    if (isAuthenticated) {
+      const token = window.localStorage.getItem("authToken");
+      const { id } = JwtDecode(token);
+      setstate(id);
+    }
+  };
+
+  useEffect(() => {
+    findApiUser();
+  }, []);
 
   return (
     <nav className="stroke navbar navbar-expand-lg navbar-light bg-light">
@@ -54,6 +67,15 @@ const Navbar = ({ history }) => {
               A PROPOS
             </NavLink>
           </li>
+          {isAuthenticated && (
+            <>
+              <li className="nav-item active mr-5">
+                <NavLink className="nav-link" to={"/profile/" + state}>
+                  Profil
+                </NavLink>
+              </li>
+            </>
+          )}
           {(!isAuthenticated && (
             <>
               <li className="nav-item active mr-5">

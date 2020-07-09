@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import { HashRouter, Route, Switch, withRouter } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
@@ -18,6 +18,8 @@ import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import ToursPage from "./pages/ToursPage";
 import authApi from "./services/authApi";
+import JwtDecode from "jwt-decode";
+import ProfilePage from "./pages/ProfilePage";
 
 authApi.setup();
 
@@ -59,6 +61,7 @@ const App = () => {
               path="/admin/destinations"
               component={AdminDestinationsPage}
             />
+            <Route path="/profile/:userId" component={ProfilePage} />
             <Route path="/" component={HomePage} />
           </Switch>
 
