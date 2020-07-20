@@ -14,7 +14,11 @@ export default function useTours() {
   };
 
   useEffect(() => {
-    fetchTours();
+    let isSubscribed = true;
+    if (isSubscribed) {
+      fetchTours();
+    }
+    return () => (isSubscribed = false);
   }, []);
   return tours;
 }

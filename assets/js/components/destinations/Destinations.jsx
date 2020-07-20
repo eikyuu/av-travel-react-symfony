@@ -24,9 +24,12 @@ const Destinations = () => {
       console.log("Impossible de charger les destinations");
     }
   };
-
+  let isSubscribed = true;
   useEffect(() => {
-    fetchDestinations();
+    if (isSubscribed) {
+      fetchDestinations();
+    }
+    return () => (isSubscribed = false);
   }, []);
 
   return (

@@ -25,7 +25,11 @@ const Tours = (props) => {
   };
 
   useEffect(() => {
-    fetchTours();
+    let isSubscribed = true;
+    if (isSubscribed) {
+      fetchTours();
+    }
+    return () => (isSubscribed = false);
   }, []);
 
   return (

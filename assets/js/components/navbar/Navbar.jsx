@@ -8,7 +8,7 @@ import JwtDecode from "jwt-decode";
 
 const Navbar = ({ history }) => {
   const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
-  const [state, setstate] = useState(0);
+  const [id, setId] = useState(0);
   const handleLogout = () => {
     AuthApi.logout();
     setIsAuthenticated(false);
@@ -19,8 +19,8 @@ const Navbar = ({ history }) => {
   const findApiUser = () => {
     if (isAuthenticated) {
       const token = window.localStorage.getItem("authToken");
-      const { id } = JwtDecode(token);
-      setstate(id);
+      const { idUserToken } = JwtDecode(token);
+      setId(idUserToken);
     }
   };
 
@@ -70,7 +70,7 @@ const Navbar = ({ history }) => {
           {isAuthenticated && (
             <>
               <li className="nav-item active mr-5">
-                <NavLink className="nav-link" to={"/profile/" + state}>
+                <NavLink className="nav-link" to={"/profile/" + id}>
                   Profil
                 </NavLink>
               </li>
