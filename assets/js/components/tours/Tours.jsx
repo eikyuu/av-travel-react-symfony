@@ -6,6 +6,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import ImageGrid from "../loaders/ImageGrid";
 import toursApi from "../../services/toursApi";
+import ToursCards from "../ToursCards";
 
 const Tours = (props) => {
   AOS.init({
@@ -42,21 +43,13 @@ const Tours = (props) => {
             .slice(0, 6)
             .map((tours) => (
               <div key={tours.id} className="mt-3 col-sm-6 col-md-4">
-                <a
-                  style={{ textDecoration: "none", color: "black" }}
-                  href="http://google.com"
-                  className="card"
-                >
-                  <img src={tours.image} className="card-img-top" alt="..." />
-                  <div className="m-3">
-                    <h5 className="tours_title">{tours.title}</h5>
-                    <p className="card-text">{tours.description}</p>
-                    <div className="div_price_days">
-                      <p className="card-text">{tours.days} jours</p>
-                      <p className="card-text">{tours.price}€</p>
-                    </div>
-                  </div>
-                </a>
+                <ToursCards
+                  image={tours.image}
+                  title={tours.title}
+                  description={tours.description}
+                  days={tours.days}
+                  price={tours.price}
+                />
               </div>
             ))}
         </div>

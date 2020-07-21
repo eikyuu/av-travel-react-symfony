@@ -1,10 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../components/tours/Tours.css";
-import useTours from "../customHooks/useTours";
 import Pagination from "../components/Pagination";
+import ToursCards from "../components/ToursCards";
+import toursApi from "../services/toursApi";
 
 const ToursPage = (props) => {
-  const tours = useTours();
+  const [tours, setTours] = useState([]);
+
+  const fetchTours = async () => {
+    try {
+      const data = await toursApi.findAll();
+      setTours(data);
+    } catch (error) {
+      console.log("Impossible de charger les tours");
+    }
+  };
+
+  useEffect(() => {
+    fetchTours();
+  }, []);
+
   const [currentPage, setCurrentPage] = useState(1);
   const [search, setSearch] = useState("");
 
@@ -41,20 +56,14 @@ const ToursPage = (props) => {
       </div>
       <div className="row mt-5 mb-4">
         {paginatedTours.reverse().map((tours) => (
-          <div key={tours.id} className="mt-3 col-sm-6 col-md-4 mx-auto">
-            <a href="http://google.com">
-              <div className="card">
-                <img src={tours.image} className="card-img-top" alt="..." />
-                <div className="m-3">
-                  <h5 className="tours_title">{tours.title}</h5>
-                  <p className="card-text">{tours.description}</p>
-                  <div className="div_price_days mt-3">
-                    <p className="card-text">{tours.days} jours</p>
-                    <p className="card-text">{tours.price} €</p>
-                  </div>
-                </div>
-              </div>
-            </a>
+          <div key={tours.id} className="mt-3 col-sm-6 col-md-4">
+            <ToursCards
+              image={tours.image}
+              title={tours.title}
+              description={tours.description}
+              days={tours.days}
+              price={tours.price}
+            />
           </div>
         ))}
       </div>
