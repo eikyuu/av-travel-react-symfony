@@ -1,10 +1,11 @@
-import React, { useState } from "react";
-import Field from "./../components/forms/Field";
-import { Link } from "react-router-dom";
-import UsersAPI from "../services/usersApi";
+import React, { useState, useEffect } from "react";
+import Field from "../components/forms/Field";
+import { useParams } from "react-router-dom";
+import usersApi from "../services/usersApi";
 import { toast } from "react-toastify";
 
-const RegisterPage = ({ history }) => {
+const PageProfile = (props) => {
+  const { id } = useParams();
   const [user, setUser] = useState({
     firstName: "",
     lastName: "",
@@ -21,13 +22,29 @@ const RegisterPage = ({ history }) => {
     passwordConfirm: "",
   });
 
-  // Gestion des changements des inputs dans le formulaire
+  const fetchUser = async (id) => {
+    try {
+      const { firstName, lastName, email } = await usersApi.find(id);
+      setUser({
+        firstName,
+        lastName,
+        email,
+      });
+    } catch (error) {
+      toast.error("L'utilisateur n'a pas pu être chargé");
+      props.history.replace("/");
+    }
+  };
+
+  useEffect(() => {
+    fetchUser(id);
+  }, [id]);
+
   const handleChange = ({ currentTarget }) => {
     const { name, value } = currentTarget;
     setUser({ ...user, [name]: value });
   };
 
-  // Gestion de la soumission
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -42,29 +59,31 @@ const RegisterPage = ({ history }) => {
     }
 
     try {
-      await UsersAPI.register(user);
       setErrors({});
-      toast.success(
-        "Vous êtes désormais inscrit, vous pouvez vous connecter !"
-      );
-      history.replace("/login");
-    } catch (error) {
-      const { violations } = error.response.data;
+      await usersApi.update(id, user);
+      toast.success("votre profil a bien été modifié");
+    } catch ({ response }) {
+      const { violations } = response.data;
 
       if (violations) {
-        violations.forEach((violation) => {
-          apiErrors[violation.propertyPath] = violation.message;
+        violations.forEach(({ propertyPath, message }) => {
+          apiErrors[propertyPath] = message;
         });
+
         setErrors(apiErrors);
+        toast.error("Des erreurs dans votre formulaire !");
       }
-      toast.error("Des erreurs dans votre formulaire !");
     }
   };
 
   return (
     <>
-      <h1>Inscription</h1>
-      <form className="container mt-5" onSubmit={handleSubmit}>
+      <form
+        className="container"
+        onSubmit={handleSubmit}
+        style={{ marginTop: "100px" }}
+      >
+        <h1>Mon profil</h1>
         <Field
           name="firstName"
           label="Prénom"
@@ -96,7 +115,6 @@ const RegisterPage = ({ history }) => {
           type="password"
           placeholder="Votre mot de passe ultra sécurisé"
           error={errors.password}
-          value={user.password}
           onChange={handleChange}
         />
         <Field
@@ -105,7 +123,6 @@ const RegisterPage = ({ history }) => {
           type="password"
           placeholder="Confirmez votre super mot de passe"
           error={errors.passwordConfirm}
-          value={user.passwordConfirm}
           onChange={handleChange}
         />
 
@@ -113,12 +130,10 @@ const RegisterPage = ({ history }) => {
           <button type="submit" className="btn btn-success">
             Confirmation
           </button>
-          <Link to="/login" className="btn btn-link">
-            J'ai déjà un compte
-          </Link>
         </div>
       </form>
     </>
   );
 };
-export default RegisterPage;
+
+export default PageProfile;

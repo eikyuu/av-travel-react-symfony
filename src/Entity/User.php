@@ -50,6 +50,7 @@ class User implements UserInterface
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
+     * @Groups({"users_read"})
      * @Assert\NotBlank(message="Le mot de passe est obligatoire")
      */
     private $password;

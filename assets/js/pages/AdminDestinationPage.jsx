@@ -83,7 +83,7 @@ const AdminDestinationPage = (props) => {
 
   return (
     <>
-      <form className="container" onSubmit={handleSubmit}>
+      <form className="container mt-5" onSubmit={handleSubmit}>
         {(!editing && <h1>Création d'une destination</h1>) || (
           <h1>Modification d'une destination</h1>
         )}
