@@ -19,6 +19,7 @@ import RegisterPage from "./pages/RegisterPage";
 import ToursPage from "./pages/ToursPage";
 import authApi from "./services/authApi";
 import PrivateProfile from "./components/PrivateProfile";
+import DetailTours from "./pages/detailTours/DetailTours";
 
 authApi.setup();
 
@@ -43,6 +44,7 @@ const App = () => {
           <Switch>
             <Route path="/login" component={LoginPage} />
             <Route path="/register" component={RegisterPage} />
+            <Route path="/tours/:id" component={DetailTours} />
             <Route path="/tours" component={ToursPage} />
             <Route
               path="/destinations/:id/tours"

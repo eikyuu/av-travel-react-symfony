@@ -1,10 +1,12 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-const ToursCards = ({ image, title, description, days, price }) => {
+const ToursCards = ({ id, image, title, description, days, price }) => {
+  console.log(id);
   return (
-    <a
+    <Link
       style={{ textDecoration: "none", color: "black" }}
-      href="http://google.com"
+      to={"/tours/" + id}
       className="card"
     >
       <img src={image} className="card-img-top" alt="..." />
@@ -16,7 +18,7 @@ const ToursCards = ({ image, title, description, days, price }) => {
           <p className="card-text">{price}€</p>
         </div>
       </div>
-    </a>
+    </Link>
   );
 };
 

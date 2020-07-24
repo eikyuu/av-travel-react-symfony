@@ -58,6 +58,7 @@ const ToursPage = (props) => {
         {paginatedTours.reverse().map((tours) => (
           <div key={tours.id} className="mt-3 col-sm-6 col-md-4">
             <ToursCards
+              id={tours.id}
               image={tours.image}
               title={tours.title}
               description={tours.description}
