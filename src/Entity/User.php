@@ -73,9 +73,15 @@ class User implements UserInterface
      */
     private $tours;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Opinion::class, mappedBy="user")
+     */
+    private $opinions;
+
     public function __construct()
     {
         $this->tours = new ArrayCollection();
+        $this->opinions = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -201,6 +207,37 @@ class User implements UserInterface
     {
         if ($this->tours->contains($tour)) {
             $this->tours->removeElement($tour);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Opinion[]
+     */
+    public function getOpinions(): Collection
+    {
+        return $this->opinions;
+    }
+
+    public function addOpinion(Opinion $opinion): self
+    {
+        if (!$this->opinions->contains($opinion)) {
+            $this->opinions[] = $opinion;
+            $opinion->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOpinion(Opinion $opinion): self
+    {
+        if ($this->opinions->contains($opinion)) {
+            $this->opinions->removeElement($opinion);
+            // set the owning side to null (unless already changed)
+            if ($opinion->getUser() === $this) {
+                $opinion->setUser(null);
+            }
         }
 
         return $this;
