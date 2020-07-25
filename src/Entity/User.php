@@ -70,11 +70,13 @@ class User implements UserInterface
     /**
      * @ORM\ManyToMany(targetEntity=Tours::class, inversedBy="users")
      * @ApiSubresource(maxDepth=1)
+     * @Groups({"users_read"})
      */
     private $tours;
 
     /**
      * @ORM\OneToMany(targetEntity=Opinion::class, mappedBy="user")
+     * @Groups({"users_read"})
      */
     private $opinions;
 

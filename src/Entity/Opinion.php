@@ -2,12 +2,15 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Core\Annotation\ApiResource;
-use App\Repository\OpinionRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\OpinionRepository;
+use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ * normalizationContext={"groups"={"opinions_read"}}
+ * )
  * @ORM\Entity(repositoryClass=OpinionRepository::class)
  */
 class Opinion
@@ -16,11 +19,13 @@ class Opinion
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Groups({"opinions_read"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"opinions_read"})
      */
     private $notice;
 
