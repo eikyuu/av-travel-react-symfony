@@ -99,21 +99,21 @@ class Tours
     private $destinations;
 
     /**
-     * @ORM\ManyToMany(targetEntity=User::class, mappedBy="tours")
-     * @Groups({"tours_read", "destination_read"})
-     */
-    private $users;
-
-    /**
      * @ORM\OneToMany(targetEntity=Opinion::class, mappedBy="tours")
      */
     private $opinions;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Booking::class, mappedBy="tours")
+     */
+    private $bookings;
 
     public function __construct()
     {
         $this->destinations = new ArrayCollection();
         $this->users = new ArrayCollection();
         $this->opinions = new ArrayCollection();
+        $this->bookings = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -210,34 +210,6 @@ class Tours
     }
 
     /**
-     * @return Collection|User[]
-     */
-    public function getUsers(): Collection
-    {
-        return $this->users;
-    }
-
-    public function addUser(User $user): self
-    {
-        if (!$this->users->contains($user)) {
-            $this->users[] = $user;
-            $user->addTour($this);
-        }
-
-        return $this;
-    }
-
-    public function removeUser(User $user): self
-    {
-        if ($this->users->contains($user)) {
-            $this->users->removeElement($user);
-            $user->removeTour($this);
-        }
-
-        return $this;
-    }
-
-    /**
      * @return Collection|Opinion[]
      */
     public function getOpinions(): Collection
@@ -262,6 +234,37 @@ class Tours
             // set the owning side to null (unless already changed)
             if ($opinion->getTours() === $this) {
                 $opinion->setTours(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Booking[]
+     */
+    public function getBookings(): Collection
+    {
+        return $this->bookings;
+    }
+
+    public function addBooking(Booking $booking): self
+    {
+        if (!$this->bookings->contains($booking)) {
+            $this->bookings[] = $booking;
+            $booking->setTours($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBooking(Booking $booking): self
+    {
+        if ($this->bookings->contains($booking)) {
+            $this->bookings->removeElement($booking);
+            // set the owning side to null (unless already changed)
+            if ($booking->getTours() === $this) {
+                $booking->setTours(null);
             }
         }
 

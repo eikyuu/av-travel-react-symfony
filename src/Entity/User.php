@@ -68,22 +68,21 @@ class User implements UserInterface
     private $lastName;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Tours::class, inversedBy="users")
-     * @ApiSubresource(maxDepth=1)
-     * @Groups({"users_read"})
-     */
-    private $tours;
-
-    /**
      * @ORM\OneToMany(targetEntity=Opinion::class, mappedBy="user")
      * @Groups({"users_read"})
      */
     private $opinions;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Booking::class, mappedBy="user")
+     */
+    private $bookings;
+
     public function __construct()
     {
         $this->tours = new ArrayCollection();
         $this->opinions = new ArrayCollection();
+        $this->bookings = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -189,32 +188,6 @@ class User implements UserInterface
     }
 
     /**
-     * @return Collection|Tours[]
-     */
-    public function getTours(): Collection
-    {
-        return $this->tours;
-    }
-
-    public function addTour(Tours $tour): self
-    {
-        if (!$this->tours->contains($tour)) {
-            $this->tours[] = $tour;
-        }
-
-        return $this;
-    }
-
-    public function removeTour(Tours $tour): self
-    {
-        if ($this->tours->contains($tour)) {
-            $this->tours->removeElement($tour);
-        }
-
-        return $this;
-    }
-
-    /**
      * @return Collection|Opinion[]
      */
     public function getOpinions(): Collection
@@ -239,6 +212,37 @@ class User implements UserInterface
             // set the owning side to null (unless already changed)
             if ($opinion->getUser() === $this) {
                 $opinion->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Booking[]
+     */
+    public function getBookings(): Collection
+    {
+        return $this->bookings;
+    }
+
+    public function addBooking(Booking $booking): self
+    {
+        if (!$this->bookings->contains($booking)) {
+            $this->bookings[] = $booking;
+            $booking->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBooking(Booking $booking): self
+    {
+        if ($this->bookings->contains($booking)) {
+            $this->bookings->removeElement($booking);
+            // set the owning side to null (unless already changed)
+            if ($booking->getUser() === $this) {
+                $booking->setUser(null);
             }
         }
 
