@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import destinationsApi from "../services/destinationsApi";
+import ToursCards from "../components/ToursCards";
 
 const DestinationTours = ({ match }) => {
   const { id } = match.params;
@@ -22,13 +23,22 @@ const DestinationTours = ({ match }) => {
   }, [id]);
 
   return (
-    <div className="mt-5">
-      {destination.tours &&
-        destination.tours.map((item) => (
-          <div key={item.id}>
-            <h1>{item.title}</h1>
-          </div>
-        ))}
+    <div className="container mt-5">
+      <div className="row mt-5">
+        {destination.tours &&
+          destination.tours.map((tours) => (
+            <div key={tours.id} className="mt-3 col-sm-6 col-md-4">
+              <ToursCards
+                id={tours.id}
+                image={tours.image}
+                title={tours.title}
+                description={tours.description}
+                days={tours.days}
+                price={tours.price}
+              />
+            </div>
+          ))}
+      </div>
     </div>
   );
 };

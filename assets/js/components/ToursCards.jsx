@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const ToursCards = ({ id, image, title, description, days, price }) => {
-  console.log(id);
   return (
     <Link
       style={{ textDecoration: "none", color: "black" }}

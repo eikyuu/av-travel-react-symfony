@@ -45,13 +45,13 @@ class Tours
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
-     * @Groups({"tours_read", "destination_read", "tours_subresource"})
+     * @Groups({"tours_read", "destination_read", "tours_subresource", "booking_read", "users_read"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=55)
-     * @Groups({"tours_read", "destination_read", "tours_subresource"})
+     * @Groups({"tours_read", "destination_read", "tours_subresource", "booking_read", "users_read"})
      * @Assert\NotBlank(message="le titre du tours est obligatoire")
      * @Assert\Type(type="string", message="le titre dois etre au format texte !")
      * @Assert\Length(min=3 , minMessage="le titre doit faire entre 3 et 55 caracteres", max=55, maxMessage="le titre doit faire entre 3 et 55 caracteres")
@@ -60,7 +60,7 @@ class Tours
 
     /**
      * @ORM\Column(type="string", length=200)
-     * @Groups({"tours_read", "destination_read", "tours_subresource"})
+     * @Groups({"tours_read", "destination_read", "tours_subresource", "booking_read", "users_read"})
      * @Assert\NotBlank(message="la description du tours est obligatoire")
      * @Assert\Type(type="string", message="la description dois etre au format texte !")
      * @Assert\Length(min=3 , minMessage="la description doit faire entre 3 et 200 caracteres", max=200, maxMessage="la description doit faire entre 3 et 200 caracteres")
@@ -69,7 +69,7 @@ class Tours
 
     /**
      * @ORM\Column(type="integer")
-     * @Groups({"tours_read", "destination_read", "tours_subresource"})
+     * @Groups({"tours_read", "destination_read", "tours_subresource", "booking_read", "users_read"})
      * @Assert\NotBlank(message="le nombre de jours du tours est obligatoire")
      * @Assert\Type(type="integer", message="le nombre de jours dois etre au format numeric !")
      */
@@ -77,7 +77,7 @@ class Tours
 
     /**
      * @ORM\Column(type="integer")
-     * @Groups({"tours_read", "destination_read", "tours_subresource"})
+     * @Groups({"tours_read", "destination_read", "tours_subresource", "booking_read", "users_read"})
      * @Assert\NotBlank(message="le prix du tours est obligatoire")
      * @Assert\Type(type="integer", message="le prix dois etre au format numeric !")
      */
@@ -85,7 +85,7 @@ class Tours
 
     /**
      * @ORM\Column(type="text")
-     * @Groups({"tours_read", "destination_read", "tours_subresource"})
+     * @Groups({"tours_read", "destination_read", "tours_subresource", "users_read"})
      * @Assert\NotBlank(message="l'image du tours est obligatoire")
      */
     private $image;

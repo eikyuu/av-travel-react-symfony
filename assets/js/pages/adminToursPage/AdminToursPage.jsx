@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import toursApi from "../../services/toursApi";
 import Pagination from "../../components/Pagination";
 import { toast } from "react-toastify";
 import "./AdminToursPage.css";
+import toursApi from "../../services/toursApi";
 
 const AdminToursPage = (props) => {
   const [tours, setTours] = useState([]);

@@ -24,12 +24,8 @@ const PageProfile = (props) => {
 
   const fetchUser = async (id) => {
     try {
-      const { firstName, lastName, email } = await usersApi.find(id);
-      setUser({
-        firstName,
-        lastName,
-        email,
-      });
+      const data = await usersApi.find(id);
+      setUser(data);
     } catch (error) {
       toast.error("L'utilisateur n'a pas pu être chargé");
       props.history.replace("/");
@@ -76,6 +72,7 @@ const PageProfile = (props) => {
     }
   };
 
+  console.log(user);
   return (
     <>
       <form

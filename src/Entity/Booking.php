@@ -2,12 +2,17 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Core\Annotation\ApiResource;
-use App\Repository\BookingRepository;
+use App\Entity\Tours;
+use App\Entity\User;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\BookingRepository;
+use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ * normalizationContext={"groups"={"booking_read"}}
+ * )
  * @ORM\Entity(repositoryClass=BookingRepository::class)
  */
 class Booking
@@ -16,73 +21,25 @@ class Booking
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Groups({"booking_read", "users_read", "users_read"})
      */
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $firstName;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $lastName;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $titleTours;
-
-    /**
      * @ORM\ManyToOne(targetEntity=user::class, inversedBy="bookings")
+     * @Groups({"booking_read"})
      */
     private $user;
 
     /**
      * @ORM\ManyToOne(targetEntity=tours::class, inversedBy="bookings")
+     * @Groups({"booking_read", "users_read"})
      */
     private $tours;
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getFirstName(): ?string
-    {
-        return $this->firstName;
-    }
-
-    public function setFirstName(string $firstName): self
-    {
-        $this->firstName = $firstName;
-
-        return $this;
-    }
-
-    public function getLastName(): ?string
-    {
-        return $this->lastName;
-    }
-
-    public function setLastName(string $lastName): self
-    {
-        $this->lastName = $lastName;
-
-        return $this;
-    }
-
-    public function getTitleTours(): ?string
-    {
-        return $this->titleTours;
-    }
-
-    public function setTitleTours(string $titleTours): self
-    {
-        $this->titleTours = $titleTours;
-
-        return $this;
     }
 
     public function getUser(): ?user

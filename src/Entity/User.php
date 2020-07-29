@@ -30,13 +30,13 @@ class User implements UserInterface
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
-     * @Groups({"users_read"})
+     * @Groups({"users_read", "booking_read"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
-     * @Groups({"users_read"})
+     * @Groups({"users_read", "booking_read"})
      * @Assert\NotBlank(message="L'email doit être renseigné !")
      * @Assert\Email(message="L'adresse email doit avoir un format valide !")
      */
@@ -57,13 +57,13 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"users_read"})
+     * @Groups({"users_read", "booking_read"})
      */
     private $firstName;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"users_read"})
+     * @Groups({"users_read", "booking_read"})
      */
     private $lastName;
 
@@ -75,6 +75,7 @@ class User implements UserInterface
 
     /**
      * @ORM\OneToMany(targetEntity=Booking::class, mappedBy="user")
+     * @Groups({"users_read"})
      */
     private $bookings;
 

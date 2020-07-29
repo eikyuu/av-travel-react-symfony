@@ -87,7 +87,6 @@ const AdminTourPage = (props) => {
       if (editing) {
         await toursApi.update(id, tours);
         toast.success("Le tours a bien été modifié");
-        console.log(tours);
       } else {
         await toursApi.create(tours);
         toast.success("Le tours a bien été créé");

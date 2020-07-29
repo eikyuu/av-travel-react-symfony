@@ -15,8 +15,6 @@ const PrivateProfile = (props) => {
   const userId = idUserToken;
   const userRoles = roles;
 
-  // console.log(userId, slug, userRoles);
-
   return isAuthenticated &&
     userRoles.includes("ROLE_USER") &&
     token.length > 0 &&
