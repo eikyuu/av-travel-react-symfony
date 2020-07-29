@@ -9,6 +9,7 @@ import JwtDecode from "jwt-decode";
 const Navbar = ({ history }) => {
   const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
   const [id, setId] = useState(0);
+
   const handleLogout = () => {
     AuthApi.logout();
     setIsAuthenticated(false);
