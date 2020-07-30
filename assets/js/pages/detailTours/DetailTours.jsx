@@ -4,23 +4,32 @@ import toursApi from "../../services/toursApi";
 import JwtDecode from "jwt-decode";
 import bookingApi from "../../services/bookingApi";
 import authContext from "../../contexts/authContext";
+import ReactDatePicker from "react-datepicker";
 
-const DetailTours = ({ match }) => {
+import "react-datepicker/dist/react-datepicker.css";
+
+const DetailTours = ({ match, history }) => {
   const { id } = match.params;
   const { isAuthenticated, setIsAuthenticated } = useContext(authContext);
   const [tours, setTours] = useState({});
-  const [booking, setBooking] = useState({});
-  console.log(booking);
+  const [booking, setBooking] = useState({
+    user: "/api/users/" + 107,
+    tours: "/api/tours/" + Number(id),
+    date: new Date(),
+    status: "ongoing",
+  });
+
   const findUser = () => {
+    let result;
     if (isAuthenticated) {
       const token = window.localStorage.getItem("authToken");
-      const { lastName, firstName, idUserToken } = JwtDecode(token);
-      setBooking({
-        user: "/api/users/" + idUserToken,
-        tours: "/api/tours/" + Number(id),
-      });
+      const { idUserToken } = JwtDecode(token);
+      result = idUserToken;
     }
+    return result;
   };
+
+  const userId = findUser();
 
   const fetchTours = async (id) => {
     try {
@@ -34,7 +43,6 @@ const DetailTours = ({ match }) => {
 
   useEffect(() => {
     fetchTours(id);
-    findUser();
   }, [id]);
 
   const handleSubmit = async (event) => {
@@ -42,26 +50,44 @@ const DetailTours = ({ match }) => {
 
     try {
       await bookingApi.create(booking);
-      toast.success("La destination a bien été modifié");
+      toast.success("La reservation a bien etait effectuer");
+      history.replace("/");
     } catch ({ response }) {
       toast.error("Des erreurs dans votre formulaire !");
     }
   };
 
+  const handleChange = (selected) => {
+    setBooking({ ...booking, date: selected });
+  };
+
+  console.log(booking.status);
   return (
-    <>
-      <form className="container mt-5" onSubmit={handleSubmit}>
+    <div className="container mt-5">
+      <h1>{tours.title}</h1>
+      <p>{tours.description}</p>
+      <p>{tours.days}</p>
+      <p>{tours.price}</p>
+      <img src={tours.image} className="col-6" alt="" />
+      {tours.destinations &&
+        tours.destinations.map((destination) => (
+          <div key={destination.id} className="mt-3 col-sm-6 col-md-4">
+            <h1>{destination.title}</h1>
+          </div>
+        ))}
+      <form onSubmit={handleSubmit}>
         <div className="form-group">
           <button
             type="submit"
             className="btn btn-success"
             disabled={!isAuthenticated}
           >
-            Enregistrer
+            Reserver le tours
           </button>
+          <ReactDatePicker selected={booking.date} onChange={handleChange} />
         </div>
       </form>
-    </>
+    </div>
   );
 };
 

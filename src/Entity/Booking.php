@@ -37,6 +37,17 @@ class Booking
      */
     private $tours;
 
+    /**
+     * @ORM\Column(type="datetime")
+     * @Groups({"booking_read", "users_read"})
+     */
+    private $date;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $status;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -62,6 +73,30 @@ class Booking
     public function setTours(?tours $tours): self
     {
         $this->tours = $tours;
+
+        return $this;
+    }
+
+    public function getDate(): ?\DateTimeInterface
+    {
+        return $this->date;
+    }
+
+    public function setDate(\DateTimeInterface $date): self
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    public function getStatus(): ?string
+    {
+        return $this->status;
+    }
+
+    public function setStatus(string $status): self
+    {
+        $this->status = $status;
 
         return $this;
     }
