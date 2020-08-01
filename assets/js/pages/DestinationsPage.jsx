@@ -1,15 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./../components/destinations/Destinations.css";
-import useDestinations from "../customHooks/useDestinations";
 import Pagination from "../components/Pagination";
 import { Link } from "react-router-dom";
 import DestinationCards from "../components/DestinationCards";
+import ImageGrid from "../components/loaders/ImageGrid";
+import destinationsApi from "../services/destinationsApi";
 
 const DestinationsPage = (props) => {
-  const destinations = useDestinations();
+  const [destinations, setDestinations] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [search, setSearch] = useState("");
+  const [loading, setLoading] = useState(true);
 
+  const fetchDestinations = async () => {
+    try {
+      const data = await destinationsApi.findAll();
+      setDestinations(data);
+      setLoading(false);
+    } catch (error) {
+      console.log("Impossible de charger les destinations");
+    }
+  };
   // filter management
   const filteredDestinations = destinations.filter(
     (destination) =>
@@ -33,6 +44,9 @@ const DestinationsPage = (props) => {
     setCurrentPage(1);
   };
 
+  useEffect(() => {
+    fetchDestinations();
+  }, []);
   return (
     <div className="container mt-5">
       <h1 className="mt-5 destinations_h1">Toutes les destinations</h1>
@@ -45,22 +59,26 @@ const DestinationsPage = (props) => {
           placeholder="Rechercher ..."
         />
       </div>
-      <div className="row mt-5 mb-3">
-        {paginatedDestinations.reverse().map((destination) => (
-          <div
-            key={destination.id}
-            className="col-sm-6 col-md-6 displayDestinations"
-          >
-            <DestinationCards
-              id={destination.id}
-              image={destination.image}
-              city={destination.city}
-              tours={destination.tours}
-              pays={destination.pays}
-            />
-          </div>
-        ))}
-      </div>
+
+      {!loading && (
+        <div className="row mt-5 mb-3">
+          {paginatedDestinations.reverse().map((destination) => (
+            <div
+              key={destination.id}
+              className="col-sm-6 col-md-6 displayDestinations"
+            >
+              <DestinationCards
+                id={destination.id}
+                image={destination.image}
+                city={destination.city}
+                tours={destination.tours}
+                pays={destination.pays}
+              />
+            </div>
+          ))}
+        </div>
+      )}
+      {loading && <ImageGrid />}
       {itemsPerPage < filteredDestinations.length && (
         <Pagination
           currentPage={currentPage}

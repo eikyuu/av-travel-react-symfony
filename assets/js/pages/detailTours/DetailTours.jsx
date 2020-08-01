@@ -61,7 +61,6 @@ const DetailTours = ({ match, history }) => {
     setBooking({ ...booking, date: selected });
   };
 
-  console.log(booking.status);
   return (
     <div className="container mt-5">
       <h1>{tours.title}</h1>

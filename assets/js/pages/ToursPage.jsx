@@ -3,14 +3,17 @@ import "../components/tours/Tours.css";
 import Pagination from "../components/Pagination";
 import ToursCards from "../components/ToursCards";
 import toursApi from "../services/toursApi";
+import ImageGrid from "../components/loaders/ImageGrid";
 
 const ToursPage = (props) => {
   const [tours, setTours] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const fetchTours = async () => {
     try {
       const data = await toursApi.findAll();
       setTours(data);
+      setLoading(false);
     } catch (error) {
       console.log("Impossible de charger les tours");
     }
@@ -54,20 +57,24 @@ const ToursPage = (props) => {
           placeholder="Rechercher ..."
         />
       </div>
-      <div className="row mt-5 mb-4">
-        {paginatedTours.reverse().map((tours) => (
-          <div key={tours.id} className="mt-3 col-sm-6 col-md-4">
-            <ToursCards
-              id={tours.id}
-              image={tours.image}
-              title={tours.title}
-              description={tours.description}
-              days={tours.days}
-              price={tours.price}
-            />
-          </div>
-        ))}
-      </div>
+
+      {!loading && (
+        <div className="row mt-5 mb-4">
+          {paginatedTours.reverse().map((tours) => (
+            <div key={tours.id} className="mt-3 col-sm-6 col-md-4">
+              <ToursCards
+                id={tours.id}
+                image={tours.image}
+                title={tours.title}
+                description={tours.description}
+                days={tours.days}
+                price={tours.price}
+              />
+            </div>
+          ))}
+        </div>
+      )}
+      {loading && <ImageGrid />}
       {itemsPerPage < filteredTours.length && (
         <Pagination
           currentPage={currentPage}
