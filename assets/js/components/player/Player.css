@@ -1,10 +1,6 @@
-.player {
-  background: url("../../../../public/img/beach.jpg") no-repeat;
+.player-react {
   background-size: cover;
   height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 @media (min-width: 740px) {

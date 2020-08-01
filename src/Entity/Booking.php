@@ -45,6 +45,7 @@ class Booking
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"booking_read", "users_read"})
      */
     private $status;
 

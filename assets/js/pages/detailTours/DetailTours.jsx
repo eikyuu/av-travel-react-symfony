@@ -16,7 +16,7 @@ const DetailTours = ({ match, history }) => {
     user: "/api/users/" + 107,
     tours: "/api/tours/" + Number(id),
     date: new Date(),
-    status: "ongoing",
+    status: "en cours",
   });
 
   const findUser = () => {

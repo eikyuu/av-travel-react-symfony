@@ -133,6 +133,7 @@ const PageProfile = (props) => {
         user.bookings.map((booking) => (
           <div key={booking.id} className="mt-3 col-sm-6 col-md-4">
             <h1>{booking.tours.title}</h1>
+            <p>{booking.status}</p>
           </div>
         ))}
     </>
