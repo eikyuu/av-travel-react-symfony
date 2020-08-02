@@ -3,6 +3,12 @@
   width: 330px;
 }
 
+/* .card-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+} */
+
 .div_price_days {
   display: flex;
   justify-content: space-between;

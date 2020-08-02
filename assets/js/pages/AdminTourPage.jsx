@@ -15,7 +15,7 @@ const AdminTourPage = (props) => {
     days: 0,
     price: 0,
     image: "",
-    destinations: "",
+    destinations: [],
   });
 
   const [errors, setErrors] = useState({
@@ -24,7 +24,6 @@ const AdminTourPage = (props) => {
     days: "",
     price: "",
     image: "",
-    destinations: "",
   });
 
   const [editing, setEditing] = useState(false);
@@ -39,14 +38,7 @@ const AdminTourPage = (props) => {
         image,
         destinations,
       } = await toursApi.find(id);
-      setTours({
-        title,
-        description,
-        days,
-        price,
-        image,
-        destinations: destinations.title,
-      });
+      setTours({ title, description, days, price, image, destinations });
     } catch (error) {
       toast.error("Le tours n'a pas pu être chargé");
       props.history.replace("/admin/tours");
@@ -78,6 +70,13 @@ const AdminTourPage = (props) => {
     setTours({ ...tours, [name]: value });
   };
 
+  const handleChangeSelect = (event) => {
+    const array = [];
+    array.push("/api/destinations/" + event.target.value);
+
+    setTours({ ...tours, destinations: array });
+  };
+  console.log(tours.destinations);
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -158,13 +157,10 @@ const AdminTourPage = (props) => {
           error={errors.image}
           type="text"
         />
-
         <Select
           name="destinations"
           label="destinations"
-          value={tours.destinations}
-          error={errors.destinations}
-          onChange={handleChange}
+          onChange={handleChangeSelect}
         >
           {destinations.map((destinations) => (
             <option key={destinations.id} value={destinations.id}>

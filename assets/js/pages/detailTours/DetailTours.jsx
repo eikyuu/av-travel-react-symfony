@@ -5,6 +5,7 @@ import JwtDecode from "jwt-decode";
 import bookingApi from "../../services/bookingApi";
 import authContext from "../../contexts/authContext";
 import ReactDatePicker from "react-datepicker";
+import "./DetailTours.css";
 
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -62,29 +63,31 @@ const DetailTours = ({ match, history }) => {
   };
 
   return (
-    <div className="container mt-5">
-      <h1>{tours.title}</h1>
-      <p>{tours.description}</p>
-      <p>{tours.days}</p>
-      <p>{tours.price}</p>
-      <img src={tours.image} className="col-6" alt="" />
-      {tours.destinations &&
-        tours.destinations.map((destination) => (
-          <div key={destination.id} className="mt-3 col-sm-6 col-md-4">
-            <h1>{destination.title}</h1>
-          </div>
-        ))}
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <button
-            type="submit"
-            className="btn btn-success"
-            disabled={!isAuthenticated}
-          >
-            Reserver le tours
-          </button>
-          <ReactDatePicker selected={booking.date} onChange={handleChange} />
-        </div>
+    <div className="container detailTours_container">
+      <div className="row">
+        <h1 className="col-12 mb-3">{tours.title}</h1>
+        <img src={tours.image} className="col-12" alt="" />
+        <p className="col-12 mt-3">{tours.description}</p>
+        <p className="col-6">{tours.days} jours </p>
+        <p className="col-6">{tours.price} € </p>
+        <h3 className="col-12">Les destinations que vous allez decouvrir</h3>
+        {tours.destinations &&
+          tours.destinations.map((destination) => (
+            <div key={destination.id} className="mt-3 col-12">
+              <p>{destination.city}</p>
+            </div>
+          ))}
+      </div>
+      <form className="row" onSubmit={handleSubmit}>
+        <p className="col-12">Choisisez date de votre depart</p>
+        <ReactDatePicker selected={booking.date} onChange={handleChange} />
+        <button
+          type="submit"
+          className="btn btn-success"
+          disabled={!isAuthenticated}
+        >
+          Reserver le tours
+        </button>
       </form>
     </div>
   );

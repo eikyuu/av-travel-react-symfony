@@ -87,7 +87,7 @@ const AdminToursPage = (props) => {
           </thead>
 
           <tbody>
-            {paginatedTours.map((tour) => (
+            {paginatedTours.reverse().map((tour) => (
               <tr key={tour.id}>
                 <td data-label="Id">{tour.id}</td>
                 <td data-label="Titre">{tour.title}</td>

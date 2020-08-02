@@ -35,12 +35,15 @@ const DetailDestination = ({ match }) => {
 
   return (
     <div className="container detailDestination">
-      <h1>
-        {destinations.city} {destinations.pays}
-      </h1>
-      <img className="col-6" src={destinations.image} alt="" />
-      <p>{destinations.title}</p>
-      <p>{destinations.description}</p>
+      <div className="row detailDestination_row">
+        <h1 className="detailDestination_h1 col-12">{destinations.title}</h1>
+        <img className="col-12 mt-3 mb-3" src={destinations.image} alt="" />
+        <p className="detailDestination_p col-12">{destinations.description}</p>
+        <p className="detailDestination_p col-12">
+          {destinations.city} {destinations.pays}
+        </p>
+      </div>
+
       <Link to={"/destinations/" + id + "/tours"} className="btn btn-warning">
         voir les tours
       </Link>

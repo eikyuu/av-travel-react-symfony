@@ -23,11 +23,11 @@ const DestinationTours = ({ match }) => {
   }, [id]);
 
   return (
-    <div className="container mt-5">
-      <div className="row mt-5">
+    <div className="container" style={{ marginTop: "100px" }}>
+      <div className="row">
         {destination.tours &&
           destination.tours.map((tours) => (
-            <div key={tours.id} className="mt-3 col-sm-6 col-md-4">
+            <div key={tours.id}>
               <ToursCards
                 id={tours.id}
                 image={tours.image}

@@ -97,7 +97,7 @@ const AdminDestinationsPage = () => {
           </thead>
 
           <tbody>
-            {paginatedDestinations.map((destination) => (
+            {paginatedDestinations.reverse().map((destination) => (
               <tr key={destination.id}>
                 <td data-label="id">{destination.id}</td>
                 <td data-label="Titre">{destination.title}</td>
