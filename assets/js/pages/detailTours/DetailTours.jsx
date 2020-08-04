@@ -13,12 +13,6 @@ const DetailTours = ({ match, history }) => {
   const { id } = match.params;
   const { isAuthenticated, setIsAuthenticated } = useContext(authContext);
   const [tours, setTours] = useState({});
-  const [booking, setBooking] = useState({
-    user: "/api/users/" + 107,
-    tours: "/api/tours/" + Number(id),
-    date: new Date(),
-    status: "en cours",
-  });
 
   const findUser = () => {
     let result;
@@ -29,8 +23,16 @@ const DetailTours = ({ match, history }) => {
     }
     return result;
   };
-
   const userId = findUser();
+
+  const [booking, setBooking] = useState({
+    user: "/api/users/" + userId,
+    tours: "/api/tours/" + Number(id),
+    date: new Date(),
+    status: "en cours",
+  });
+
+  console.log(userId);
 
   const fetchTours = async (id) => {
     try {

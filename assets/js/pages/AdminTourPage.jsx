@@ -30,15 +30,10 @@ const AdminTourPage = (props) => {
 
   const fetchTours = async (id) => {
     try {
-      const {
-        title,
-        description,
-        days,
-        price,
-        image,
-        destinations,
-      } = await toursApi.find(id);
-      setTours({ title, description, days, price, image, destinations });
+      const { title, description, days, price, image } = await toursApi.find(
+        id
+      );
+      setTours({ title, description, days, price, image });
     } catch (error) {
       toast.error("Le tours n'a pas pu être chargé");
       props.history.replace("/admin/tours");
@@ -71,12 +66,15 @@ const AdminTourPage = (props) => {
   };
 
   const handleChangeSelect = (event) => {
-    const array = [];
-    array.push("/api/destinations/" + event.target.value);
-
-    setTours({ ...tours, destinations: array });
+    setTours((tours) => ({
+      ...tours,
+      destinations: [
+        ...tours.destinations,
+        `/api/destinations/${event.target.value}`,
+      ],
+    }));
   };
-  console.log(tours.destinations);
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -157,6 +155,18 @@ const AdminTourPage = (props) => {
           error={errors.image}
           type="text"
         />
+        <Select
+          name="destinations"
+          label="destinations"
+          onChange={handleChangeSelect}
+        >
+          {destinations.map((destinations) => (
+            <option key={destinations.id} value={destinations.id}>
+              {destinations.title}
+            </option>
+          ))}
+        </Select>
+
         <Select
           name="destinations"
           label="destinations"
