@@ -65,16 +65,18 @@ const AdminTourPage = (props) => {
     setTours({ ...tours, [name]: value });
   };
 
+  const [state, setstate] = useState({ array: [] });
+
   const handleChangeSelect = (event) => {
-    setTours((tours) => ({
-      ...tours,
-      destinations: [
-        ...tours.destinations,
-        `/api/destinations/${event.target.value}`,
-      ],
+    event.persist();
+    setstate((state) => ({
+      ...state,
+      array: [...state.array, `/api/destinations/${event.target.value}`],
     }));
+    setTours({ destinations: state.array });
   };
 
+  console.log(tours.destinations);
   const handleSubmit = async (event) => {
     event.preventDefault();
 
