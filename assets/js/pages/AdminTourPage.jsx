@@ -106,6 +106,20 @@ const AdminTourPage = (props) => {
     }
   };
 
+  const [fields, setFields] = useState([{ value: null }]);
+
+  const handleAdd = () => {
+    const values = [...fields];
+    values.push({ value: null });
+    setFields(values);
+  };
+
+  function handleRemove(i) {
+    const values = [...fields];
+    values.splice(i, 1);
+    setFields(values);
+  }
+
   return (
     <>
       <form className="container" onSubmit={handleSubmit}>
@@ -157,29 +171,31 @@ const AdminTourPage = (props) => {
           error={errors.image}
           type="text"
         />
-        <Select
-          name="destinations"
-          label="destinations"
-          onChange={handleChangeSelect}
-        >
-          {destinations.map((destinations) => (
-            <option key={destinations.id} value={destinations.id}>
-              {destinations.title}
-            </option>
-          ))}
-        </Select>
 
-        <Select
-          name="destinations"
-          label="destinations"
-          onChange={handleChangeSelect}
-        >
-          {destinations.map((destinations) => (
-            <option key={destinations.id} value={destinations.id}>
-              {destinations.title}
-            </option>
-          ))}
-        </Select>
+        {fields.map((field, idx) => {
+          return (
+            <div key={`${field}-${idx}`}>
+              <Select
+                name="destinations"
+                label="destinations"
+                onChange={handleChangeSelect}
+              >
+                {destinations.map((destinations) => (
+                  <option key={destinations.id} value={destinations.id}>
+                    {destinations.title}
+                  </option>
+                ))}
+              </Select>
+              <button type="button" onClick={() => handleRemove(idx)}>
+                X
+              </button>
+            </div>
+          );
+        })}
+
+        <button type="button" onClick={handleAdd}>
+          +
+        </button>
 
         <div className="form-group">
           <button type="submit" className="btn btn-success">
