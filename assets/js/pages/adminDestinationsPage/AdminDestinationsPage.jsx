@@ -4,6 +4,8 @@ import destinationsApi from "../../services/destinationsApi";
 import Pagination from "../../components/Pagination";
 import { toast } from "react-toastify";
 import "./AdminDestinationsPage.css";
+import SearchBar from "../../components/SearchBar";
+import TableAdminTours from "../../components/TableAdminTours";
 
 const AdminDestinationsPage = () => {
   const [destinations, setDestinations] = useState([]);
@@ -73,55 +75,11 @@ const AdminDestinationsPage = () => {
             Créer une destination
           </Link>
         </div>
-        <div className="form-group destination_search">
-          <input
-            type="text"
-            onChange={handleSearch}
-            value={search}
-            className="form-control"
-            placeholder="Rechercher ..."
-          />
-        </div>
-
-        <table className="table table-hover destination_table">
-          <thead>
-            <tr>
-              <th>Id.</th>
-              <th>Titre</th>
-              <th>Description</th>
-              <th>Pays</th>
-              <th>Ville</th>
-              <th>Image</th>
-              <th />
-            </tr>
-          </thead>
-
-          <tbody>
-            {paginatedDestinations.reverse().map((destination) => (
-              <tr key={destination.id}>
-                <td data-label="id">{destination.id}</td>
-                <td data-label="Titre">{destination.title}</td>
-                <td data-label="Description">{destination.description}</td>
-                <td data-label="Pays">{destination.pays}</td>
-                <td data-label="Ville">{destination.city}</td>
-                <td>
-                  <Link
-                    to={"/admin/destinations/" + destination.id}
-                    className="btn btn-sm btn-primary"
-                  >
-                    Editer
-                  </Link>
-                  <button
-                    onClick={() => handleDelete(destination.id)}
-                    className="btn btn-sm btn-danger"
-                  >
-                    Supprimer
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <SearchBar handleSearch={handleSearch} search={search} />
+        <TableAdminTours
+          paginatedDestinations={paginatedDestinations}
+          handleDelete={handleDelete}
+        />
 
         {itemsPerPage < filteredDestinations.length && (
           <Pagination
