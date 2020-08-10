@@ -15,8 +15,5 @@ export default function useDestinations() {
     }
   };
 
-  useEffect(() => {
-    fetchDestinations();
-  }, []);
   return destinations;
 }

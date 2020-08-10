@@ -27,7 +27,7 @@ const TableAdminTours = ({ paginatedDestinations, handleDelete }) => {
             <td>
               <Link
                 to={"/admin/destinations/" + destination.id}
-                className="btn btn-sm btn-primary"
+                className="btn btn-sm btn-primary mr-1"
               >
                 Editer
               </Link>

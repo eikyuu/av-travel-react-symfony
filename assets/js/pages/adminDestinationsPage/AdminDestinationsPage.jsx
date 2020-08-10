@@ -41,6 +41,12 @@ const AdminDestinationsPage = () => {
   };
 
   // filter management
+
+  const handleSearch = ({ currentTarget }) => {
+    setSearch(currentTarget.value);
+    setCurrentPage(1);
+  };
+
   const filteredDestinations = destinations.filter(
     (destination) =>
       destination.title.toLowerCase().includes(search.toLowerCase()) ||
@@ -57,11 +63,6 @@ const AdminDestinationsPage = () => {
     currentPage,
     itemsPerPage
   );
-
-  const handleSearch = ({ currentTarget }) => {
-    setSearch(currentTarget.value);
-    setCurrentPage(1);
-  };
 
   return (
     <>

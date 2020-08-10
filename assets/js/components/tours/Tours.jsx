@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Tours.css";
-import useTours from "../../customHooks/useTours";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import ImageGrid from "../loaders/ImageGrid";
