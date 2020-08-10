@@ -99,11 +99,6 @@ class Tours
     private $destinations;
 
     /**
-     * @ORM\OneToMany(targetEntity=Opinion::class, mappedBy="tours")
-     */
-    private $opinions;
-
-    /**
      * @ORM\OneToMany(targetEntity=Booking::class, mappedBy="tours")
      */
     private $bookings;
@@ -204,37 +199,6 @@ class Tours
         if ($this->destinations->contains($destination)) {
             $this->destinations->removeElement($destination);
             $destination->removeTour($this);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Opinion[]
-     */
-    public function getOpinions(): Collection
-    {
-        return $this->opinions;
-    }
-
-    public function addOpinion(Opinion $opinion): self
-    {
-        if (!$this->opinions->contains($opinion)) {
-            $this->opinions[] = $opinion;
-            $opinion->setTours($this);
-        }
-
-        return $this;
-    }
-
-    public function removeOpinion(Opinion $opinion): self
-    {
-        if ($this->opinions->contains($opinion)) {
-            $this->opinions->removeElement($opinion);
-            // set the owning side to null (unless already changed)
-            if ($opinion->getTours() === $this) {
-                $opinion->setTours(null);
-            }
         }
 
         return $this;

@@ -70,12 +70,6 @@ class User implements UserInterface
     private $lastName;
 
     /**
-     * @ORM\OneToMany(targetEntity=Opinion::class, mappedBy="user")
-     * @Groups({"users_read"})
-     */
-    private $opinions;
-
-    /**
      * @ORM\OneToMany(targetEntity=Booking::class, mappedBy="user")
      * @Groups({"users_read"})
      */
@@ -186,37 +180,6 @@ class User implements UserInterface
     public function setLastName(string $lastName): self
     {
         $this->lastName = $lastName;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Opinion[]
-     */
-    public function getOpinions(): Collection
-    {
-        return $this->opinions;
-    }
-
-    public function addOpinion(Opinion $opinion): self
-    {
-        if (!$this->opinions->contains($opinion)) {
-            $this->opinions[] = $opinion;
-            $opinion->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeOpinion(Opinion $opinion): self
-    {
-        if ($this->opinions->contains($opinion)) {
-            $this->opinions->removeElement($opinion);
-            // set the owning side to null (unless already changed)
-            if ($opinion->getUser() === $this) {
-                $opinion->setUser(null);
-            }
-        }
 
         return $this;
     }
