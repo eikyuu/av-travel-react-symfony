@@ -65,7 +65,7 @@ const DestinationsPage = (props) => {
           {paginatedDestinations.reverse().map((destination) => (
             <div
               key={destination.id}
-              className="col-sm-6 col-md-6 displayDestinations"
+              className="col-sm-12 col-md-6 displayDestinations"
             >
               <DestinationCards
                 id={destination.id}
