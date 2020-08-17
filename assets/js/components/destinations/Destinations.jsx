@@ -34,7 +34,7 @@ const Destinations = () => {
 
   return (
     <div data-aos="fade-up" className="container">
-      <h1 className=" mt-5 destinations_h1">Les dernieres destinations</h1>
+      <h1 className=" mt-5 destinations_h1">Les dernières destinations</h1>
       {!loading && (
         <div className="row mt-5">
           {destinations

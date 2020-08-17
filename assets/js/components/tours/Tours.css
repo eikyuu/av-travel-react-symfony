@@ -9,6 +9,11 @@
   white-space: nowrap;
 } */
 
+.card-img {
+  height: 215px;
+  width: 350px;
+}
+
 .div_price_days {
   display: flex;
   justify-content: space-between;

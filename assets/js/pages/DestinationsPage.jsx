@@ -62,7 +62,7 @@ const DestinationsPage = (props) => {
 
       {!loading && (
         <div className="row mt-5 mb-3">
-          {paginatedDestinations.reverse().map((destination) => (
+          {paginatedDestinations.map((destination) => (
             <div
               key={destination.id}
               className="col-sm-12 col-md-6 displayDestinations"

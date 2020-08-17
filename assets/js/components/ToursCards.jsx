@@ -9,7 +9,12 @@ const ToursCards = ({ id, image, title, description, days, price }) => {
       to={"/tours/" + id}
       className="card"
     >
-      <img src={image} className="card-img-top" alt="..." />
+      <img
+        src={image}
+        className="card-img-top"
+        style={{ height: "215px" }}
+        alt="..."
+      />
       <div className="m-3">
         <h5 className="tours_title mb-5">{title}</h5>
         <Truncate lines={3} ellipsis={<span>...</span>}>

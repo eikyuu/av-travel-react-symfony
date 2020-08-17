@@ -8,7 +8,7 @@ const Banner = (props) => {
           Trouver votre prochaine destination.
         </h1>
         <h2 className="banner_home_h2 col-12 text-white">
-          Découvrer des lieux incroyables avec des offres exclusives.
+          Venez découvrir des lieux incroyables avec des offres exclusives.
         </h2>
       </div>
     </div>

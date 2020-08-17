@@ -59,11 +59,11 @@ class Tours
     private $title;
 
     /**
-     * @ORM\Column(type="string", length=200)
+     * @ORM\Column(type="string", length=1000)
      * @Groups({"tours_read", "destination_read", "tours_subresource", "booking_read", "users_read"})
      * @Assert\NotBlank(message="la description du tours est obligatoire")
      * @Assert\Type(type="string", message="la description dois etre au format texte !")
-     * @Assert\Length(min=3 , minMessage="la description doit faire entre 3 et 200 caracteres", max=200, maxMessage="la description doit faire entre 3 et 200 caracteres")
+     * @Assert\Length(min=3 , minMessage="la description doit faire entre 3 et 200 caracteres", max=1000, maxMessage="la description doit faire entre 3 et 1000 caracteres")
      */
     private $description;
 
