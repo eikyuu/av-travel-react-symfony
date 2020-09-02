@@ -88,7 +88,7 @@ const DetailTours = ({ match, history }) => {
           className="btn btn-success"
           disabled={!isAuthenticated}
         >
-          Reserver le tours
+          Reserver la croisière
         </button>
       </form>
     </div>

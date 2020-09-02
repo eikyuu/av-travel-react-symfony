@@ -20,7 +20,7 @@ const Tours = (props) => {
       setTours(data);
       setLoading(false);
     } catch (error) {
-      console.log("Impossible de charger les tours");
+      console.log("Impossible de charger les croisières");
     }
   };
 
@@ -34,7 +34,7 @@ const Tours = (props) => {
 
   return (
     <div data-aos="fade-up" className="container mt-5">
-      <h1 className="tours_h1">Les derniers tours</h1>
+      <h1 className="tours_h1">Les dernieres croisières</h1>
       {!loading && (
         <div className="row mt-5">
           {tours
@@ -56,7 +56,7 @@ const Tours = (props) => {
       )}
       <div className="row mt-4 mb-5">
         <Link to="/tours" className="mt-3 btn btn-warning mx-auto">
-          Voir tous les tours
+          Voir toutes les croisières
         </Link>
       </div>
       {loading && <ImageGrid />}

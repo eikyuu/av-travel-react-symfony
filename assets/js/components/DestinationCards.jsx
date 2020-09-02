@@ -12,7 +12,9 @@ const DestinationCards = ({ id, image, city, tours, pays }) => {
         <p className="destinations_city_p">
           {pays} {city}
         </p>
-        <div className="mr-1 destinations_button">{tours.length} tours</div>
+        <div className="mr-1 destinations_button">
+          {tours.length} croisières
+        </div>
       </div>
     </Link>
   );

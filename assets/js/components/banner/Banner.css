@@ -1,3 +1,7 @@
+html {
+  overflow-x: hidden;
+}
+
 .banner_home {
   background: url("../../../../public/img/santorini.jpg") no-repeat;
   background-size: cover;
@@ -8,8 +12,9 @@
 }
 
 .banner_home_h1 {
-  font-size: 3.5em;
+  font-size: 3em;
   font-weight: 900;
+  margin-top: 50px;
 }
 
 .banner_home_h2 {

@@ -6,6 +6,7 @@ import "aos/dist/aos.css";
 import DestinationCards from "../DestinationCards";
 import ImageGrid from "../loaders/ImageGrid";
 import destinationsApi from "../../services/destinationsApi";
+import { toast } from "react-toastify";
 
 const Destinations = () => {
   AOS.init({
@@ -21,7 +22,7 @@ const Destinations = () => {
       setDestinations(data);
       setLoading(false);
     } catch (error) {
-      console.log("Impossible de charger les destinations");
+      toast.error("La destination n'a pas pu être chargé");
     }
   };
   let isSubscribed = true;

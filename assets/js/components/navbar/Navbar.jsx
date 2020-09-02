@@ -46,7 +46,12 @@ const Navbar = ({ history }) => {
         <span className="navbar-toggler-icon"></span>
       </button>
 
-      <div className="collapse navbar-collapse" id="navbarSupportedContent">
+      <div
+        className="collapse navbar-collapse"
+        data-toggle="collapse"
+        data-target=".navbar-collapse.show"
+        id="navbarSupportedContent"
+      >
         <ul className="navbar-nav ml-auto">
           <li className="nav-item active mr-3">
             <NavLink className="nav-link" to="/">
@@ -60,7 +65,7 @@ const Navbar = ({ history }) => {
           </li>
           <li className="nav-item active mr-5">
             <NavLink className="nav-link poutou" to="/tours">
-              TOURS
+              CROISIERES
             </NavLink>
           </li>
           {isAuthenticated && (

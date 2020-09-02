@@ -60,7 +60,7 @@ const AdminToursPage = (props) => {
     <>
       <div className="container tours">
         <div className="mb-3 d-flex justify-content-between align-items-center tours_block">
-          <h1 className="tours_h1">Liste des tours</h1>
+          <h1 className="tours_h1">Liste des croisières</h1>
           <Link to="/admin/tours/new" className="btn btn-primary tours_button">
             Créer un tours
           </Link>

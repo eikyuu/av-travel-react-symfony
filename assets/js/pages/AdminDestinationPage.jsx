@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 import destinationsApi from "../services/destinationsApi";
 import { toast } from "react-toastify";
 
-const AdminDestinationPage = (props) => {
-  const { id = "new" } = props.match.params;
+const AdminDestinationPage = ({ match, history }) => {
+  const { id = "new" } = match.params;
   const [destinations, setDestinations] = useState({
     title: "",
     description: "",
@@ -36,7 +36,7 @@ const AdminDestinationPage = (props) => {
       setDestinations({ title, description, pays, city, image });
     } catch (error) {
       toast.error("La destination n'a pas pu être chargé");
-      props.history.replace("/admin/destinations");
+      history.replace("/admin/destinations");
     }
   };
 
@@ -63,8 +63,8 @@ const AdminDestinationPage = (props) => {
         toast.success("La destination a bien été modifié");
       } else {
         await destinationsApi.create(destinations);
-        toast.success("La destionation a bien été créé");
-        props.history.replace("/admin/destinations");
+        toast.success("La destination a bien été créé");
+        history.replace("/admin/destinations");
       }
     } catch ({ response }) {
       const { violations } = response.data;

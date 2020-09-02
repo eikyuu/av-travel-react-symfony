@@ -123,8 +123,8 @@ const AdminTourPage = (props) => {
   return (
     <>
       <form className="container" onSubmit={handleSubmit}>
-        {(!editing && <h1>Création d'un tours</h1>) || (
-          <h1>Modification d'une tours</h1>
+        {(!editing && <h1>Création d'une croisière</h1>) || (
+          <h1>Modification d'une croisière</h1>
         )}
         <Field
           name="title"
