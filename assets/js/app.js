@@ -3,23 +3,29 @@ import ReactDOM from "react-dom";
 import { HashRouter, Route, Switch, withRouter } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Navbar from "./components/navbar/Navbar";
+import authApi from "./services/authApi";
 import PrivateRoute from "./components/PrivateRoute";
 import AuthContext from "./contexts/authContext";
-import AdminDestinationPage from "./pages/AdminDestinationPage";
-import AdminDestinationsPage from "./pages/adminDestinationsPage/AdminDestinationsPage";
-import AdminTourPage from "./pages/AdminTourPage";
-import AdminToursPage from "./pages/adminToursPage/AdminToursPage";
-import DestinationsPage from "./pages/DestinationsPage";
-import DestinationTours from "./pages/DestinationTours";
-import DetailDestination from "./pages/detailDestination/DetailDestination";
-import HomePage from "./pages/HomePage";
-import LoginPage from "./pages/LoginPage";
-import RegisterPage from "./pages/RegisterPage";
-import ToursPage from "./pages/ToursPage";
-import authApi from "./services/authApi";
-import PrivateProfile from "./components/PrivateProfile";
+import Navbar from "./components/navbar/Navbar";
 
+const AdminDestinationPage = lazy(() => import("./pages/AdminDestinationPage"));
+const AdminDestinationsPage = lazy(() =>
+  import("./pages/adminDestinationsPage/AdminDestinationsPage")
+);
+const AdminTourPage = lazy(() => import("./pages/AdminTourPage"));
+const AdminToursPage = lazy(() =>
+  import("./pages/adminToursPage/AdminToursPage")
+);
+const DestinationsPage = lazy(() => import("./pages/DestinationsPage"));
+const DestinationTours = lazy(() => import("./pages/DestinationTours"));
+const DetailDestination = lazy(() =>
+  import("./pages/detailDestination/DetailDestination")
+);
+const HomePage = lazy(() => import("./pages/HomePage"));
+const LoginPage = lazy(() => import("./pages/LoginPage"));
+const RegisterPage = lazy(() => import("./pages/RegisterPage"));
+const ToursPage = lazy(() => import("./pages/ToursPage"));
+const PrivateProfile = lazy(() => import("./components/PrivateProfile"));
 const DetailTours = lazy(() => import("./pages/detailTours/DetailTours"));
 
 authApi.setup();
