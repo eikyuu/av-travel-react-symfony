@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, lazy, Suspense } from "react";
 import ReactDOM from "react-dom";
 import { HashRouter, Route, Switch, withRouter } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
@@ -19,7 +19,8 @@ import RegisterPage from "./pages/RegisterPage";
 import ToursPage from "./pages/ToursPage";
 import authApi from "./services/authApi";
 import PrivateProfile from "./components/PrivateProfile";
-import DetailTours from "./pages/detailTours/DetailTours";
+
+const DetailTours = lazy(() => import("./pages/detailTours/DetailTours"));
 
 authApi.setup();
 
@@ -41,30 +42,32 @@ const App = () => {
         <NavbarWithRouter />
 
         <main className="app">
-          <Switch>
-            <Route path="/login" component={LoginPage} />
-            <Route path="/register" component={RegisterPage} />
-            <Route path="/tours/:id" component={DetailTours} />
-            <Route path="/tours" component={ToursPage} />
-            <Route
-              path="/destinations/:id/tours"
-              component={DestinationTours}
-            />
-            <Route path="/destinations/:id" component={DetailDestination} />
-            <Route path="/destinations" component={DestinationsPage} />
-            <PrivateRoute path="/admin/tours/:id" component={AdminTourPage} />
-            <PrivateRoute path="/admin/tours" component={AdminToursPage} />
-            <PrivateRoute
-              path="/admin/destinations/:id"
-              component={AdminDestinationPage}
-            />
-            <PrivateRoute
-              path="/admin/destinations"
-              component={AdminDestinationsPage}
-            />
-            <Route path="/profile/:id" component={PrivateProfile} />
-            <Route path="/" component={HomePage} />
-          </Switch>
+          <Suspense fallback={<div>Chargement...</div>}>
+            <Switch>
+              <Route path="/login" component={LoginPage} />
+              <Route path="/register" component={RegisterPage} />
+              <Route path="/tours/:id" component={DetailTours} />
+              <Route path="/tours" component={ToursPage} />
+              <Route
+                path="/destinations/:id/tours"
+                component={DestinationTours}
+              />
+              <Route path="/destinations/:id" component={DetailDestination} />
+              <Route path="/destinations" component={DestinationsPage} />
+              <PrivateRoute path="/admin/tours/:id" component={AdminTourPage} />
+              <PrivateRoute path="/admin/tours" component={AdminToursPage} />
+              <PrivateRoute
+                path="/admin/destinations/:id"
+                component={AdminDestinationPage}
+              />
+              <PrivateRoute
+                path="/admin/destinations"
+                component={AdminDestinationsPage}
+              />
+              <Route path="/profile/:id" component={PrivateProfile} />
+              <Route path="/" component={HomePage} />
+            </Switch>
+          </Suspense>
 
           <ToastContainer position={toast.POSITION.BOTTOM_LEFT} />
         </main>
