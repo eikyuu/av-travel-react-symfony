@@ -1,4 +1,4 @@
-import React, { useState, useEffect, lazy, Suspense } from "react";
+import React, { useState, lazy, Suspense } from "react";
 import ReactDOM from "react-dom";
 import { HashRouter, Route, Switch, withRouter } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
