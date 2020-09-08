@@ -20,6 +20,7 @@
         "symfony/http-client": "5.0.*",
         "symfony/intl": "5.0.*",
         "symfony/mailer": "5.0.*",
+        "symfony/mime": "5.0.*",
         "symfony/monolog-bundle": "^3.1",
         "symfony/notifier": "5.0.*",
         "symfony/orm-pack": "*",
@@ -32,7 +33,8 @@
         "symfony/validator": "5.0.*",
         "symfony/web-link": "5.0.*",
         "symfony/webpack-encore-bundle": "^1.7",
-        "symfony/yaml": "5.0.*"
+        "symfony/yaml": "5.0.*",
+        "vich/uploader-bundle": "^1.15"
     },
     "require-dev": {
         "symfony/debug-pack": "*",
