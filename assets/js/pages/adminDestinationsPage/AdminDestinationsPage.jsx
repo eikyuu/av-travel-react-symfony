@@ -65,33 +65,31 @@ const AdminDestinationsPage = () => {
   );
 
   return (
-    <>
-      <div className="container destinations">
-        <div className="mb-3 d-flex justify-content-between align-items-center destination_block">
-          <h1 className="destinations_h1">Liste des destinations</h1>
-          <Link
-            to="/admin/destinations/new"
-            className="btn btn-primary destination_button"
-          >
-            Créer une destination
-          </Link>
-        </div>
-        <SearchBar handleSearch={handleSearch} search={search} />
-        <TableAdminTours
-          paginatedDestinations={paginatedDestinations}
-          handleDelete={handleDelete}
-        />
-
-        {itemsPerPage < filteredDestinations.length && (
-          <Pagination
-            currentPage={currentPage}
-            itemsPerPage={itemsPerPage}
-            length={filteredDestinations.length}
-            onPageChanged={handlePageChange}
-          />
-        )}
+    <section className="container destinations">
+      <div className="mb-3 d-flex justify-content-between align-items-center destination_block">
+        <h1 className="destinations_h1">Liste des destinations</h1>
+        <Link
+          to="/admin/destinations/new"
+          className="btn btn-primary destination_button"
+        >
+          Créer une destination
+        </Link>
       </div>
-    </>
+      <SearchBar handleSearch={handleSearch} search={search} />
+      <TableAdminTours
+        paginatedDestinations={paginatedDestinations}
+        handleDelete={handleDelete}
+      />
+
+      {itemsPerPage < filteredDestinations.length && (
+        <Pagination
+          currentPage={currentPage}
+          itemsPerPage={itemsPerPage}
+          length={filteredDestinations.length}
+          onPageChanged={handlePageChange}
+        />
+      )}
+    </section>
   );
 };
 

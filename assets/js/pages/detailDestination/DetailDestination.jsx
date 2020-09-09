@@ -34,10 +34,14 @@ const DetailDestination = ({ match }) => {
   }, [id]);
 
   return (
-    <div className="container detailDestination">
+    <section className="container detailDestination">
       <div className="row detailDestination_row">
         <h1 className="detailDestination_h1 col-12">{destinations.title}</h1>
-        <img className="col-12 mt-3 mb-3" src={destinations.image} alt="" />
+        <img
+          className="col-12 mt-3 mb-3"
+          src={destinations.image}
+          alt="image destination"
+        />
         <p className="detailDestination_p col-12">{destinations.description}</p>
         <p className="detailDestination_p col-12">
           {destinations.city} {destinations.pays}
@@ -47,7 +51,7 @@ const DetailDestination = ({ match }) => {
       <Link to={"/destinations/" + id + "/tours"} className="btn btn-warning">
         voir les croisières
       </Link>
-    </div>
+    </section>
   );
 };
 

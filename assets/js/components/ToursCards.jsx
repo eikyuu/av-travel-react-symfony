@@ -13,7 +13,7 @@ const ToursCards = ({ id, image, title, description, days, price }) => {
         src={image}
         className="card-img-top"
         style={{ height: "215px" }}
-        alt="..."
+        alt="image tours"
       />
       <div className="m-3">
         <h5 className="tours_title mb-5">{title}</h5>

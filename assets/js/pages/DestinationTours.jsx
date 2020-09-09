@@ -23,7 +23,7 @@ const DestinationTours = ({ match }) => {
   }, [id]);
 
   return (
-    <div className="container" style={{ marginTop: "100px" }}>
+    <section className="container" style={{ marginTop: "100px" }}>
       <div className="row">
         {destination.tours &&
           destination.tours.map((tours) => (
@@ -39,7 +39,7 @@ const DestinationTours = ({ match }) => {
             </div>
           ))}
       </div>
-    </div>
+    </section>
   );
 };
 

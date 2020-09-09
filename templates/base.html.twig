@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
-</html>
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}Av-travel
+			{% endblock %}
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="Description" content="Application reservation de voyage pour l'agence av-travel"> {% block stylesheets %}{% endblock %}
+		</head>
+		<body>
+			{% block body %}{% endblock %}
+			{% block javascripts %}{% endblock %}
+		</body>
+	</html>

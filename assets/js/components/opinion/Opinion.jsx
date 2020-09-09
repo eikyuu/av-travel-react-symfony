@@ -8,7 +8,7 @@ const Opinion = () => {
       <h1 className="destinations_h1">Avis des voyageurs</h1>
       <div className="section_cards mt-5">
         <div className="cards">
-          <img className="card_quote" src={quote} alt="" />
+          <img className="card_quote" src={quote} alt="profil utilisateur" />
           <p className="card_opinion text-center">
             SUPER VOYAGE SUPER ORGA MEME 2 femmes seules on se sent accompagnées
             des vacances sans les soucis juste à se mettre en mode vacances et
@@ -25,7 +25,7 @@ const Opinion = () => {
         </div>
 
         <div className="cards">
-          <img className="card_quote" src={quote} alt="" />
+          <img className="card_quote" src={quote} alt="profil utilisateur" />
           <p className="card_opinion text-center">
             Ce petit voyage à Milan et aux lacs fut en tous points une réussite
             et les prestations de Voyageurs du Monde impeccables.
@@ -41,7 +41,7 @@ const Opinion = () => {
         </div>
 
         <div className="cards">
-          <img className="card_quote" src={quote} alt="" />
+          <img className="card_quote" src={quote} alt="profil utilisateur" />
           <p className="card_opinion text-center">
             Une respiration dans cette période de pandémie grâce au
             professionnalisme et à la réactivité des équipes. Une sérénité

@@ -47,7 +47,7 @@ const DestinationsPage = (props) => {
     fetchDestinations();
   }, []);
   return (
-    <div className="container mt-5">
+    <section className="container mt-5">
       <h1 className="mt-5 destinations_h1">Toutes les destinations</h1>
       <div className="form-group destination_search mt-5">
         <SearchBar handleSearch={handleSearch} search={search} />
@@ -80,7 +80,7 @@ const DestinationsPage = (props) => {
           onPageChanged={handlePageChange}
         />
       )}
-    </div>
+    </section>
   );
 };
 

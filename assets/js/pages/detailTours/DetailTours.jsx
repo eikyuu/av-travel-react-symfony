@@ -65,10 +65,10 @@ const DetailTours = ({ match, history }) => {
   };
 
   return (
-    <div className="container detailTours_container">
+    <section className="container detailTours_container">
       <div className="row">
         <h1 className="col-12 mb-3">{tours.title}</h1>
-        <img src={tours.image} className="col-12" alt="" />
+        <img src={tours.image} className="col-12" alt="image tours" />
         <p className="col-12 mt-3">{tours.description}</p>
         <p className="col-6">{tours.days} jours </p>
         <p className="col-6">{tours.price} € </p>
@@ -91,7 +91,7 @@ const DetailTours = ({ match, history }) => {
           Reserver la croisière
         </button>
       </form>
-    </div>
+    </section>
   );
 };
 

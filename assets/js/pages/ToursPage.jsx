@@ -47,7 +47,7 @@ const ToursPage = (props) => {
   };
 
   return (
-    <div className="container mt-5">
+    <section className="container mt-5">
       <h1 className="mt-5 tours_h1">Toutes les croisières</h1>
       <div className="form-group destination_search mt-5">
         <SearchBar handleSearch={handleSearch} search={search} />
@@ -78,7 +78,7 @@ const ToursPage = (props) => {
           onPageChanged={handlePageChange}
         />
       )}
-    </div>
+    </section>
   );
 };
 

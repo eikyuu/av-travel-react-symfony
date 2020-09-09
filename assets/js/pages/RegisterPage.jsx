@@ -63,8 +63,8 @@ const RegisterPage = ({ history }) => {
 
   return (
     <>
-      <h1>Inscription</h1>
       <form className="container mt-5" onSubmit={handleSubmit}>
+        <h1>Inscription</h1>
         <Field
           name="firstName"
           label="Prénom"

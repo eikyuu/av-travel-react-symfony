@@ -7,7 +7,7 @@ const DestinationCards = ({ id, image, city, tours, pays }) => {
       style={{ textDecoration: "none", color: "white" }}
       to={"/destinations/" + id}
     >
-      <img className="destinations_img" alt="" src={image} />
+      <img className="destinations_img" alt="image destination" src={image} />
       <div className="destinations_city">
         <p className="destinations_city_p">
           {pays} {city}
