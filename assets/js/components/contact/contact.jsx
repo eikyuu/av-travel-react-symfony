@@ -2,6 +2,7 @@ import React from "react";
 import emailjs from "emailjs-com";
 import { toast } from "react-toastify";
 import "./Contact.css";
+import ErrorBoundary from "../ErrorBoundary";
 
 export default class extends React.Component {
   constructor(props) {
@@ -49,57 +50,59 @@ export default class extends React.Component {
         <form onSubmit={this.handleSubmit} className="mailing">
           <h1 className="contact_h1 mt-5">PRENDRE CONTACT ?</h1>
           <div className="container">
-            <div className="form-group">
-              <label className="text-white mt-5">Votre Nom</label>
-              <input
-                className="form-control"
-                name="name"
-                type="text"
-                value={this.state.name}
-                onChange={this.handleChange}
-                placeholder="Jean"
-                required
-              />
-            </div>
-            <div className="form-group">
-              <label className="text-white">Sujet du message</label>
-              <input
-                className="form-control"
-                name="subject"
-                type="text"
-                value={this.state.subject}
-                onChange={this.handleChange}
-                placeholder="Sujet de votre message"
-                required
-              />
-            </div>
-            <div className="form-group">
-              <label className="text-white">Votre email</label>
-              <input
-                className="form-control"
-                name="email"
-                type="email"
-                value={this.state.email}
-                onChange={this.handleChange}
-                placeholder="jean@mail.com"
-                required
-              />
-            </div>
-            <div className="form-group">
-              <label className="text-white">Votre message</label>
-              <textarea
-                className="form-control"
-                name="message"
-                onChange={this.handleChange}
-                placeholder="Message..."
-                required
-                value={this.state.message}
-              />
-            </div>
+            <ErrorBoundary>
+              <div className="form-group">
+                <label className="text-white mt-5">Votre Nom</label>
+                <input
+                  className="form-control"
+                  name="name"
+                  type="text"
+                  value={this.state.name}
+                  onChange={this.handleChange}
+                  placeholder="Jean"
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <label className="text-white">Sujet du message</label>
+                <input
+                  className="form-control"
+                  name="subject"
+                  type="text"
+                  value={this.state.subject}
+                  onChange={this.handleChange}
+                  placeholder="Sujet de votre message"
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <label className="text-white">Votre email</label>
+                <input
+                  className="form-control"
+                  name="email"
+                  type="email"
+                  value={this.state.email}
+                  onChange={this.handleChange}
+                  placeholder="jean@mail.com"
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <label className="text-white">Votre message</label>
+                <textarea
+                  className="form-control"
+                  name="message"
+                  onChange={this.handleChange}
+                  placeholder="Message..."
+                  required
+                  value={this.state.message}
+                />
+              </div>
 
-            <button type="submit" className="btn btn-warning">
-              Envoyer
-            </button>
+              <button type="submit" className="btn btn-warning">
+                Envoyer
+              </button>
+            </ErrorBoundary>
           </div>
         </form>
       </footer>
