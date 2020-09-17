@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import destinationsApi from "../../services/destinationsApi";
 import "./DetailDestination.css";
 import { Link } from "react-router-dom";
+import ErrorBoundary from "../../components/ErrorBoundary";
 
 const DetailDestination = ({ match }) => {
   const { id } = match.params;
@@ -34,24 +35,28 @@ const DetailDestination = ({ match }) => {
   }, [id]);
 
   return (
-    <section className="container detailDestination">
-      <div className="row detailDestination_row">
-        <h1 className="detailDestination_h1 col-12">{destinations.title}</h1>
-        <img
-          className="col-12 mt-3 mb-3"
-          src={destinations.image}
-          alt="image destination"
-        />
-        <p className="detailDestination_p col-12">{destinations.description}</p>
-        <p className="detailDestination_p col-12">
-          {destinations.city} {destinations.pays}
-        </p>
-      </div>
+    <ErrorBoundary>
+      <section className="container detailDestination">
+        <div className="row detailDestination_row">
+          <h1 className="detailDestination_h1 col-12">{destinations.title}</h1>
+          <img
+            className="col-12 mt-3 mb-3"
+            src={destinations.image}
+            alt="image destination"
+          />
+          <p className="detailDestination_p col-12">
+            {destinations.description}
+          </p>
+          <p className="detailDestination_p col-12">
+            {destinations.city} {destinations.pays}
+          </p>
+        </div>
 
-      <Link to={"/destinations/" + id + "/tours"} className="btn btn-warning">
-        voir les croisières
-      </Link>
-    </section>
+        <Link to={"/destinations/" + id + "/tours"} className="btn btn-warning">
+          voir les croisières
+        </Link>
+      </section>
+    </ErrorBoundary>
   );
 };
 

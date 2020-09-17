@@ -3,6 +3,7 @@ import Field from "./../components/forms/Field";
 import { Link } from "react-router-dom";
 import UsersAPI from "../services/usersApi";
 import { toast } from "react-toastify";
+import ErrorBoundary from "../components/ErrorBoundary";
 
 const RegisterPage = ({ history }) => {
   const [user, setUser] = useState({
@@ -63,61 +64,63 @@ const RegisterPage = ({ history }) => {
 
   return (
     <>
-      <form className="container mt-5" onSubmit={handleSubmit}>
-        <h1>Inscription</h1>
-        <Field
-          name="firstName"
-          label="Prénom"
-          placeholder="Votre joli prénom"
-          error={errors.firstName}
-          value={user.firstName}
-          onChange={handleChange}
-        />
-        <Field
-          name="lastName"
-          label="Nom de famille"
-          placeholder="Votre nom de famille"
-          error={errors.lastName}
-          value={user.lastName}
-          onChange={handleChange}
-        />
-        <Field
-          name="email"
-          label="Adresse email"
-          placeholder="Votre adresse email"
-          type="email"
-          error={errors.email}
-          value={user.email}
-          onChange={handleChange}
-        />
-        <Field
-          name="password"
-          label="Mot de passe"
-          type="password"
-          placeholder="Votre mot de passe ultra sécurisé"
-          error={errors.password}
-          value={user.password}
-          onChange={handleChange}
-        />
-        <Field
-          name="passwordConfirm"
-          label="Confirmation de mot de passe"
-          type="password"
-          placeholder="Confirmez votre super mot de passe"
-          error={errors.passwordConfirm}
-          value={user.passwordConfirm}
-          onChange={handleChange}
-        />
+      <ErrorBoundary>
+        <form className="container mt-5" onSubmit={handleSubmit}>
+          <h1>Inscription</h1>
+          <Field
+            name="firstName"
+            label="Prénom"
+            placeholder="Votre joli prénom"
+            error={errors.firstName}
+            value={user.firstName}
+            onChange={handleChange}
+          />
+          <Field
+            name="lastName"
+            label="Nom de famille"
+            placeholder="Votre nom de famille"
+            error={errors.lastName}
+            value={user.lastName}
+            onChange={handleChange}
+          />
+          <Field
+            name="email"
+            label="Adresse email"
+            placeholder="Votre adresse email"
+            type="email"
+            error={errors.email}
+            value={user.email}
+            onChange={handleChange}
+          />
+          <Field
+            name="password"
+            label="Mot de passe"
+            type="password"
+            placeholder="Votre mot de passe ultra sécurisé"
+            error={errors.password}
+            value={user.password}
+            onChange={handleChange}
+          />
+          <Field
+            name="passwordConfirm"
+            label="Confirmation de mot de passe"
+            type="password"
+            placeholder="Confirmez votre super mot de passe"
+            error={errors.passwordConfirm}
+            value={user.passwordConfirm}
+            onChange={handleChange}
+          />
 
-        <div className="form-group">
-          <button type="submit" className="btn btn-success">
-            Confirmation
-          </button>
-          <Link to="/login" className="btn btn-link">
-            J'ai déjà un compte
-          </Link>
-        </div>
-      </form>
+          <div className="form-group">
+            <button type="submit" className="btn btn-success">
+              Confirmation
+            </button>
+            <Link to="/login" className="btn btn-link">
+              J'ai déjà un compte
+            </Link>
+          </div>
+        </form>
+      </ErrorBoundary>
     </>
   );
 };

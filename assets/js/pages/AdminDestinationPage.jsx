@@ -3,6 +3,7 @@ import Field from "../components/forms/Field";
 import { Link } from "react-router-dom";
 import destinationsApi from "../services/destinationsApi";
 import { toast } from "react-toastify";
+import ErrorBoundary from "../components/ErrorBoundary";
 
 const AdminDestinationPage = ({ match, history }) => {
   const { id = "new" } = match.params;
@@ -83,65 +84,67 @@ const AdminDestinationPage = ({ match, history }) => {
 
   return (
     <>
-      <form className="container mt-5" onSubmit={handleSubmit}>
-        {(!editing && <h1>Création d'une destination</h1>) || (
-          <h1>Modification d'une destination</h1>
-        )}
-        <Field
-          name="title"
-          label="Titre"
-          placeholder="Titre de la destination"
-          value={destinations.title}
-          onChange={handleChange}
-          error={errors.title}
-          type="text"
-        />
-        <Field
-          name="description"
-          label="Description"
-          placeholder="Description de la destination"
-          value={destinations.description}
-          onChange={handleChange}
-          error={errors.description}
-          type="text"
-        />
-        <Field
-          name="pays"
-          label="Pays"
-          placeholder="Pays de la destination"
-          value={destinations.pays}
-          onChange={handleChange}
-          error={errors.pays}
-          type="text"
-        />
-        <Field
-          name="city"
-          label="Ville"
-          placeholder="Ville la destination"
-          value={destinations.city}
-          onChange={handleChange}
-          error={errors.city}
-          type="text"
-        />
-        <Field
-          name="image"
-          label="Image"
-          placeholder="Image de la destination"
-          value={destinations.image}
-          onChange={handleChange}
-          error={errors.image}
-          type="text"
-        />
+      <ErrorBoundary>
+        <form className="container mt-5" onSubmit={handleSubmit}>
+          {(!editing && <h1>Création d'une destination</h1>) || (
+            <h1>Modification d'une destination</h1>
+          )}
+          <Field
+            name="title"
+            label="Titre"
+            placeholder="Titre de la destination"
+            value={destinations.title}
+            onChange={handleChange}
+            error={errors.title}
+            type="text"
+          />
+          <Field
+            name="description"
+            label="Description"
+            placeholder="Description de la destination"
+            value={destinations.description}
+            onChange={handleChange}
+            error={errors.description}
+            type="text"
+          />
+          <Field
+            name="pays"
+            label="Pays"
+            placeholder="Pays de la destination"
+            value={destinations.pays}
+            onChange={handleChange}
+            error={errors.pays}
+            type="text"
+          />
+          <Field
+            name="city"
+            label="Ville"
+            placeholder="Ville la destination"
+            value={destinations.city}
+            onChange={handleChange}
+            error={errors.city}
+            type="text"
+          />
+          <Field
+            name="image"
+            label="Image"
+            placeholder="Image de la destination"
+            value={destinations.image}
+            onChange={handleChange}
+            error={errors.image}
+            type="text"
+          />
 
-        <div className="form-group">
-          <button type="submit" className="btn btn-success">
-            Enregistrer
-          </button>
-          <Link to="/admin/destinations" className="btn btn-link">
-            Retour
-          </Link>
-        </div>
-      </form>
+          <div className="form-group">
+            <button type="submit" className="btn btn-success">
+              Enregistrer
+            </button>
+            <Link to="/admin/destinations" className="btn btn-link">
+              Retour
+            </Link>
+          </div>
+        </form>
+      </ErrorBoundary>
     </>
   );
 };

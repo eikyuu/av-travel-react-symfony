@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, lazy, Suspense } from "react";
 import "../components/tours/Tours.css";
 import Pagination from "../components/Pagination";
-import ToursCards from "../components/ToursCards";
 import toursApi from "../services/toursApi";
-import ImageGrid from "../components/loaders/ImageGrid";
-import SearchBar from "../components/SearchBar";
+import ErrorBoundary from "../components/ErrorBoundary";
+const ToursCards = lazy(() => import("../components/ToursCards"));
+const ImageGrid = lazy(() => import("../components/loaders/ImageGrid"));
+const SearchBar = lazy(() => import("../components/SearchBar"));
 
 const ToursPage = (props) => {
   const [tours, setTours] = useState([]);
@@ -47,38 +48,42 @@ const ToursPage = (props) => {
   };
 
   return (
-    <section className="container mt-5">
-      <h1 className="mt-5 tours_h1">Toutes les croisières</h1>
-      <div className="form-group destination_search mt-5">
-        <SearchBar handleSearch={handleSearch} search={search} />
-      </div>
+    <ErrorBoundary>
+      <Suspense fallback={<div>Chargement...</div>}>
+        <section className="container mt-5">
+          <h1 className="mt-5 tours_h1">Toutes les croisières</h1>
+          <div className="form-group destination_search mt-5">
+            <SearchBar handleSearch={handleSearch} search={search} />
+          </div>
 
-      {!loading && (
-        <div className="row mt-5 mb-4">
-          {paginatedTours.reverse().map((tours) => (
-            <div key={tours.id} className="mt-3 col-sm-6 col-md-4">
-              <ToursCards
-                id={tours.id}
-                image={tours.image}
-                title={tours.title}
-                description={tours.description}
-                days={tours.days}
-                price={tours.price}
-              />
+          {!loading && (
+            <div className="row mt-5 mb-4">
+              {paginatedTours.reverse().map((tours) => (
+                <div key={tours.id} className="mt-3 col-sm-6 col-md-4">
+                  <ToursCards
+                    id={tours.id}
+                    image={tours.image}
+                    title={tours.title}
+                    description={tours.description}
+                    days={tours.days}
+                    price={tours.price}
+                  />
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-      )}
-      {loading && <ImageGrid />}
-      {itemsPerPage < filteredTours.length && (
-        <Pagination
-          currentPage={currentPage}
-          itemsPerPage={itemsPerPage}
-          length={filteredTours.length}
-          onPageChanged={handlePageChange}
-        />
-      )}
-    </section>
+          )}
+          {loading && <ImageGrid />}
+          {itemsPerPage < filteredTours.length && (
+            <Pagination
+              currentPage={currentPage}
+              itemsPerPage={itemsPerPage}
+              length={filteredTours.length}
+              onPageChanged={handlePageChange}
+            />
+          )}
+        </section>
+      </Suspense>
+    </ErrorBoundary>
   );
 };
 

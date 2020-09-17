@@ -8,6 +8,7 @@ import ReactDatePicker from "react-datepicker";
 import "./DetailTours.css";
 
 import "react-datepicker/dist/react-datepicker.css";
+import ErrorBoundary from "../../components/ErrorBoundary";
 
 const DetailTours = ({ match, history }) => {
   const { id } = match.params;
@@ -65,33 +66,35 @@ const DetailTours = ({ match, history }) => {
   };
 
   return (
-    <section className="container detailTours_container">
-      <div className="row">
-        <h1 className="col-12 mb-3">{tours.title}</h1>
-        <img src={tours.image} className="col-12" alt="image tours" />
-        <p className="col-12 mt-3">{tours.description}</p>
-        <p className="col-6">{tours.days} jours </p>
-        <p className="col-6">{tours.price} € </p>
-        <h3 className="col-12">Les destinations que vous allez decouvrir</h3>
-        {tours.destinations &&
-          tours.destinations.map((destination) => (
-            <div key={destination.id} className="mt-3 col-12">
-              <p>{destination.city}</p>
-            </div>
-          ))}
-      </div>
-      <form className="row" onSubmit={handleSubmit}>
-        <p className="col-12">Choisisez date de votre depart</p>
-        <ReactDatePicker selected={booking.date} onChange={handleChange} />
-        <button
-          type="submit"
-          className="btn btn-success"
-          disabled={!isAuthenticated}
-        >
-          Reserver la croisière
-        </button>
-      </form>
-    </section>
+    <ErrorBoundary>
+      <section className="container detailTours_container">
+        <div className="row">
+          <h1 className="col-12 mb-3">{tours.title}</h1>
+          <img src={tours.image} className="col-12" alt="image tours" />
+          <p className="col-12 mt-3">{tours.description}</p>
+          <p className="col-6">{tours.days} jours </p>
+          <p className="col-6">{tours.price} € </p>
+          <h3 className="col-12">Les destinations que vous allez decouvrir</h3>
+          {tours.destinations &&
+            tours.destinations.map((destination) => (
+              <div key={destination.id} className="mt-3 col-12">
+                <p>{destination.city}</p>
+              </div>
+            ))}
+        </div>
+        <form className="row" onSubmit={handleSubmit}>
+          <p className="col-12">Choisisez date de votre depart</p>
+          <ReactDatePicker selected={booking.date} onChange={handleChange} />
+          <button
+            type="submit"
+            className="btn btn-success"
+            disabled={!isAuthenticated}
+          >
+            Reserver la croisière
+          </button>
+        </form>
+      </section>
+    </ErrorBoundary>
   );
 };
 

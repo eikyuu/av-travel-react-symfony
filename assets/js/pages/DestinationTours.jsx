@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import destinationsApi from "../services/destinationsApi";
 import ToursCards from "../components/ToursCards";
+import ErrorBoundary from "../components/ErrorBoundary";
 
 const DestinationTours = ({ match }) => {
   const { id } = match.params;
@@ -23,23 +24,25 @@ const DestinationTours = ({ match }) => {
   }, [id]);
 
   return (
-    <section className="container" style={{ marginTop: "100px" }}>
-      <div className="row">
-        {destination.tours &&
-          destination.tours.map((tours) => (
-            <div key={tours.id} className="mt-3 col-sm-6 col-md-4">
-              <ToursCards
-                id={tours.id}
-                image={tours.image}
-                title={tours.title}
-                description={tours.description}
-                days={tours.days}
-                price={tours.price}
-              />
-            </div>
-          ))}
-      </div>
-    </section>
+    <ErrorBoundary>
+      <section className="container" style={{ marginTop: "100px" }}>
+        <div className="row">
+          {destination.tours &&
+            destination.tours.map((tours) => (
+              <div key={tours.id} className="mt-3 col-sm-6 col-md-4">
+                <ToursCards
+                  id={tours.id}
+                  image={tours.image}
+                  title={tours.title}
+                  description={tours.description}
+                  days={tours.days}
+                  price={tours.price}
+                />
+              </div>
+            ))}
+        </div>
+      </section>
+    </ErrorBoundary>
   );
 };
 

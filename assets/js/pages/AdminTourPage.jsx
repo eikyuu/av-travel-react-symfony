@@ -5,6 +5,7 @@ import toursApi from "../services/toursApi";
 import { toast } from "react-toastify";
 import Select from "../components/forms/Select";
 import destinationsApi from "../services/destinationsApi";
+import ErrorBoundary from "../components/ErrorBoundary";
 
 const AdminTourPage = (props) => {
   const { id = "new" } = props.match.params;
@@ -122,90 +123,92 @@ const AdminTourPage = (props) => {
 
   return (
     <>
-      <form className="container" onSubmit={handleSubmit}>
-        {(!editing && <h1>Création d'une croisière</h1>) || (
-          <h1>Modification d'une croisière</h1>
-        )}
-        <Field
-          name="title"
-          label="Titre"
-          placeholder="Titre du tours"
-          value={tours.title}
-          onChange={handleChange}
-          error={errors.title}
-          type="text"
-        />
-        <Field
-          name="description"
-          label="Description"
-          placeholder="Description du tours"
-          value={tours.description}
-          onChange={handleChange}
-          error={errors.description}
-          type="text"
-        />
-        <Field
-          name="days"
-          label="Jours"
-          placeholder="Nombre de jours du tours"
-          value={tours.days}
-          onChange={handleChange}
-          error={errors.days}
-          type="number"
-        />
-        <Field
-          name="price"
-          label="Prix"
-          placeholder="Prix du tours"
-          value={tours.price}
-          onChange={handleChange}
-          error={errors.price}
-          type="number"
-        />
-        <Field
-          name="image"
-          label="Image"
-          placeholder="Image du tours"
-          value={tours.image}
-          onChange={handleChange}
-          error={errors.image}
-          type="text"
-        />
+      <ErrorBoundary>
+        <form className="container" onSubmit={handleSubmit}>
+          {(!editing && <h1>Création d'une croisière</h1>) || (
+            <h1>Modification d'une croisière</h1>
+          )}
+          <Field
+            name="title"
+            label="Titre"
+            placeholder="Titre du tours"
+            value={tours.title}
+            onChange={handleChange}
+            error={errors.title}
+            type="text"
+          />
+          <Field
+            name="description"
+            label="Description"
+            placeholder="Description du tours"
+            value={tours.description}
+            onChange={handleChange}
+            error={errors.description}
+            type="text"
+          />
+          <Field
+            name="days"
+            label="Jours"
+            placeholder="Nombre de jours du tours"
+            value={tours.days}
+            onChange={handleChange}
+            error={errors.days}
+            type="number"
+          />
+          <Field
+            name="price"
+            label="Prix"
+            placeholder="Prix du tours"
+            value={tours.price}
+            onChange={handleChange}
+            error={errors.price}
+            type="number"
+          />
+          <Field
+            name="image"
+            label="Image"
+            placeholder="Image du tours"
+            value={tours.image}
+            onChange={handleChange}
+            error={errors.image}
+            type="text"
+          />
 
-        {fields.map((field, idx) => {
-          return (
-            <div key={`${field}-${idx}`}>
-              <Select
-                name="destinations"
-                label="destinations"
-                onChange={handleChangeSelect}
-              >
-                {destinations.map((destinations) => (
-                  <option key={destinations.id} value={destinations.id}>
-                    {destinations.title}
-                  </option>
-                ))}
-              </Select>
-              <button type="button" onClick={() => handleRemove(idx)}>
-                X
-              </button>
-            </div>
-          );
-        })}
+          {fields.map((field, idx) => {
+            return (
+              <div key={`${field}-${idx}`}>
+                <Select
+                  name="destinations"
+                  label="destinations"
+                  onChange={handleChangeSelect}
+                >
+                  {destinations.map((destinations) => (
+                    <option key={destinations.id} value={destinations.id}>
+                      {destinations.title}
+                    </option>
+                  ))}
+                </Select>
+                <button type="button" onClick={() => handleRemove(idx)}>
+                  X
+                </button>
+              </div>
+            );
+          })}
 
-        <button type="button" onClick={handleAdd}>
-          +
-        </button>
-
-        <div className="form-group">
-          <button type="submit" className="btn btn-success">
-            Enregistrer
+          <button type="button" onClick={handleAdd}>
+            +
           </button>
-          <Link to="/admin/tours" className="btn btn-link">
-            Retour
-          </Link>
-        </div>
-      </form>
+
+          <div className="form-group">
+            <button type="submit" className="btn btn-success">
+              Enregistrer
+            </button>
+            <Link to="/admin/tours" className="btn btn-link">
+              Retour
+            </Link>
+          </div>
+        </form>
+      </ErrorBoundary>
     </>
   );
 };

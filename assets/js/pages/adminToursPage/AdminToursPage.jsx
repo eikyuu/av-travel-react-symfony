@@ -4,6 +4,7 @@ import Pagination from "../../components/Pagination";
 import { toast } from "react-toastify";
 import "./AdminToursPage.css";
 import toursApi from "../../services/toursApi";
+import ErrorBoundary from "../../components/ErrorBoundary";
 
 const AdminToursPage = (props) => {
   const [tours, setTours] = useState([]);
@@ -57,69 +58,71 @@ const AdminToursPage = (props) => {
   };
 
   return (
-    <section className="container tours">
-      <div className="mb-3 d-flex justify-content-between align-items-center tours_block">
-        <h1 className="tours_h1">Liste des croisières</h1>
-        <Link to="/admin/tours/new" className="btn btn-primary tours_button">
-          Créer une croisières
-        </Link>
-      </div>
-      <div className="form-group tours_search">
-        <input
-          type="text"
-          onChange={handleSearch}
-          value={search}
-          className="form-control"
-          placeholder="Rechercher ..."
-        />
-      </div>
-      <table className="table table-hover">
-        <thead>
-          <tr>
-            <th>Id.</th>
-            <th>Titre</th>
-            <th>Description</th>
-            <th>Jours</th>
-            <th>Prix</th>
-            <th />
-          </tr>
-        </thead>
-
-        <tbody>
-          {paginatedTours.reverse().map((tour) => (
-            <tr key={tour.id}>
-              <td data-label="Id">{tour.id}</td>
-              <td data-label="Titre">{tour.title}</td>
-              <td data-label="Description">{tour.description}</td>
-              <td data-label="Jours">{tour.days}</td>
-              <td data-label="Prix">{tour.price}€</td>
-              <td>
-                <Link
-                  to={"/admin/tours/" + tour.id}
-                  className="btn btn-sm btn-primary"
-                >
-                  Editer
-                </Link>
-                <button
-                  onClick={() => handleDelete(tour.id)}
-                  className="btn btn-sm btn-danger"
-                >
-                  Supprimer
-                </button>
-              </td>
+    <ErrorBoundary>
+      <section className="container tours">
+        <div className="mb-3 d-flex justify-content-between align-items-center tours_block">
+          <h1 className="tours_h1">Liste des croisières</h1>
+          <Link to="/admin/tours/new" className="btn btn-primary tours_button">
+            Créer une croisières
+          </Link>
+        </div>
+        <div className="form-group tours_search">
+          <input
+            type="text"
+            onChange={handleSearch}
+            value={search}
+            className="form-control"
+            placeholder="Rechercher ..."
+          />
+        </div>
+        <table className="table table-hover">
+          <thead>
+            <tr>
+              <th>Id.</th>
+              <th>Titre</th>
+              <th>Description</th>
+              <th>Jours</th>
+              <th>Prix</th>
+              <th />
             </tr>
-          ))}
-        </tbody>
-      </table>
-      {itemsPerPage < filteredTours.length && (
-        <Pagination
-          currentPage={currentPage}
-          itemsPerPage={itemsPerPage}
-          length={filteredTours.length}
-          onPageChanged={handlePageChange}
-        />
-      )}
-    </section>
+          </thead>
+
+          <tbody>
+            {paginatedTours.reverse().map((tour) => (
+              <tr key={tour.id}>
+                <td data-label="Id">{tour.id}</td>
+                <td data-label="Titre">{tour.title}</td>
+                <td data-label="Description">{tour.description}</td>
+                <td data-label="Jours">{tour.days}</td>
+                <td data-label="Prix">{tour.price}€</td>
+                <td>
+                  <Link
+                    to={"/admin/tours/" + tour.id}
+                    className="btn btn-sm btn-primary"
+                  >
+                    Editer
+                  </Link>
+                  <button
+                    onClick={() => handleDelete(tour.id)}
+                    className="btn btn-sm btn-danger"
+                  >
+                    Supprimer
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        {itemsPerPage < filteredTours.length && (
+          <Pagination
+            currentPage={currentPage}
+            itemsPerPage={itemsPerPage}
+            length={filteredTours.length}
+            onPageChanged={handlePageChange}
+          />
+        )}
+      </section>
+    </ErrorBoundary>
   );
 };
 

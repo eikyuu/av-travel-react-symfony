@@ -5,6 +5,7 @@ import DestinationCards from "../components/DestinationCards";
 import ImageGrid from "../components/loaders/ImageGrid";
 import destinationsApi from "../services/destinationsApi";
 import SearchBar from "../components/SearchBar";
+import ErrorBoundary from "../components/ErrorBoundary";
 const DestinationsPage = (props) => {
   const [destinations, setDestinations] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -47,40 +48,42 @@ const DestinationsPage = (props) => {
     fetchDestinations();
   }, []);
   return (
-    <section className="container mt-5">
-      <h1 className="mt-5 destinations_h1">Toutes les destinations</h1>
-      <div className="form-group destination_search mt-5">
-        <SearchBar handleSearch={handleSearch} search={search} />
-      </div>
-
-      {!loading && (
-        <div className="row mt-5 mb-3">
-          {paginatedDestinations.map((destination) => (
-            <div
-              key={destination.id}
-              className="col-sm-12 col-md-6 displayDestinations"
-            >
-              <DestinationCards
-                id={destination.id}
-                image={destination.image}
-                city={destination.city}
-                tours={destination.tours}
-                pays={destination.pays}
-              />
-            </div>
-          ))}
+    <ErrorBoundary>
+      <section className="container mt-5">
+        <h1 className="mt-5 destinations_h1">Toutes les destinations</h1>
+        <div className="form-group destination_search mt-5">
+          <SearchBar handleSearch={handleSearch} search={search} />
         </div>
-      )}
-      {loading && <ImageGrid />}
-      {itemsPerPage < filteredDestinations.length && (
-        <Pagination
-          currentPage={currentPage}
-          itemsPerPage={itemsPerPage}
-          length={filteredDestinations.length}
-          onPageChanged={handlePageChange}
-        />
-      )}
-    </section>
+
+        {!loading && (
+          <div className="row mt-5 mb-3">
+            {paginatedDestinations.map((destination) => (
+              <div
+                key={destination.id}
+                className="col-sm-12 col-md-6 displayDestinations"
+              >
+                <DestinationCards
+                  id={destination.id}
+                  image={destination.image}
+                  city={destination.city}
+                  tours={destination.tours}
+                  pays={destination.pays}
+                />
+              </div>
+            ))}
+          </div>
+        )}
+        {loading && <ImageGrid />}
+        {itemsPerPage < filteredDestinations.length && (
+          <Pagination
+            currentPage={currentPage}
+            itemsPerPage={itemsPerPage}
+            length={filteredDestinations.length}
+            onPageChanged={handlePageChange}
+          />
+        )}
+      </section>
+    </ErrorBoundary>
   );
 };
 
