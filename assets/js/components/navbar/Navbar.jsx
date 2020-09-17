@@ -9,6 +9,7 @@ import JwtDecode from "jwt-decode";
 const Navbar = ({ history }) => {
   const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
   const [id, setId] = useState(0);
+  const [ifAdmin, setIfadmin] = useState(false);
 
   const handleLogout = () => {
     AuthApi.logout();
@@ -20,8 +21,11 @@ const Navbar = ({ history }) => {
   const findApiUser = () => {
     if (isAuthenticated) {
       const token = window.localStorage.getItem("authToken");
-      const { idUserToken } = JwtDecode(token);
+      const { idUserToken, roles } = JwtDecode(token);
       setId(idUserToken);
+      if (roles.includes("ROLE_ADMIN")) {
+        setIfadmin(true);
+      }
     }
   };
 
@@ -69,15 +73,32 @@ const Navbar = ({ history }) => {
                 CROISIERES
               </NavLink>
             </li>
+
             {isAuthenticated && (
               <>
                 <li className="nav-item active mr-5">
                   <NavLink className="nav-link" to={"/profile/" + id}>
-                    Profil
+                    PROFIL
                   </NavLink>
                 </li>
               </>
             )}
+
+            {ifAdmin && (
+              <>
+                <li className="nav-item active mr-5">
+                  <NavLink className="nav-link" to={"/admin/tours"}>
+                    ADMIN CROISIERES
+                  </NavLink>
+                </li>
+                <li className="nav-item active mr-5">
+                  <NavLink className="nav-link" to={"/admin/destinations"}>
+                    ADMIN DESTINATIONS
+                  </NavLink>
+                </li>
+              </>
+            )}
+
             {(!isAuthenticated && (
               <>
                 <li className="nav-item active mr-5">
