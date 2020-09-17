@@ -1,8 +1,9 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect, lazy } from "react";
 import { Redirect, useParams } from "react-router-dom";
 import AuthContext from "../contexts/authContext";
 import JwtDecode from "jwt-decode";
-import PageProfile from "../pages/PageProfile";
+
+const PageProfile = lazy(() => import("../pages/PageProfile"));
 
 const PrivateProfile = (props) => {
   const { isAuthenticated } = useContext(AuthContext);
