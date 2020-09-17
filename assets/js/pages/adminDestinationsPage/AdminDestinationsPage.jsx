@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { lazy, Suspense, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import destinationsApi from "../../services/destinationsApi";
-import Pagination from "../../components/Pagination";
 import { toast } from "react-toastify";
 import "./AdminDestinationsPage.css";
-import SearchBar from "../../components/SearchBar";
-import TableAdminTours from "../../components/TableAdminTours";
+
+import Pagination from "../../components/Pagination";
+import ErrorBoundary from "../../components/ErrorBoundary";
+
+const SearchBar = lazy(() => import("../../components/SearchBar"));
+const TableAdminTours = lazy(() => import("../../components/TableAdminTours"));
 
 const AdminDestinationsPage = () => {
   const [destinations, setDestinations] = useState([]);
@@ -65,31 +68,35 @@ const AdminDestinationsPage = () => {
   );
 
   return (
-    <section className="container destinations">
-      <div className="mb-3 d-flex justify-content-between align-items-center destination_block">
-        <h1 className="destinations_h1">Liste des destinations</h1>
-        <Link
-          to="/admin/destinations/new"
-          className="btn btn-primary destination_button"
-        >
-          Créer une destination
-        </Link>
-      </div>
-      <SearchBar handleSearch={handleSearch} search={search} />
-      <TableAdminTours
-        paginatedDestinations={paginatedDestinations}
-        handleDelete={handleDelete}
-      />
+    <ErrorBoundary>
+      <Suspense fallback={<div>Chargement...</div>}>
+        <section className="container destinations">
+          <div className="mb-3 d-flex justify-content-between align-items-center destination_block">
+            <h1 className="destinations_h1">Liste des destinations</h1>
+            <Link
+              to="/admin/destinations/new"
+              className="btn btn-primary destination_button"
+            >
+              Créer une destination
+            </Link>
+          </div>
+          <SearchBar handleSearch={handleSearch} search={search} />
+          <TableAdminTours
+            paginatedDestinations={paginatedDestinations}
+            handleDelete={handleDelete}
+          />
 
-      {itemsPerPage < filteredDestinations.length && (
-        <Pagination
-          currentPage={currentPage}
-          itemsPerPage={itemsPerPage}
-          length={filteredDestinations.length}
-          onPageChanged={handlePageChange}
-        />
-      )}
-    </section>
+          {itemsPerPage < filteredDestinations.length && (
+            <Pagination
+              currentPage={currentPage}
+              itemsPerPage={itemsPerPage}
+              length={filteredDestinations.length}
+              onPageChanged={handlePageChange}
+            />
+          )}
+        </section>
+      </Suspense>
+    </ErrorBoundary>
   );
 };
 
