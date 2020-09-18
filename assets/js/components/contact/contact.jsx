@@ -1,7 +1,7 @@
 import React from "react";
 import emailjs from "emailjs-com";
 import { toast } from "react-toastify";
-import "./Contact.css";
+import "./contact.css";
 import ErrorBoundary from "../ErrorBoundary";
 
 export default class extends React.Component {
