@@ -130,14 +130,16 @@ const PageProfile = (props) => {
             </button>
           </div>
         </form>
-
-        {user.bookings &&
-          user.bookings.map((booking) => (
-            <div key={booking.id} className="mt-3 col-sm-6 col-md-4">
-              <h1>{booking.tours.title}</h1>
-              <p>{booking.status}</p>
-            </div>
-          ))}
+        <div className="container">
+          <p className="font-weight-bold">Vos reservations :</p>
+          {user.bookings &&
+            user.bookings.map((booking) => (
+              <div key={booking.id} className="mt-3 col-sm-6 col-md-4">
+                <p>{booking.tours.title}</p>
+                <p>Satut du paiement : {booking.status}</p>
+              </div>
+            ))}
+        </div>
       </ErrorBoundary>
     </>
   );

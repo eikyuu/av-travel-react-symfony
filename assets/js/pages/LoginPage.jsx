@@ -41,8 +41,10 @@ const LoginPage = ({ history }) => {
   return (
     <>
       <h1>Connexion à l'application</h1>
+
       <ErrorBoundary>
         <form onSubmit={handleSubmit} className="container mt-5">
+          <p>admin@admin.com password</p>
           <Field
             label="Adresse email"
             name="username"

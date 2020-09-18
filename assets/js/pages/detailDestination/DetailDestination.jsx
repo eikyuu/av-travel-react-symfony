@@ -40,14 +40,14 @@ const DetailDestination = ({ match }) => {
         <div className="row detailDestination_row">
           <h1 className="detailDestination_h1 col-12">{destinations.title}</h1>
           <img
-            className="col-12 mt-3 mb-3"
+            className="col-sm-12 col-xl-6 mt-3 mb-3"
             src={destinations.image}
             alt="image destination"
           />
-          <p className="detailDestination_p col-12">
+          <p className="detailDestination_p col-sm-12 col-xl-6 mt-2">
             {destinations.description}
           </p>
-          <p className="detailDestination_p col-12">
+          <p className="detailDestination_p col-sm-12 col-xl-6">
             {destinations.city} {destinations.pays}
           </p>
         </div>
