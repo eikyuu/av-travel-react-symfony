@@ -33,6 +33,7 @@
     "@api-platform/admin": "^2.2.1",
     "aos": "^2.3.4",
     "axios": "^0.18.1",
+    "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "emailjs": "^3.2.1",
     "emailjs-com": "^2.4.1",
