@@ -1,4 +1,4 @@
-export const API_URL = "http://127.0.0.1:8000/api/";
+export const API_URL = process.env.API_URL;
 
 export const DESTINATIONS_API = API_URL + "destinations";
 export const TOURS_API = API_URL + "tours";
