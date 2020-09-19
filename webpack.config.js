@@ -1,5 +1,4 @@
 require("dotenv").config();
-
 var Encore = require("@symfony/webpack-encore");
 
 // Manually configure the runtime environment if not already configured yet by the "encore" command.
