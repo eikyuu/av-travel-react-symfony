@@ -23,7 +23,6 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  *      "tours_get_subresource"={"path"="/users/{id}/tours"}
  *  },
  *  normalizationContext={"groups"={"users_read"}},
- *  denormalizationContext={"groups"={"booking_read"}}
  * )
  * @UniqueEntity("email", message="Un utilisateur ayant cette adresse email existe déjà")
  */
