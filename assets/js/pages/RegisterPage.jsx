@@ -66,7 +66,9 @@ const RegisterPage = ({ history }) => {
     <>
       <ErrorBoundary>
         <form className="container mt-5" onSubmit={handleSubmit}>
-          <h1>Inscription</h1>
+          <h1 className="registerPage_h1" style={{ marginTop: "80px" }}>
+            Inscription
+          </h1>
           <Field
             name="firstName"
             label="Prénom"
