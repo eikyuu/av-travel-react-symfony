@@ -27,6 +27,7 @@ const Destinations = () => {
       toast.error("La destination n'a pas pu être chargé");
     }
   };
+
   let isSubscribed = true;
   useEffect(() => {
     if (isSubscribed) {
