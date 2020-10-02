@@ -7,7 +7,7 @@ import "aos/dist/aos.css";
 import destinationsApi from "../../services/destinationsApi";
 
 const ErrorBoundary = lazy(() => import("../ErrorBoundary"));
-const DestinationCards = lazy(() => import("../DestinationCards"));
+const DestinationCard = lazy(() => import("../DestinationCard"));
 const ImageGrid = lazy(() => import("../loaders/ImageGrid"));
 
 const Destinations = () => {
@@ -40,7 +40,7 @@ const Destinations = () => {
     <ErrorBoundary>
       <Suspense fallback={<div>Chargement...</div>}>
         <section data-aos="fade-up" className="container">
-          <h1 className=" mt-5 destinations_h1">Les dernières destinations</h1>
+          <h1 className="destinations_h1 mt-5">Les dernières destinations</h1>
           {!loading && (
             <div className="row mt-5">
               {destinations
@@ -51,7 +51,7 @@ const Destinations = () => {
                     key={destination.id}
                     className="col-sm-6 col-md-6 displayDestinations"
                   >
-                    <DestinationCards
+                    <DestinationCard
                       id={destination.id}
                       image={destination.image}
                       city={destination.city}

@@ -6,7 +6,7 @@ const ToursCards = ({ id, image, title, description, days, price }) => {
   return (
     <Link
       style={{ textDecoration: "none", color: "black" }}
-      to={"/tours/" + id}
+      to={"/tour/" + id}
       className="card"
     >
       <img

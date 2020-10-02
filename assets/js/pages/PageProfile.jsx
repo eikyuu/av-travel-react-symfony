@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import usersApi from "../services/usersApi";
 import { toast } from "react-toastify";
 import ErrorBoundary from "../components/ErrorBoundary";
+import bookingApi from "../services/bookingApi";
 
 const PageProfile = (props) => {
   const { id } = useParams();
@@ -14,6 +15,7 @@ const PageProfile = (props) => {
     password: "",
     passwordConfirm: "",
   });
+  const [booking, setBooking] = useState([]);
 
   const [errors, setErrors] = useState({
     firstName: "",
@@ -27,6 +29,7 @@ const PageProfile = (props) => {
     try {
       const data = await usersApi.find(id);
       setUser(data);
+      setBooking(data.bookings);
     } catch (error) {
       toast.error("L'utilisateur n'a pas pu être chargé");
       props.history.replace("/");
@@ -70,6 +73,18 @@ const PageProfile = (props) => {
         setErrors(apiErrors);
         toast.error("Des erreurs dans votre formulaire !");
       }
+    }
+  };
+
+  const handleDelete = async (id) => {
+    const orignalBooking = [...booking];
+    setBooking(booking.filter((booking) => booking.id !== id));
+    try {
+      await bookingApi.delete(id);
+      toast.success("La destination a bien été supprimer");
+    } catch (error) {
+      setBooking(orignalBooking);
+      toast.error("Erreur dans la supression de la destinations");
     }
   };
 
@@ -131,14 +146,20 @@ const PageProfile = (props) => {
           </div>
         </form>
         <div className="container">
-          <p className="font-weight-bold">Vos reservations :</p>
-          {user.bookings &&
-            user.bookings.map((booking) => (
-              <div key={booking.id} className="mt-3 col-sm-6 col-md-4">
-                <p>{booking.tours.title}</p>
-                <p>Satut du paiement : {booking.status}</p>
-              </div>
-            ))}
+          <p className="font-weight-bold">Mes reservations :</p>
+          {booking.map((booking) => (
+            <div key={booking.id} className="mt-3 col-sm-6 col-md-4">
+              <p>{booking.tours.title}</p>
+              <p>Satut du paiement : {booking.status}</p>
+              <button
+                className="btn btn-danger"
+                onClick={() => handleDelete(booking.id)}
+              >
+                annuler
+              </button>
+              <button className="btn btn-success">payer</button>
+            </div>
+          ))}
         </div>
       </ErrorBoundary>
     </>

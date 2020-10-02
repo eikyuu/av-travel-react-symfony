@@ -52,18 +52,18 @@ const App = () => {
             <Switch>
               <Route path="/login" component={LoginPage} />
               <Route path="/register" component={RegisterPage} />
-              <Route path="/tours/:id" component={DetailTours} />
+              <Route path="/tour/:id" component={DetailTours} />
               <Route path="/tours" component={ToursPage} />
               <Route
-                path="/destinations/:id/tours"
+                path="/destination/:id/tours"
                 component={DestinationTours}
               />
-              <Route path="/destinations/:id" component={DetailDestination} />
+              <Route path="/destination/:id" component={DetailDestination} />
               <Route path="/destinations" component={DestinationsPage} />
-              <PrivateRoute path="/admin/tours/:id" component={AdminTourPage} />
+              <PrivateRoute path="/admin/tour/:id" component={AdminTourPage} />
               <PrivateRoute path="/admin/tours" component={AdminToursPage} />
               <PrivateRoute
-                path="/admin/destinations/:id"
+                path="/admin/destination/:id"
                 component={AdminDestinationPage}
               />
               <PrivateRoute

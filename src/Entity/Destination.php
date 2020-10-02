@@ -21,7 +21,7 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
  * @ORM\Entity(repositoryClass=DestinationRepository::class)
  * @ApiResource(
  * subresourceOperations={
- *      "tours_get_subresource"={"path"="/destinations/{id}/tours"},
+ *      "tours_get_subresource"={"path"="/destination/{id}/tours"},
  *      "api_tours_destinations_get_subresource"={
  *          "normalization_context"={"groups"={"destinations_subresource"}}
  *  }

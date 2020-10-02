@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./../components/destinations/Destinations.css";
 import Pagination from "../components/Pagination";
-import DestinationCards from "../components/DestinationCards";
+import DestinationCard from "../components/DestinationCard";
 import ImageGrid from "../components/loaders/ImageGrid";
 import destinationsApi from "../services/destinationsApi";
 import SearchBar from "../components/SearchBar";
@@ -62,7 +62,7 @@ const DestinationsPage = (props) => {
                 key={destination.id}
                 className="col-sm-12 col-md-6 displayDestinations"
               >
-                <DestinationCards
+                <DestinationCard
                   id={destination.id}
                   image={destination.image}
                   city={destination.city}
