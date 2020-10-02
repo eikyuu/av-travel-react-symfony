@@ -26,7 +26,7 @@ const TableAdminTours = ({ paginatedDestinations, handleDelete }) => {
             <td data-label="Ville">{destination.city}</td>
             <td>
               <Link
-                to={"/admin/destinations/" + destination.id}
+                to={"/admin/destination/" + destination.id}
                 className="btn btn-sm btn-primary mr-1"
               >
                 Editer

@@ -39,7 +39,7 @@ const DetailTours = ({ match, history }) => {
       setTours(data);
     } catch (error) {
       toast.error("Le tours n'a pas pu être chargé");
-      props.history.replace("/admin/tours");
+      props.history.replace("/profile");
     }
   };
 
@@ -53,7 +53,7 @@ const DetailTours = ({ match, history }) => {
     try {
       await bookingApi.create(booking);
       toast.success("La reservation a bien etait effectuer");
-      history.replace("/");
+      history.replace("/profile/" + userId);
     } catch ({ response }) {
       toast.error("Des erreurs dans votre formulaire !");
     }
@@ -91,15 +91,19 @@ const DetailTours = ({ match, history }) => {
         </div>
         <form className="row" onSubmit={handleSubmit}>
           <p className="col-12 font-weight-bold">
-            Choisisez la date de votre depart
+            Choisissez la date de votre départ
           </p>
-          <ReactDatePicker selected={booking.date} onChange={handleChange} />
+          <ReactDatePicker
+            className="detailTours_dateTime ml-3"
+            selected={booking.date}
+            onChange={handleChange}
+          />
           <button
             type="submit"
-            className="btn btn-success"
+            className="btn btn-success ml-3"
             disabled={!isAuthenticated}
           >
-            Reserver la croisière
+            Ajouter a mes réservations
           </button>
         </form>
       </section>

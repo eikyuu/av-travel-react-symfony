@@ -1,3 +1,7 @@
 .detailTours_container {
   margin-top: 80px;
 }
+
+.detailTours_dateTime {
+  height: 38px;
+}

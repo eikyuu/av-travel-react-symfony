@@ -77,7 +77,6 @@ const AdminTourPage = (props) => {
     setTours({ destinations: state.array });
   };
 
-  console.log(tours.destinations);
   const handleSubmit = async (event) => {
     event.preventDefault();
 
