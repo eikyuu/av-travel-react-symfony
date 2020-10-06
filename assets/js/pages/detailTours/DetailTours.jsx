@@ -83,7 +83,7 @@ const DetailTours = ({ match, history }) => {
           {tours.destinations &&
             tours.destinations.map((destination) => (
               <div key={destination.id} className="mt-3 col-12">
-                <p>{destination.city}</p>
+                <p className="font-weight-bold">{destination.city}</p>
                 <p>{destination.title}</p>
                 <p>{destination.description}</p>
               </div>
