@@ -72,9 +72,7 @@ const AdminDestinationsPage = () => {
       <Suspense fallback={<div>Chargement...</div>}>
         <section className="container destinations">
           <div className="mb-3 d-flex justify-content-between align-items-center destination_block">
-            <h1 className="destinations_h1" style={{ fontSize: "1.7em" }}>
-              Liste des destinations
-            </h1>
+            <h1 className="destinations_h1">Liste des destinations</h1>
             <Link
               to="/admin/destination/new"
               className="btn btn-primary destination_button"

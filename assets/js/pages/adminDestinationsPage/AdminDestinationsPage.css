@@ -3,7 +3,7 @@
 }
 
 .destination_button {
-  width: 7rem;
+  width: 12rem;
 }
 .table thead {
   display: none;
@@ -26,4 +26,21 @@
 
 .pagination {
   justify-content: center;
+}
+
+.destinations_h1:before {
+  content: "";
+  left: 0;
+  position: absolute;
+  height: 3px;
+  right: 60%;
+  background-color: #ff6b6b;
+  bottom: -5px;
+}
+
+.destinations_h1 {
+  display: inline-block;
+  position: relative;
+  font-size: 1.7em;
+  font-weight: 600;
 }

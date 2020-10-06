@@ -1,3 +1,20 @@
 .tours {
   margin-top: 80px;
 }
+
+.tours_h1:before {
+  content: "";
+  left: 0;
+  position: absolute;
+  height: 3px;
+  right: 60%;
+  background-color: #ff6b6b;
+  bottom: -5px;
+}
+
+.tours_h1 {
+  display: inline-block;
+  position: relative;
+  font-size: 1.8em;
+  font-weight: 600;
+}
