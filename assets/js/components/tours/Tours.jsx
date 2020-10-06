@@ -41,7 +41,7 @@ const Tours = (props) => {
             .reverse()
             .slice(0, 6)
             .map((tours) => (
-              <div key={tours.id} className="mt-3 col-sm-6 col-md-4">
+              <div key={tours.id} className="mt-3 col-sm-6 col-md-6">
                 <ToursCards
                   id={tours.id}
                   image={tours.image}

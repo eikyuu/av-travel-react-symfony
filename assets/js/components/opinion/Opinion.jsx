@@ -6,8 +6,8 @@ const Opinion = () => {
   return (
     <section className="container mb-5">
       <h1 className="destinations_h1">Avis des voyageurs</h1>
-      <div className="section_cards mt-5">
-        <div className="cards">
+      <div className="section_cards row mt-5">
+        <div className="cards col-md-6">
           <img className="card_quote" src={quote} alt="profil utilisateur" />
           <p className="card_opinion text-center">
             SUPER VOYAGE SUPER ORGA MEME 2 femmes seules on se sent accompagnées
@@ -24,7 +24,7 @@ const Opinion = () => {
           </div>
         </div>
 
-        <div className="cards">
+        <div className="cards col-md-6">
           <img className="card_quote" src={quote} alt="profil utilisateur" />
           <p className="card_opinion text-center">
             Ce petit voyage à Milan et aux lacs fut en tous points une réussite
@@ -40,7 +40,7 @@ const Opinion = () => {
           </div>
         </div>
 
-        <div className="cards">
+        <div className="cards col-md-6">
           <img className="card_quote" src={quote} alt="profil utilisateur" />
           <p className="card_opinion text-center">
             Une respiration dans cette période de pandémie grâce au
