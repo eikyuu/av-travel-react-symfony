@@ -67,7 +67,7 @@ const DetailTours = ({ match, history }) => {
     <ErrorBoundary>
       <section className="container mb-5 detailTours_container">
         <div className="row">
-          <h1 className="col-12 mb-3">{tours.title}</h1>
+          <h1 className="DetailTours_h1 col-12 mb-3">{tours.title}</h1>
           <img
             src={tours.image}
             className="col-sm-12 col-xl-6"
