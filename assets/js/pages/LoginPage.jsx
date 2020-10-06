@@ -44,7 +44,6 @@ const LoginPage = ({ history }) => {
 
       <ErrorBoundary>
         <form onSubmit={handleSubmit} className="container mt-5">
-          <p>admin@admin.com password</p>
           <Field
             label="Adresse email"
             name="username"
