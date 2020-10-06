@@ -52,7 +52,10 @@ const DetailDestination = ({ match }) => {
           </p>
         </div>
 
-        <Link to={"/destination/" + id + "/tours"} className="btn btn-warning">
+        <Link
+          to={"/destination/" + id + "/tours"}
+          className="btn btn-warning mb-3"
+        >
           voir les croisières
         </Link>
       </section>

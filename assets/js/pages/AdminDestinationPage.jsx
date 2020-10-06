@@ -86,8 +86,14 @@ const AdminDestinationPage = ({ match, history }) => {
     <>
       <ErrorBoundary>
         <form className="container mt-5" onSubmit={handleSubmit}>
-          {(!editing && <h1>Création d'une destination</h1>) || (
-            <h1>Modification d'une destination</h1>
+          {(!editing && (
+            <h1 style={{ marginTop: "80px", fontSize: "1.7em" }}>
+              Création d'une destination
+            </h1>
+          )) || (
+            <h1 style={{ marginTop: "80px", fontSize: "1.7em" }}>
+              Modification d'une destination
+            </h1>
           )}
           <Field
             name="title"
