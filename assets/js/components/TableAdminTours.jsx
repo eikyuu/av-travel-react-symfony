@@ -22,7 +22,7 @@ const TableAdminTours = ({ paginatedDestinations, handleDelete }) => {
             <td data-label="id">{destination.id}</td>
             <td data-label="Titre">{destination.title}</td>
             <td data-label="Description">{destination.description}</td>
-            <td data-label="Pays">{destination.pays}</td>
+            <td data-label="Pays">{destination.country}</td>
             <td data-label="Ville">{destination.city}</td>
             <td>
               <Link

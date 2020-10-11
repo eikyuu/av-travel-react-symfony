@@ -10,7 +10,7 @@ const AdminDestinationPage = ({ match, history }) => {
   const [destinations, setDestinations] = useState({
     title: "",
     description: "",
-    pays: "",
+    country: "",
     city: "",
     image: "",
   });
@@ -18,7 +18,7 @@ const AdminDestinationPage = ({ match, history }) => {
   const [errors, setErrors] = useState({
     title: "",
     description: "",
-    pays: "",
+    country: "",
     city: "",
     image: "",
   });
@@ -30,11 +30,11 @@ const AdminDestinationPage = ({ match, history }) => {
       const {
         title,
         description,
-        pays,
+        country,
         city,
         image,
       } = await destinationsApi.find(id);
-      setDestinations({ title, description, pays, city, image });
+      setDestinations({ title, description, country, city, image });
     } catch (error) {
       toast.error("La destination n'a pas pu être chargé");
       history.replace("/admin/destinations");
@@ -114,12 +114,12 @@ const AdminDestinationPage = ({ match, history }) => {
             type="text"
           />
           <Field
-            name="pays"
+            name="country"
             label="Pays"
-            placeholder="Pays de la destination"
-            value={destinations.pays}
+            placeholder="country de la destination"
+            value={destinations.country}
             onChange={handleChange}
-            error={errors.pays}
+            error={errors.country}
             type="text"
           />
           <Field

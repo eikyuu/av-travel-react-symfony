@@ -33,7 +33,7 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
  * },
  * denormalizationContext={"disable_type_enforcement"=true}
  * )
- * @ApiFilter(SearchFilter::class, properties={"title":"partial", "pays":"partial", "city":"partial"})
+ * @ApiFilter(SearchFilter::class, properties={"title":"partial", "country":"partial", "city":"partial"})
  * @ApiFilter(OrderFilter::class)
  */
 class Destination
@@ -70,7 +70,7 @@ class Destination
      * @Assert\NotBlank(message="le pays de la destination est obligatoire")
      * @Assert\Type(type="string", message="le pays dois etre au format texte !")
      */
-    private $pays;
+    private $country;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -128,14 +128,14 @@ class Destination
         return $this;
     }
 
-    public function getPays(): ?string
+    public function getCountry(): ?string
     {
-        return $this->pays;
+        return $this->country;
     }
 
-    public function setPays(string $pays): self
+    public function setCountry(string $country): self
     {
-        $this->pays = $pays;
+        $this->country = $country;
 
         return $this;
     }

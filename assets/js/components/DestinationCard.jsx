@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const DestinationCard = ({ id, image, city, tours, pays }) => {
+const DestinationCard = ({ id, image, city, tours, country }) => {
   return (
     <Link
       className="destinationCard_link"
@@ -15,7 +15,7 @@ const DestinationCard = ({ id, image, city, tours, pays }) => {
       />
       <div className="destinationCard_div">
         <p className="destinationCard_p">
-          {pays} {city}
+          {country} {city}
         </p>
         <div className="destinationCard_button mr-1 ">
           {tours.length} {tours.length > 1 ? "croisières" : "croisière"}

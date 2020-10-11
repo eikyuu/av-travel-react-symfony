@@ -53,7 +53,7 @@ const AdminDestinationsPage = () => {
   const filteredDestinations = destinations.filter(
     (destination) =>
       destination.title.toLowerCase().includes(search.toLowerCase()) ||
-      destination.pays.toLowerCase().includes(search.toLowerCase()) ||
+      destination.country.toLowerCase().includes(search.toLowerCase()) ||
       destination.description.toLowerCase().includes(search.toLowerCase()) ||
       destination.city.toLowerCase().includes(search.toLowerCase())
   );

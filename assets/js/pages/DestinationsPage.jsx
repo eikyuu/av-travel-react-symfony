@@ -25,7 +25,7 @@ const DestinationsPage = (props) => {
   const filteredDestinations = destinations.filter(
     (destination) =>
       destination.title.toLowerCase().includes(search.toLowerCase()) ||
-      destination.pays.toLowerCase().includes(search.toLowerCase()) ||
+      destination.country.toLowerCase().includes(search.toLowerCase()) ||
       destination.description.toLowerCase().includes(search.toLowerCase()) ||
       destination.city.toLowerCase().includes(search.toLowerCase())
   );
@@ -67,7 +67,7 @@ const DestinationsPage = (props) => {
                   image={destination.image}
                   city={destination.city}
                   tours={destination.tours}
-                  pays={destination.pays}
+                  country={destination.country}
                 />
               </div>
             ))}

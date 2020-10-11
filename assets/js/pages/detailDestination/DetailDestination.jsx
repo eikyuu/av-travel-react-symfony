@@ -9,7 +9,7 @@ const DetailDestination = ({ match }) => {
   const [destinations, setDestinations] = useState({
     title: "",
     description: "",
-    pays: "",
+    country: "",
     city: "",
     image: "",
     tours: 0,
@@ -19,12 +19,12 @@ const DetailDestination = ({ match }) => {
       const {
         title,
         description,
-        pays,
+        country,
         city,
         image,
         tours,
       } = await destinationsApi.find(id);
-      setDestinations({ title, description, pays, city, image, tours });
+      setDestinations({ title, description, country, city, image, tours });
     } catch (error) {
       toast.error("La destination n'a pas pu être chargé");
     }
@@ -48,7 +48,7 @@ const DetailDestination = ({ match }) => {
             {destinations.description}
           </p>
           <p className="detailDestination_p col-sm-12 col-xl-6">
-            {destinations.city} {destinations.pays}
+            {destinations.city} {destinations.country}
           </p>
         </div>
 

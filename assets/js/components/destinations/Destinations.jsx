@@ -56,7 +56,7 @@ const Destinations = () => {
                       image={destination.image}
                       city={destination.city}
                       tours={destination.tours}
-                      pays={destination.pays}
+                      country={destination.country}
                     />
                   </div>
                 ))}
