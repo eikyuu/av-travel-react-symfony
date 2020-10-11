@@ -59,7 +59,7 @@ class Tours
     private $title;
 
     /**
-     * @ORM\Column(type="string", length=1000)
+     * @ORM\Column(type="text")
      * @Groups({"tours_read", "destination_read", "tours_subresource", "booking_read", "users_read"})
      * @Assert\NotBlank(message="la description du tours est obligatoire")
      * @Assert\Type(type="string", message="la description dois etre au format texte !")
@@ -91,7 +91,7 @@ class Tours
     private $image;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Destination::class, inversedBy="destinations", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity=Destination::class, inversedBy="tours", cascade={"persist"})
      * @ORM\JoinTable(name="destination_tours")
      * @Groups({"tours_read"})
      * @ApiSubresource(maxDepth=1)

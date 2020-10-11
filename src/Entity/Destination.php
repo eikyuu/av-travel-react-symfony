@@ -56,7 +56,7 @@ class Destination
     private $title;
 
     /**
-     * @ORM\Column(type="string", length=1500)
+     * @ORM\Column(type="text")
      * @Groups({"destination_read", "tours_read", "destinations_subresource"})
      * @Assert\NotBlank(message="la description de la destination est obligatoire")
      * @Assert\Type(type="string", message="la description dois etre au format texte !")
