@@ -24,7 +24,7 @@ const Destinations = () => {
       setDestinations(data);
       setLoading(false);
     } catch (error) {
-      toast.error("La destination n'a pas pu être chargé");
+      toast.error("Les destinations n'ont pas pu être chargées");
     }
   };
 
