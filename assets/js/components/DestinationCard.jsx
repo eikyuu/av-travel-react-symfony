@@ -3,7 +3,11 @@ import { Link } from "react-router-dom";
 
 const DestinationCard = ({ id, image, city, tours, pays }) => {
   return (
-    <Link to={"/destination/" + id}>
+    <Link
+      className="destinationCard_link"
+      style={{ textDecoration: "none" }}
+      to={"/destination/" + id}
+    >
       <img
         className="destinationCard_img"
         alt="image d'une destination"
@@ -14,7 +18,7 @@ const DestinationCard = ({ id, image, city, tours, pays }) => {
           {pays} {city}
         </p>
         <div className="destinationCard_button mr-1 ">
-          {tours.length} croisières
+          {tours.length} {tours.length > 1 ? "croisières" : "croisière"}
         </div>
       </div>
     </Link>
