@@ -1,3 +1,8 @@
+.displayTours {
+  display: flex;
+  justify-content: center;
+}
+
 .tours_title {
   font-size: 1.3em;
   width: 330px;
@@ -16,6 +21,7 @@
 .card {
   box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
   height: 30rem;
+  width: 21rem;
 }
 
 .tours_h1:before {
@@ -34,10 +40,17 @@
   font-size: 1.8em;
   font-weight: 600;
 }
+
 @media (min-width: 740px) {
   .card {
     height: 30rem;
     width: 20rem;
+  }
+}
+
+@media (min-width: 990px) {
+  .card {
+    width: 30rem;
   }
 }
 
