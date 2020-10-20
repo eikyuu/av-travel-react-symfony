@@ -5,7 +5,7 @@
 
 .destinationCard_img {
   height: 15rem;
-  width: 100%;
+  width: 21rem;
   border-radius: 2.5px;
   box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
 }
@@ -54,10 +54,34 @@
   font-weight: 600;
 }
 
-@media (min-width: 760px) {
+@media (min-width: 575px) {
+  .destinationCard_img {
+    height: 16rem;
+    width: 16rem;
+  }
+  .destinationCard_button {
+    right: 10px;
+    position: absolute;
+  }
+}
+
+@media (min-width: 768px) {
   .destinationCard_img {
     height: 20rem;
     width: 21rem;
+  }
+  .destinationCard_button {
+    right: 12px;
+  }
+}
+
+@media (min-width: 990px) {
+  .destinationCard_img {
+    height: 20rem;
+    width: 29rem;
+  }
+  .destinationCard_button {
+    right: 12px;
   }
 }
 

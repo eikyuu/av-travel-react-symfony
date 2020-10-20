@@ -49,7 +49,7 @@ const Destinations = () => {
                 .map((destination) => (
                   <div
                     key={destination.id}
-                    className="col-sm-6 col-md-6 displayDestinations"
+                    className="col-sm-6 col-md-6 col-xl-6 displayDestinations"
                   >
                     <DestinationCard
                       id={destination.id}
