@@ -1,0 +1,70 @@
+.destinationCard_img {
+  height: 15rem;
+  width: 21rem;
+  border-radius: 2.5px;
+  box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
+}
+
+.destinationCard_button {
+  font-size: 0.7em;
+  height: 2rem;
+  width: 5rem;
+  background-color: rgb(0, 89, 255);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.destinationCard_div {
+  margin-top: -35px;
+  margin-left: 10px;
+  color: white;
+  text-shadow: 0px 0px 2px #000000;
+  font-size: 1.2em;
+  display: flex;
+  justify-content: space-between;
+}
+
+.destinationCard_p {
+  white-space: nowrap;
+  width: 240px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (min-width: 575px) {
+  .destinationCard_img {
+    height: 16rem;
+    width: 16rem;
+  }
+  .destinationCard_button {
+    right: 10px;
+    position: absolute;
+  }
+}
+
+@media (min-width: 768px) {
+  .destinationCard_img {
+    height: 20rem;
+    width: 21rem;
+  }
+  .destinationCard_button {
+    right: 12px;
+  }
+}
+
+@media (min-width: 990px) {
+  .destinationCard_img {
+    height: 20rem;
+    width: 29rem;
+  }
+  .destinationCard_button {
+    right: 12px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .destinationCard_img {
+    width: 34rem;
+  }
+}

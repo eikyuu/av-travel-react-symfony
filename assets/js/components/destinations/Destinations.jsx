@@ -7,7 +7,9 @@ import "aos/dist/aos.css";
 import destinationsApi from "../../services/destinationsApi";
 
 const ErrorBoundary = lazy(() => import("../ErrorBoundary"));
-const DestinationCard = lazy(() => import("../DestinationCard"));
+const DestinationCard = lazy(() =>
+  import("../destinationCard/DestinationCard")
+);
 const ImageGrid = lazy(() => import("../loaders/ImageGrid"));
 
 const Destinations = () => {

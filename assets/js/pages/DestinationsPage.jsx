@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./../components/destinations/Destinations.css";
 import Pagination from "../components/Pagination";
-import DestinationCard from "../components/DestinationCard";
+import DestinationCard from "../components/destinationCard/DestinationCard";
 import ImageGrid from "../components/loaders/ImageGrid";
 import destinationsApi from "../services/destinationsApi";
 import SearchBar from "../components/SearchBar";
