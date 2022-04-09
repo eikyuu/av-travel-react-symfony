@@ -38,7 +38,7 @@
     "emailjs": "^3.2.1",
     "emailjs-com": "^2.4.1",
     "jwt-decode": "^2.2.0",
-    "moment": "^2.25.3",
+    "moment": "^2.29.2",
     "react": "^16.13.1",
     "react-anchor-link-smooth-scroll": "^1.0.12",
     "react-content-loader": "^5.1.0",
