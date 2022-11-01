@@ -30,7 +30,7 @@
     "format:css": "prettier --write \"./**/*.css\" && stylelint --fix \"./**/*.css\""
   },
   "dependencies": {
-    "@api-platform/admin": "^2.2.1",
+    "@api-platform/admin": "^2.8.4",
     "aos": "^2.3.4",
     "axios": "^0.18.1",
     "cors": "^2.8.5",
